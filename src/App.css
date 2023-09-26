@@ -1,38 +1,72 @@
-.App {
-  text-align: center;
+*{
+  padding: 0;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.logoContainer{
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  /* border:solid 2px white; */
+  height: fit-content;
+}
+
+.logoContainer p{
+  font-family:'Poppins', sans-serif;
   color: white;
+  font-weight: 600;
 }
 
-.App-link {
-  color: #61dafb;
+header{
+  display: flex;
+  align-items: center;
+  justify-content:space-evenly ;
+  height: 70px;
+  display: flex;
+  background-color: #3371e6;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.imgLogo{
+  width: 100%;
+  max-width: 80px;
+  height: auto;
+  margin-left: -10px;
 }
+
+header a{
+  margin-right: 20px;
+  color: white;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.02rem;
+  transition: all 1s;
+  /* border: solid green; */
+}
+
+header a:hover{
+  cursor: pointer;
+}
+
+/* BORDER BOTTOM anim */
+
+.linkContainer{
+  display: flex;
+}
+
+.linkContainer a:after {
+  display:block;
+  content: '';
+  border-bottom: 2px solid rgb(211, 211, 211);
+  transform: scaleX(0);  
+  transition: transform 250ms ease-in-out;
+}
+.linkContainer a.line:after{
+   transform-origin: 100% 50%; 
+}
+
+.linkContainer a.line:hover:after{
+  transform: scaleX(1);
+  transform-origin:   0% 50%; 
+}
+
+/* BORDER BOTTOM anim */
