@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from './cc-high-resolution-logo-color-on-transparent-background.png'
+import logo from './Images/cc-high-resolution-logo-color-on-transparent-background.png'
 
 export default function Header() {
   return (

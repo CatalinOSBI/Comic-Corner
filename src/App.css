@@ -3,6 +3,8 @@
   margin: 0;
 }
 
+/*------------------ HEADER ------------------*/
+
 .logoContainer{
   display: flex;
   align-items: center;
@@ -70,3 +72,17 @@ header a:hover{
 }
 
 /* BORDER BOTTOM anim */
+
+/*------------------ HEADER ------------------*/
+
+/*------------------- MAIN -------------------*/
+
+.mainContainer{
+  border: solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/*------------------- MAIN -------------------*/
