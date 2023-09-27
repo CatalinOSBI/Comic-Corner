@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'GretaSansStdReg';
+  src: url(./Fonts/GretaSansStdReg.ttf) format('truetype');
+}
+
 *{
   padding: 0;
   margin: 0;
@@ -134,9 +139,46 @@ header a:hover{
 /*---------------- CONTENT ONE ---------------*/
 
 .contentOne{
+  border: solid red;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
 }
 
+.title{
+  border: solid green;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 80%;
+  font-weight:900;
+  font-family: GretaSansStdReg ;
+  text-transform: uppercase;
+  letter-spacing: 0.03rem;
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+.middle{
+  border: solid purple;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  rotate: -2deg;
+}
+
+.comic{
+  border: solid black;
+  width: 250px;
+  height: 350px;
+  margin-left: 100px;
+  position: relative;
+}
+
+.comic:hover{
+  top: -20px;
+}
 /*---------------- CONTENT ONE ---------------*/
