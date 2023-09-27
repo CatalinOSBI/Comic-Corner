@@ -1,11 +1,19 @@
 import React from 'react'
-import banner from'./Images/705204.jpg'
+import banner from './Images/705204.jpg'
 
 export default function Main() {
   return (
+    <>
     <div className='mainContainer'>
-        <h1>title</h1>
-        <img src={banner}/>   
+        <div className='effectContainer' >
+            <h1></h1>
+            <div className='bannerContainer'>
+                <img className='banner' src={banner}/>
+            </div>       
+        </div>
+        <h1 style={{opacity: '0', fontSize: '2.5rem'}}>Title</h1>
     </div>
+    
+    </>
   )
 }
