@@ -168,17 +168,33 @@ header a:hover{
   justify-content: center;
   align-items: center;
   rotate: -2deg;
+  /* overflow-x: auto; */
+
 }
 
 .comic{
-  border: solid black;
+  border:10px solid black;
   width: 250px;
-  height: 350px;
+  border-color: transparent;
   margin-left: 100px;
   position: relative;
 }
 
-.comic:hover{
-  top: -20px;
+.comic p{
+  text-align: start;
 }
+
+.comic:hover .comicCover{
+  transform: translateY(-5%);
+
+}
+
+.comicCover{
+  /* border:20px solid red; */
+  width: 250px;
+  height: auto;
+  z-index: 1;
+  transition: all 150ms ease-in-out;
+}
+
 /*---------------- CONTENT ONE ---------------*/

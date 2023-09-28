@@ -4,9 +4,11 @@ import Main from './Main';
 import ContentOne from './ContentOne';
 
 
-
 function App(){
+
     return(
+
+        
         <>
         <Header/>
         <Main/>
