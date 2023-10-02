@@ -8,6 +8,28 @@
   margin: 0;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2267e7; 
+  border-radius:15px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2a5bb4; 
+}
+
+::-webkit-scrollbar-thumb:active { 
+  background-color: #2854a5;
+}  
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 15px;
+}
 /*------------------ HEADER ------------------*/
 
 .headerContainer{
@@ -18,7 +40,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border:solid 2px white; */
+  border:solid 2px white;
   height: fit-content;
 }
 
@@ -31,7 +53,7 @@
 header{
   display: flex;
   align-items: center;
-  justify-content:space-evenly ;
+  justify-content:space-around ;
   height: 70px;
   display: flex;
   background-color: #3371e6;
@@ -53,7 +75,7 @@ header a{
   font-size: 1.2rem;
   letter-spacing: 0.02rem;
   transition: all 1s;
-  /* border: solid green; */
+  border: solid green;
 }
 
 header a:hover{
@@ -90,10 +112,11 @@ header a:hover{
 
 .mainContainer{
   border: solid blue;
-  overflow: hidden;
+  /* overflow: hidden; */
   align-items: center;
   display:flex;
   flex-direction: column;
+  position: relative;
 }
 
 .effectContainer{
@@ -125,7 +148,8 @@ header a:hover{
 .banner{
   width: 70%;
   height: auto;
-  z-index: 1;
+  z-index: 5;
+  position: relative;
   
 }
 
@@ -138,13 +162,20 @@ header a:hover{
 
 /*---------------- CONTENT ONE ---------------*/
 
-.contentOne{
+.content{
   border: solid red;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   overflow: hidden;
+  margin-bottom: 16vh;
+  position: relative;
+  z-index: 1;
+}
+
+.content h1{
+  border-top: solid #e6c300;
 }
 
 .title{
@@ -165,10 +196,17 @@ header a:hover{
   border: solid purple;
   display: flex;
   width: 100%;
-  justify-content: center;
+  height: 466px;
+  justify-content: space-between;
   align-items: center;
   rotate: -2deg;
-  /* overflow-x: auto; */
+  overflow: scroll;
+  cursor:grab;
+  overflow-y: hidden;
+}
+
+.middle.active {
+  cursor: grabbing;
 
 }
 
@@ -176,8 +214,10 @@ header a:hover{
   border:10px solid black;
   width: 250px;
   border-color: transparent;
-  margin-left: 100px;
+  margin-left: 56px;
   position: relative;
+  transition: all 250ms;
+  scroll-snap-align: end;
 }
 
 .comic p{
@@ -186,7 +226,11 @@ header a:hover{
 
 .comic:hover .comicCover{
   transform: translateY(-5%);
+  cursor: pointer;
+}
 
+.comic:hover p{
+  color:rgb(196, 0, 0);
 }
 
 .comicCover{
@@ -195,6 +239,74 @@ header a:hover{
   height: auto;
   z-index: 1;
   transition: all 150ms ease-in-out;
+  margin-bottom: 0.3rem;
+  box-shadow: 10px 10px 21px 0px rgba(0,0,0,0.33);
+}
+
+.middle p{
+  font-family: 'roboto', sans-serif;
+  font-size: 1rem;
+  position: absolute;
+  color: rgb(100, 100, 100);
+  transition: all 150ms ease-in-out;
+}
+
+#loading{
+  color: black;
+  text-align: end;
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-family:'Oswald', sans-serif;
+  font-style: italic;
 }
 
 /*---------------- CONTENT ONE ---------------*/
+
+/*---------------- CONTENT TWO ---------------*/
+
+.middle2{
+  border: solid purple;
+  display: flex;
+  width: 100%;
+  height: 466px;
+  justify-content: space-between;
+  align-items: center;
+  rotate: -2deg;
+  overflow: scroll;
+  cursor:grab;
+  overflow-y: hidden;
+}
+
+.middle2.active {
+  cursor: grabbing;
+
+}
+
+.middle2 p{
+  font-family: 'roboto', sans-serif;
+  font-size: 1rem;
+  position: absolute;
+  color: rgb(100, 100, 100);
+  transition: all 150ms ease-in-out;
+  text-align: end;
+}
+
+.dotBackground{
+
+}
+
+.backgroundContainer{
+
+}
+
+/*---------------- CONTENT TWO ---------------*/
+
+/*------------------- NEWS -------------------*/
+
+.newsContainer{
+  background-color: #3371e6;
+  width: 100%;
+  height: 50vh; /*change this to auto later*/
+}
+
+/*------------------- NEWS -------------------*/
