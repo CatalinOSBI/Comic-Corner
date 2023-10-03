@@ -3,6 +3,16 @@ import axios from 'axios';
 import {useState, useEffect} from 'react';
 import Batman1 from './Images/batman1.png';
 import Batman2 from './Images/batman2NoBG.png';
+import Spiderman1 from './Images/spiderman1.png';
+import Spiderman2 from './Images/spiderman2NoBG.png';
+import Constantine1 from './Images/john1.png';
+import Constantine2 from './Images/john2NoBG.png';
+import Joker1 from './Images/joker1.png';
+import Joker2 from './Images/joker2NoBG.png';
+import Punisher1 from './Images/punisher 1.png';
+import Punisher2 from './Images/punisher 2NoBG.png';
+import Venom1 from './Images/venom1.png';
+import Venom2 from './Images/venom2NoBG.png';
 
 
 export default function Content() {
@@ -89,7 +99,6 @@ useEffect(()=>{
   
       .then(res => {
           setComics(res.data.data.results)
-          console.log(comics)
       })   
 // Putting the API Response in an array      
 },[]);
@@ -118,8 +127,28 @@ function News(){
   return(
     <div className='newsContainer'>
       <div className='heroContainer'>
+        <img src={Constantine1} className='heroImageA'/>
+        <img src={Constantine2} className='heroImageB'/>
+      </div>
+      <div className='heroContainer'>
+        <img src={Spiderman1} className='heroImageA' style={{transform: 'translateX(5%)'}}/>
+        <img src={Spiderman2} className='heroImageB'/>
+      </div>
+      <div className='heroContainer'>
         <img src={Batman1} className='heroImageA'/>
-        <img src={Batman2} className='heroImageB'/>
+        <img src={Batman2} className='heroImageBatman'/>
+      </div>
+      <div className='heroContainer'>
+        <img src={Punisher1} className='heroImageA' style={{transform: 'translateX(5%)'}}/>
+        <img src={Punisher2} className='heroImageB'/>
+      </div>
+      <div className='heroContainer'>
+        <img src={Venom1} className='heroImageA'/>
+        <img src={Venom2} className='heroImageB'/>
+      </div>
+      <div className='heroContainer'>
+        <img src={Joker1} className='heroImageA'/>
+        <img src={Joker2} className='heroImageB'/>
       </div>
     </div>
   )
