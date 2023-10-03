@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios';
 import {useState, useEffect} from 'react';
+import Batman1 from './Images/batman1.png';
+import Batman2 from './Images/batman2NoBG.png';
 
 
 export default function Content() {
@@ -115,7 +117,10 @@ return(
 function News(){
   return(
     <div className='newsContainer'>
-      <h1>News Title</h1>
+      <div className='heroContainer'>
+        <img src={Batman1} className='heroImageA'/>
+        <img src={Batman2} className='heroImageB'/>
+      </div>
     </div>
   )
 }

@@ -306,7 +306,48 @@ header a:hover{
 .newsContainer{
   background-color: #3371e6;
   width: 100%;
-  height: 50vh; /*change this to auto later*/
+  height: 100vh; /*change this to auto later*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroContainer{
+  border: solid white;
+  border-radius: 110px;
+  width: 220px;
+  height: 555px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.heroContainer:hover .heroImageB{
+  transform: translateY(-8%) scale(1.2);
+  opacity: 1;
+}
+
+.heroContainer:hover .heroImageA{
+  opacity: 0;
+}
+
+.heroImageA{
+  width: 260%;
+  height: auto;
+  position: relative;
+  /* opacity: 0; */
+  transition: all 250ms ease-in-out;
+}
+
+.heroImageB{
+  width: 100%;
+  max-width: 575px;
+  height: auto;
+  position: absolute;
+  opacity: 0;
+  transition: all 250ms ease-in-out;
+  /* transform: translateY(-10%); */
 }
 
 /*------------------- NEWS -------------------*/
