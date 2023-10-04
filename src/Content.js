@@ -13,6 +13,7 @@ import Punisher1 from './Images/punisher 1.png';
 import Punisher2 from './Images/punisher 2NoBG.png';
 import Venom1 from './Images/venom1.png';
 import Venom2 from './Images/venom2NoBG.png';
+import dots from './Images/279-removebg-preview.png'
 
 
 export default function Content() {
@@ -66,7 +67,6 @@ useEffect(()=>{
   
       .then(res => {
           setComics(res.data.data.results)
-          console.log(comics)
       })   
 // Putting the API Response in an array      
 },[]);
@@ -126,30 +126,43 @@ return(
 function News(){
   return(
     <div className='newsContainer'>
-      <div className='heroContainer'>
-        <img src={Constantine1} className='heroImageA'/>
-        <img src={Constantine2} className='heroImageB'/>
+    <img src={dots} className='dots Top'/>
+    <img src={dots} className='dots Bottom'/>
+
+      <div className='sideA'>
+        <div className='heroContainer' style={{marginRight: '60vw'}}>
+            <img src={Punisher1} className='heroImageA' style={{transform: 'translateX(5%) translateY(6%)'}}/>
+            <img src={Punisher2} className='heroImageB'/>
+        </div>
+        <div className='heroContainer'>
+          <img src={Constantine1} className='heroImageA'/>
+          <img src={Constantine2} className='heroImageB'/>
+        </div>
       </div>
-      <div className='heroContainer'>
-        <img src={Spiderman1} className='heroImageA' style={{transform: 'translateX(5%)'}}/>
-        <img src={Spiderman2} className='heroImageB'/>
+
+      <div className='sideA'>
+          <div className='heroContainer' style={{marginRight: '30vw'}}>
+            <img src={Venom1} className='heroImageA' style={{transform: 'translateX(5%) translateY(5%)'}}/>
+            <img src={Venom2} className='heroImageB'/>
+          </div>
+          <div className='heroContainer'>
+            <img src={Spiderman1} className='heroImageA' style={{transform: 'translateX(-3%) translateY(4%)'}}/>
+            <img src={Spiderman2} className='heroImageB'/>
+          </div>
       </div>
-      <div className='heroContainer'>
-        <img src={Batman1} className='heroImageA'/>
-        <img src={Batman2} className='heroImageBatman'/>
+
+
+      <div className='sideA' style={{marginBottom: '0px'}}>
+        <div className='heroContainer' style={{marginRight: '60vw'}}>
+          <img src={Joker1} className='heroImageA'/>
+          <img src={Joker2} className='heroImageBatman'/>
+        </div>
+        <div className='heroContainer'>
+            <img src={Batman1} className='heroImageA'/>
+            <img src={Batman2} className='heroImageBatman'/>
+          </div>
       </div>
-      <div className='heroContainer'>
-        <img src={Punisher1} className='heroImageA' style={{transform: 'translateX(5%)'}}/>
-        <img src={Punisher2} className='heroImageB'/>
-      </div>
-      <div className='heroContainer'>
-        <img src={Venom1} className='heroImageA'/>
-        <img src={Venom2} className='heroImageB'/>
-      </div>
-      <div className='heroContainer'>
-        <img src={Joker1} className='heroImageA'/>
-        <img src={Joker2} className='heroImageB'/>
-      </div>
-    </div>
+    </div>  
   )
 }
+
