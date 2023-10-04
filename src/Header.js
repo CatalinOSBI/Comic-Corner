@@ -1,10 +1,12 @@
 import React from 'react'
 import logo from './Images/cc-high-resolution-logo-color-on-transparent-background.png'
+import dots from './Images/279-removebg-preview.png'
 
 export default function Header() {
   return (
     <div className='headerContainer'>
       <header>
+        <img className='dots Top' src={dots}/>
         <div className='logoContainer'>
           <p>
             Comic<br/>&emsp;&ensp;Corner
@@ -12,9 +14,9 @@ export default function Header() {
           <img className='imgLogo' src={logo} alt='sitelogo'/>
         </div>
         <div className='linkContainer'>
-          <a className='line'>Latest Releases</a>
-          <a className='line'>Comic Spotlight</a>
-          <a className='line'>News</a>
+          <a className='line' href={'#A'}>Latest Releases</a> 
+          <a className='line' href={'#B'}>Comic Spotlight</a>
+          <a className='line' href={'#C'}>News</a>
         </div>
       </header>
     </div>

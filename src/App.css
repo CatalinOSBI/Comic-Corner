@@ -8,6 +8,10 @@
   margin: 0;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -30,17 +34,23 @@
   box-shadow: inset 0 0 5px grey; 
   border-radius: 15px;
 }
+
+a{
+text-decoration: none;
+}
+
 /*------------------ HEADER ------------------*/
 
 .headerContainer{
   z-index: 2;
+  overflow: hidden;
 }
 
 .logoContainer{
   display: flex;
   align-items: center;
   justify-content: center;
-  border:solid 2px white;
+  /* border:solid 2px white; */
   height: fit-content;
 }
 
@@ -75,7 +85,7 @@ header a{
   font-size: 1.2rem;
   letter-spacing: 0.02rem;
   transition: all 1s;
-  border: solid green;
+  /* border: solid green; */
 }
 
 header a:hover{
@@ -104,14 +114,12 @@ header a:hover{
   transform-origin:   0% 50%; 
 }
 
-/* BORDER BOTTOM anim */
-
 /*------------------ HEADER ------------------*/
 
 /*------------------- MAIN -------------------*/
 
 .mainContainer{
-  border: solid blue;
+  /* border: solid blue; */
   /* overflow: hidden; */
   align-items: center;
   display:flex;
@@ -120,7 +128,7 @@ header a:hover{
 }
 
 .effectContainer{
-  border: solid red;
+  /* border: solid red; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,7 +147,7 @@ header a:hover{
   justify-content: center;
   width: 80%;
   height: auto;
-  border: solid green;
+  /* border: solid green; */
   position: relative;
   z-index: 0;
   overflow: hidden;
@@ -163,7 +171,7 @@ header a:hover{
 /*---------------- CONTENT ONE ---------------*/
 
 .content{
-  border: solid red;
+  /* border: solid red; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -179,7 +187,7 @@ header a:hover{
 }
 
 .title{
-  border: solid green;
+  /* border: solid green; */
   display: flex;
   align-items: center;
   justify-content: start;
@@ -193,7 +201,7 @@ header a:hover{
 }
 
 .middle{
-  border: solid purple;
+  /* border: solid purple; */
   display: flex;
   width: 100%;
   height: 466px;
@@ -220,13 +228,38 @@ header a:hover{
   scroll-snap-align: end;
 }
 
+.comic button{
+  position: absolute;
+  top: 0;
+  right: 5px;
+  font-family: 'roboto', sans-serif;
+  font-size: 1rem;
+  color: white;
+  background-color: rgb(196, 0, 0);
+  border: 1px solid white;
+  border-radius: 100%;
+  padding: 5px;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+  cursor: pointer;
+  box-shadow: inset 10px 10px 28px -14px rgba(0,0,0,0.35);
+}
+
+.comic:hover button{
+  opacity: 1;
+}
+
+.comic button:hover{
+  color: rgb(196, 0, 0);
+  background-color: white;
+}
+
 .comic p{
   text-align: start;
 }
 
 .comic:hover .comicCover{
   transform: translateY(-5%);
-  cursor: pointer;
 }
 
 .comic:hover p{
@@ -265,7 +298,7 @@ header a:hover{
 /*---------------- CONTENT TWO ---------------*/
 
 .middle2{
-  border: solid purple;
+  /* border: solid purple; */
   display: flex;
   width: 100%;
   height: 466px;
@@ -291,19 +324,12 @@ header a:hover{
   text-align: end;
 }
 
-.dotBackground{
-
-}
-
-.backgroundContainer{
-
-}
-
 /*---------------- CONTENT TWO ---------------*/
 
 /*------------------- NEWS -------------------*/
 
 .newsContainer{
+  rotate: -2deg;
   background-color: #3371e6;
   width: 100%;
   height: auto; 
@@ -311,6 +337,7 @@ header a:hover{
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  margin-bottom: 16vh;
 }
 
 .heroContainer{
@@ -359,9 +386,10 @@ header a:hover{
 }
 
 .sideA{
-  border: solid red;
+  /* border: solid red; */
   display: flex;
   margin-bottom: -160px;
+  rotate: 2deg;
 }
 
 .dots{
@@ -373,7 +401,7 @@ header a:hover{
 
 .Top{
   left: 0;
-  top: 6vh;
+  top: 0;
 }
 
 .Bottom{
@@ -382,9 +410,37 @@ header a:hover{
   bottom: 0;
 }
 
+.heroTitle{
+  position: absolute;
+  top: 0;
+  font-family: 'oswald', sans-serif;
+  font-size: 1.3rem;
+  color: white;
+  margin-top: 16px;
+  rotate: 2px;
+  letter-spacing: 0.02rem;
+  box-shadow: 10px 10px 33px -6px rgba(0,0,0,0.36);
+  text-transform: uppercase;
+}
+
+.heroContext{
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  position: absolute;
+  text-align: center;
+  rotate: 2deg;
+  font-family: 'oswald', sans-serif;
+  font-size: 3rem;
+  letter-spacing: 0.02rem;
+  color: #ffc14d;
+  font-weight:900;
+  text-shadow: -20px 15px 25px rgba(0, 0, 0, 0.45);
+}
+
 /*------------------- NEWS -------------------*/
 
-/*------------------- BATMAN -------------------*/
+/*------------------ BATMAN ------------------*/
 
 .heroImageBatman{
   width: 100%;
@@ -401,4 +457,17 @@ header a:hover{
   opacity: 1;
 }
 
-/*------------------- BATMAN -------------------*/
+/*------------------ BATMAN ------------------*/
+
+/*------------------ FOOTER ------------------*/
+
+footer{
+  width: 100%;
+  height: 72px;
+  background-color: black;
+  color: grey;
+  text-align: center;
+  margin-top: -16vh;
+}
+
+/*------------------ FOOTER ------------------*/

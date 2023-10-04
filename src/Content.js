@@ -20,7 +20,7 @@ export default function Content() {
 
   return (
     <>
-    <div className='content'>
+    <div className='content' id='A'>
       <div className='title'>
         <h1>Latest Releases</h1>
       </div>
@@ -34,7 +34,7 @@ export default function Content() {
           <img src={''} className='dotBackground'/>
         </div>
 
-        <div className='content'>
+        <div className='content' id='B'>
       <div className='title'>
         <h1>Comic Spotlight</h1>
       </div>
@@ -44,7 +44,7 @@ export default function Content() {
       <h1 style={{opacity: '0'}} >Hidden Text</h1> 
     </div>
 
-    <div className='content'>
+    <div className='content' id='C'>
       <div className='title'>
         <h1>News</h1>
       </div>
@@ -80,8 +80,10 @@ return(
         <div key={comic.id} className='comic'>
           <img src={comic.thumbnail.path + '.jpg'} className='comicCover'/>
           <p>{comic.title}</p>
+          <a href={comic.urls[0].url} target='_blank'>
+          <button>View</button></a>
           <h1 style={{opacity: "0", fontSize: "1rem"}} >Hidden Text</h1> 
-        </div>        
+        </div>       
       ))
     ) : (
       //if the comics are not loaded fast enough show a loading screen
@@ -95,7 +97,7 @@ function ComicsB(){
   const [comics, setComics] = useState ([])
 
 useEffect(()=>{
-  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=red+goblin&startYear=2023&hasDigitalIssue=true&ts=1&apikey=882858640be5e1c7df0e46bdf4f238d5&hash=1ee6551d88ceb97e0cddf39e827dfe29")
+  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=red+goblin&startYear=2023&ts=1&apikey=882858640be5e1c7df0e46bdf4f238d5&hash=1ee6551d88ceb97e0cddf39e827dfe29")
   
       .then(res => {
           setComics(res.data.data.results)
@@ -112,6 +114,8 @@ return(
         <div key={comic.id} className='comic'>
           <img src={comic.thumbnail.path + '.jpg'} className='comicCover'/>
           <p>{comic.title}</p>
+          <a href={comic.urls[0].url} target='_blank'>
+          <button>View</button></a>
           <h1 style={{opacity: "0", fontSize: "1rem"}} >Hidden Text</h1> 
         </div>        
       ))
@@ -128,6 +132,13 @@ function News(){
     <div className='newsContainer'>
     <img src={dots} className='dots Top'/>
     <img src={dots} className='dots Bottom'/>
+    <p className='heroTitle'>New Upcoming Superhero video Game!</p>
+
+    <div className='heroContext'>
+      <p>Choose<br/></p>
+      <p style={{marginBottom: '-32px', marginTop: '-40px'}}><span style={{fontSize: '1.8rem'}}>your</span><br/></p>
+      <p style={{fontSize: '4rem'}}>Menthor</p>
+    </div>
 
       <div className='sideA'>
         <div className='heroContainer' style={{marginRight: '60vw'}}>
