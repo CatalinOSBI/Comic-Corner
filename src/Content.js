@@ -30,10 +30,6 @@ export default function Content() {
       <h1 style={{opacity: '0'}} >Hidden Text</h1> 
     </div>
 
-        <div className='backgroundContainer'>
-          <img src={''} className='dotBackground'/>
-        </div>
-
         <div className='content' id='B'>
       <div className='title'>
         <h1>Comic Spotlight</h1>
@@ -78,9 +74,9 @@ return(
       comics.map(comic =>
       (
         <div key={comic.id} className='comic'>
-          <img src={comic.thumbnail.path + '.jpg'} className='comicCover'/>
+          <img src={comic.thumbnail.path + '.jpg'} className='comicCover' alt='Comic Cover'/>
           <p>{comic.title}</p>
-          <a href={comic.urls[0].url} target='_blank'>
+          <a href={comic.urls[0].url} target='_blank' rel="noreferrer">
           <button>View</button></a>
           <h1 style={{opacity: "0", fontSize: "1rem"}} >Hidden Text</h1> 
         </div>       
@@ -112,10 +108,11 @@ return(
       comics.map(comic =>
       (
         <div key={comic.id} className='comic'>
-          <img src={comic.thumbnail.path + '.jpg'} className='comicCover'/>
+          <img src={comic.thumbnail.path + '.jpg'} className='comicCover' alt='Comic Cover'/>
           <p>{comic.title}</p>
-          <a href={comic.urls[0].url} target='_blank'>
-          <button>View</button></a>
+          <a href={comic.urls[0].url} target='_blank' rel="noreferrer">
+          <button>View</button>
+          </a>
           <h1 style={{opacity: "0", fontSize: "1rem"}} >Hidden Text</h1> 
         </div>        
       ))
@@ -130,8 +127,8 @@ return(
 function News(){
   return(
     <div className='newsContainer'>
-    <img src={dots} className='dots Top'/>
-    <img src={dots} className='dots Bottom'/>
+    <img src={dots} className='dots Top' alt='dots'/>
+    <img src={dots} className='dots Bottom' alt='dots'/>
     <p className='heroTitle'>New Upcoming Superhero video Game!</p>
 
     <div className='heroContext'>
@@ -142,35 +139,35 @@ function News(){
 
       <div className='sideA'>
         <div className='heroContainer' style={{marginRight: '60vw'}}>
-            <img src={Punisher1} className='heroImageA' style={{transform: 'translateX(5%) translateY(6%)'}}/>
-            <img src={Punisher2} className='heroImageB'/>
+            <img src={Punisher1} className='heroImageA' style={{transform: 'translateX(5%) translateY(6%)'}} alt='punisher1'/>
+            <img src={Punisher2} className='heroImageB' alt='punisher2'/>
         </div>
         <div className='heroContainer'>
-          <img src={Constantine1} className='heroImageA'/>
-          <img src={Constantine2} className='heroImageB'/>
+          <img src={Constantine1} className='heroImageA' alt='constantine1'/>
+          <img src={Constantine2} className='heroImageB' alt='constantine2'/>
         </div>
       </div>
 
       <div className='sideA'>
           <div className='heroContainer' style={{marginRight: '30vw'}}>
-            <img src={Venom1} className='heroImageA' style={{transform: 'translateX(5%) translateY(5%)'}}/>
-            <img src={Venom2} className='heroImageB'/>
+            <img src={Venom1} className='heroImageA' style={{transform: 'translateX(5%) translateY(5%)'}} alt='venom1'/>
+            <img src={Venom2} className='heroImageB' alt='venom2'/>
           </div>
           <div className='heroContainer'>
-            <img src={Spiderman1} className='heroImageA' style={{transform: 'translateX(-3%) translateY(4%)'}}/>
-            <img src={Spiderman2} className='heroImageB'/>
+            <img src={Spiderman1} className='heroImageA' style={{transform: 'translateX(-3%) translateY(4%)'}} alt='spiderman1'/>
+            <img src={Spiderman2} className='heroImageB' alt='spiderman2'/>
           </div>
       </div>
 
 
       <div className='sideA' style={{marginBottom: '0px'}}>
         <div className='heroContainer' style={{marginRight: '60vw'}}>
-          <img src={Joker1} className='heroImageA'/>
-          <img src={Joker2} className='heroImageBatman'/>
+          <img src={Joker1} className='heroImageA' alt='joker1'/>
+          <img src={Joker2} className='heroImageBatman' alt='joker2'/>
         </div>
         <div className='heroContainer'>
-            <img src={Batman1} className='heroImageA'/>
-            <img src={Batman2} className='heroImageBatman'/>
+            <img src={Batman1} className='heroImageA' alt='batman1'/>
+            <img src={Batman2} className='heroImageBatman' alt='batman2'/>
           </div>
       </div>
     </div>  

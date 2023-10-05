@@ -8,7 +8,7 @@ export default function Banner() {
         <div className='effectContainer' >
             <h1></h1>
             <div className='bannerContainer'>
-                <img className='banner' src={banner}/>
+                <img className='banner' src={banner} alt='banner'/>
             </div>       
         </div>
         <h1 style={{opacity: '0', fontSize: '2.5rem'}}>Title</h1>

@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <div className='headerContainer'>
       <header>
-        <img className='dots Top' src={dots}/>
+        <img className='dots Top' src={dots} alt='dots'/>
         <div className='logoContainer'>
           <p>
             Comic<br/>&emsp;&ensp;Corner
