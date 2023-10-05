@@ -505,6 +505,10 @@ header a{
     width: 159.5vw;
   }
 
+  .mainContainer{
+    overflow: hidden;
+  }
+
   /*------------------ BANNER ------------------*/
 
   /*---------------- CONTENT ---------------*/
