@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Comic-Corner/static/css/main.f1449866.css",
+    "main.css": "/Comic-Corner/static/css/main.fef95324.css",
     "main.js": "/Comic-Corner/static/js/main.c02bc4cb.js",
     "static/media/spiderman1.png": "/Comic-Corner/static/media/spiderman1.dbe16757e0657fec4cec.png",
     "static/media/john1.png": "/Comic-Corner/static/media/john1.8e0ee39742f88fe648df.png",
@@ -19,11 +19,11 @@
     "static/media/GretaSansStdReg.ttf": "/Comic-Corner/static/media/GretaSansStdReg.550e9cd36bec24ba08ca.ttf",
     "static/media/cc-high-resolution-logo-color-on-transparent-background.png": "/Comic-Corner/static/media/cc-high-resolution-logo-color-on-transparent-background.a0f2a1e4003b66892dbc.png",
     "index.html": "/Comic-Corner/index.html",
-    "main.f1449866.css.map": "/Comic-Corner/static/css/main.f1449866.css.map",
+    "main.fef95324.css.map": "/Comic-Corner/static/css/main.fef95324.css.map",
     "main.c02bc4cb.js.map": "/Comic-Corner/static/js/main.c02bc4cb.js.map"
   },
   "entrypoints": [
-    "static/css/main.f1449866.css",
+    "static/css/main.fef95324.css",
     "static/js/main.c02bc4cb.js"
   ]
 }
