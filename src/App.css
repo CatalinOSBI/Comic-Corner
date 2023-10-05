@@ -522,17 +522,26 @@ header a{
   }
 
   .comicCover{
-    width: 180px;
+    width: 140px;
+  }
 
+  .comic{
+    border:5px solid black;
+    border-color: transparent;
+  }
+
+  .comic p{
+    position: absolute;
+    font-size: 0.8rem;
   }
 
   .middle{
-    height: 400px;
+    height: 300px;
     scroll-snap-type: x mandatory;
   }
 
   .middle2{
-    height: 400px;
+    height: 300px;
     scroll-snap-type: x mandatory;
   }
 
@@ -569,4 +578,32 @@ header a{
 
 
   /*------------------ NEWS ------------------*/
+}
+
+@media (orientation: landscape) {
+
+  .comicCover{
+    width: 140px;
+  }
+
+  .comic{
+    border:1px solid black;
+    border-color: transparent;
+  }
+
+  .comic p{
+    position: absolute;
+    font-size: 0.8rem;
+  }
+
+  .middle{
+    height: 300px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .middle2{
+    height: 300px;
+    scroll-snap-type: x mandatory;
+  }
+
 }
