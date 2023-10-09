@@ -93,7 +93,7 @@ function ComicsB(){
   const [comics, setComics] = useState ([])
 
 useEffect(()=>{
-  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=red+goblin&startYear=2023&ts=1&apikey=882858640be5e1c7df0e46bdf4f238d5&hash=1ee6551d88ceb97e0cddf39e827dfe29")
+  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=doctor+strange&startYear=2023&ts=1&apikey=882858640be5e1c7df0e46bdf4f238d5&hash=1ee6551d88ceb97e0cddf39e827dfe29")
   
       .then(res => {
           setComics(res.data.data.results)
