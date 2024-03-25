@@ -59,7 +59,7 @@ function ComicsA(){
   const [comics, setComics] = useState ([])
 
 useEffect(()=>{
-  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateDescriptor=thisWeek&limit=48&ts=1&apikey=882858640be5e1c7df0e46bdf4f238d5&hash=1ee6551d88ceb97e0cddf39e827dfe29")
+  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateDescriptor=thisWeek&limit=48&ts=1&apikey="+process.env.REACT_APP_1)
   
       .then(res => {
           setComics(res.data.data.results)
@@ -93,7 +93,7 @@ function ComicsB(){
   const [comics, setComics] = useState ([])
 
 useEffect(()=>{
-  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=captain+marvel&startYear=2023&limit=99&ts=1&apikey=882858640be5e1c7df0e46bdf4f238d5&hash=1ee6551d88ceb97e0cddf39e827dfe29")
+  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=g.o.d.s.&startYear=2023&limit=99&ts=1&apikey="+process.env.REACT_APP_1)
   
       .then(res => {
           setComics(res.data.data.results)
