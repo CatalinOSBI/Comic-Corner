@@ -93,7 +93,7 @@ function ComicsB(){
   const [comics, setComics] = useState ([])
 
 useEffect(()=>{
-  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=venom&startYear=2021&limit=99&ts=1&apikey="+process.env.REACT_APP_1)
+  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=miles+morales&startYear=2022&limit=99&ts=1&apikey="+process.env.REACT_APP_1)
   
       .then(res => {
           setComics(res.data.data.results)
