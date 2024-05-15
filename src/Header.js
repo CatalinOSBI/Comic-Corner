@@ -3,6 +3,11 @@ import logo from './Images/cc-high-resolution-logo-color-on-transparent-backgrou
 import dots from './Images/279-removebg-preview.png'
 
 export default function Header() {
+
+  const handleShowModal = () => { 
+    alert('Incoming Database Update!')
+   }
+
   return (
     <div className='headerContainer'>
       <header>
@@ -17,6 +22,7 @@ export default function Header() {
           <a className='line' href={'#A'}>Latest Releases</a> 
           <a className='line' href={'#B'}>Comic Spotlight</a>
           <a className='line' href={'#C'}>News</a>
+          <a onClick={handleShowModal} className='line'>Database</a>
         </div>
       </header>
     </div>
