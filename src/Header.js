@@ -1,12 +1,13 @@
 import React from 'react'
 import logo from './Images/cc-high-resolution-logo-color-on-transparent-background.png'
 import dots from './Images/279-removebg-preview.png'
+import { useModal } from './ModalContext'
 
 export default function Header() {
 
-  const handleShowModal = () => { 
-    alert('Incoming Database Update!')
-   }
+  const {
+    handleOpenModal,
+  } = useModal()
 
   return (
     <div className='headerContainer'>
@@ -22,7 +23,7 @@ export default function Header() {
           <a className='line' href={'#A'}>Latest Releases</a> 
           <a className='line' href={'#B'}>Comic Spotlight</a>
           <a className='line' href={'#C'}>News</a>
-          <a onClick={handleShowModal} className='line'>Database</a>
+          <a onClick={handleOpenModal} className='line' href={'#D'}>Database</a>
         </div>
       </header>
     </div>

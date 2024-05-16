@@ -4,11 +4,21 @@ const ModalContext = createContext();
 
 export const ModalProvider = ({ children }) => {
 
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => { 
+    setShowModal(true)
+   }
+
+   const handleCloseModal = () => { 
+    setShowModal(false)
+   }
 
   return (
     <ModalContext.Provider value={{ 
-      // imports go here,
-      // imports go here,
+      handleCloseModal,
+      handleOpenModal,
+      showModal,
       }}>
       {children}
     </ModalContext.Provider>
