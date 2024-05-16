@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios';
-import {useState, useEffect} from 'react';
+import {useState, useRef, useEffect} from 'react';
 import Batman1 from './Images/batman1.png';
 import Batman2 from './Images/batman2NoBG.png';
 import Spiderman1 from './Images/spiderman1.png';
@@ -57,18 +57,62 @@ export default function Content() {
 // API Response
 function ComicsA(){
   const [comics, setComics] = useState ([])
+  const sliderRef = useRef()
 
+// Drag Effect w/ event listeners
+useEffect(() => {
+  const slider = sliderRef.current;
+  if (slider) {
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+  
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      slider.classList.add('active');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+      slider.classList.remove('active');
+    });
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+      slider.classList.remove('active');
+    });
+    slider.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 0.8; //scroll-fast
+      slider.scrollLeft = scrollLeft - walk;
+    });;
+  }
+
+  return () => {
+    if (slider) {
+      slider.removeEventListener('mousedown');
+      slider.removeEventListener('active');
+      slider.removeEventListener('mouseleave');
+      slider.removeEventListener('mouseup');
+      slider.removeEventListener('mousemove');
+    }
+  };
+}, []);  
+
+//API Call
 useEffect(()=>{
   axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateDescriptor=thisWeek&limit=48&ts=1&apikey="+process.env.REACT_APP_1)
   
       .then(res => {
           setComics(res.data.data.results)
-      })   
-// Putting the API Response in an array      
+      })       
 },[]);
 
 return(
-    <div className='middle'>
+    <div className='middle' ref={sliderRef}>
 {/* Creating a div for each comic in the array */}
     {comics.length > 0 ? (
       comics.map(comic =>
@@ -91,18 +135,62 @@ return(
 
 function ComicsB(){
   const [comics, setComics] = useState ([])
+  const sliderRef = useRef()
 
+  // Drag Effect w/ event listeners
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (slider) {
+  
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+    
+      slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider.classList.add('active');
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      });
+      slider.addEventListener('mouseleave', () => {
+        isDown = false;
+        slider.classList.remove('active');
+      });
+      slider.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.classList.remove('active');
+      });
+      slider.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 0.8; //scroll-fast
+        slider.scrollLeft = scrollLeft - walk;
+      });;
+    }
+  
+    return () => {
+      if (slider) {
+        slider.removeEventListener('mousedown');
+        slider.removeEventListener('active');
+        slider.removeEventListener('mouseleave');
+        slider.removeEventListener('mouseup');
+        slider.removeEventListener('mousemove');
+      }
+    };
+  }, []); 
+
+//API Call  
 useEffect(()=>{
   axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=miles+morales&startYear=2022&limit=99&ts=1&apikey="+process.env.REACT_APP_1)
   
       .then(res => {
           setComics(res.data.data.results)
-      })   
-// Putting the API Response in an array      
+      })        
 },[]);
 
 return(
-    <div className='middle2'>
+    <div className='middle' ref={sliderRef}>
 {/* Creating a div for each comic in the array */}
     {comics.length > 0 ? (
       comics.map(comic =>

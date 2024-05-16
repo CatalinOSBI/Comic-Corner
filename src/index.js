@@ -1,14 +1,15 @@
-import React  from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css';
 import './App.css';
+import { ModalProvider } from './ModalContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-
-    <App />
-
+    <ModalProvider>
+        <App />
+    </ModalProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
