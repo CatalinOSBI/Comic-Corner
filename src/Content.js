@@ -15,7 +15,6 @@ import Venom1 from './Images/venom1.png';
 import Venom2 from './Images/venom2NoBG.png';
 import dots from './Images/279-removebg-preview.png'
 
-
 export default function Content() {
 
   return (
@@ -126,7 +125,7 @@ function ComicsA() {
             <p>{comic.title}</p>
             <a href={comic.urls[0].url} target='_blank' rel="noreferrer">
               <button>View</button></a>
-            <h1 style={{ opacity: "0", fontSize: "1rem" }} >Hidden Text</h1>
+            <h1 style={{ opacity: "0", fontSize: "1rem" }} >Easter Egg</h1>
           </div>
         ))
       ) : (
@@ -210,7 +209,7 @@ function ComicsB() {
             <a href={comic.urls[0].url} target='_blank' rel="noreferrer">
               <button>View</button>
             </a>
-            <h1 style={{ opacity: "0", fontSize: "1rem" }} >Hidden Text</h1>
+            <h1 style={{ opacity: "0", fontSize: "1rem" }} >Easter Egg</h1>
           </div>
         ))
       ) : (
