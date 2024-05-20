@@ -2,39 +2,85 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useModal } from './ModalContext'
 import './Modal.css'
-import DatePicker from 'react-datepicker';
 import "./yearpicker.css";
 
 const Modal = () => {
 
+  const [comicYear, setComicYear] = useState(null);
   const [comics, setComics] = useState([]);
+  const [apiURL, setApiURL] = useState("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateDescriptor=thisWeek&limit=48&ts=1&apikey=" + process.env.REACT_APP_1);
+
+  const [info, setInfo] = useState({
+    comicName:'',
+    comicYear:'',
+  });
 
   const {
     handleCloseModal,
     showModal,
   } = useModal()
 
+  //Search Function
+  const handleSearch = () => {
+
+    if (info.comicYear !== '') {
+      info.comicYear = 'startYear='+info.comicYear
+    }
+       
+    setApiURL(`https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=${info.comicName}&limit=100&${info.comicYear}&ts=1&apikey=` + process.env.REACT_APP_1)
+    console.log('url', apiURL)
+    console.log('year', info.comicYear)
+    console.log('name', info.comicName)
+    
+  }
+
+  //getData Function
+  const getData = (e) => {
+    
+    let name = e.target.name
+    let value = e.target.value.replace(/ /g, "+")
+    
+      setInfo(prev => {
+        return{...prev,[name]: value}
+      })
+
+      console.log(info)
+
+    }
+
+  //remove overflow when modal is open
+  if (showModal) {
+    document.body.classList.add('modal-active')
+  } else {
+    document.body.classList.remove('modal-active')
+  }
+
   //API Call
   useEffect(() => {
-    axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=miles+morales&startYear=2022&ts=1&apikey=" + process.env.REACT_APP_1)
+    axios.get(apiURL)
 
       .then(res => {
         setComics(res.data.data.results)
       })
-  }, []);
+  }, [apiURL]);
 
   //Comics inside the modal
   const modalComics =
-        comics.map(comic =>
-        (
-          <div key={comic.id} className='modalComic'>
-            <img src={comic.thumbnail.path + '.jpg'} className='modalComicCover' alt='Comic Cover' />
-            <p>{comic.title}</p>
-            <a href={comic.urls[0].url} target='_blank' rel="noreferrer">
-              <button>View</button></a>
-            <h1 style={{ opacity: "0", fontSize: "1rem" }} >Easter Egg</h1>
-          </div>
-        ))
+  <>
+  {comics.length > 0 ? (
+    comics.map(comic =>
+    (
+      <div key={comic.id} className='modalComic'>
+        <img src={comic.thumbnail.path + '.jpg'} className='modalComicCover' alt='Comic Cover' />
+        <p>{comic.title}</p>
+        <h1 style={{ opacity: "0", fontSize: "1rem" }} >Easter Egg</h1>
+      </div>
+    ))
+  ) : (
+    //if the comics are not loaded fast enough show a loading screen
+    <p id='loading'>Loading...</p>
+  )}
+  </>
 
   return (
     <>
@@ -45,10 +91,11 @@ const Modal = () => {
             <button style={{ position: 'absolute', top: '-22px' }} onClick={handleCloseModal}>X</button>
 
             <header>
-              <input name='searchBar' id='searchBar' type='text' placeholder='Search Comics' />
-              <input name='year' id='year' type='number' min='1900' max='2050' placeholder='Year' />
-              <YearPicker />
-              <button>Search</button>
+              <input name='comicName' id='comicName' type='text' placeholder='Search Comics' onChange={getData} />
+              <input name='comicYear' id='comicYear' type='number' min='1930' max='2050' placeholder='Year' onChange={getData} />
+              <button onClick={handleSearch}>Search</button>
+
+              <button onClick={() => { console.log(comicYear) }}>test</button>
 
             </header>
 
@@ -63,20 +110,6 @@ const Modal = () => {
     </>
   )
 }
-
-//Year Picker
-const YearPicker = () => {
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  return (
-    <DatePicker
-      selected={selectedDate}
-      onChange={(date) => setSelectedDate(date)}
-      showYearPicker
-      dateFormat="yyyy"
-    />
-  );
-};
 
 export default Modal
 
