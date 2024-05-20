@@ -22,7 +22,7 @@ export default function Header() {
           <a className='line' href={'#A'}>Latest Releases</a> 
           <a className='line' href={'#B'}>Comic Spotlight</a>
           <a className='line' href={'#C'}>News</a>
-          <a onClick={handleShowModal} className='line'>Database</a>
+          <a onClick={handleShowModal} href={'#D'} className='line'>Database</a>
         </div>
       </header>
     </div>
