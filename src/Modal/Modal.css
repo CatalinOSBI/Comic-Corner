@@ -21,18 +21,18 @@
 .modalContainer {
   position: fixed;
   width: 1200px;
-  height: 800px;
+  height: 730px;
   z-index: 999;
   background-color: white;
 }
 
 .modalContainer header {
+  transform: translateY(-100%);
   position: absolute;
   background-color: #3371e6;
   display: flex;
   justify-content: center;
   width: 100%;
-  top: -100px;
 }
 
 .modalContent {
@@ -41,12 +41,6 @@
   height: 100%;
   display: flex;
   flex-wrap: wrap;
-}
-
-.modalComicCover {
-  width: 100%;
-  height: auto;
-  position: relative;
 }
 
 .modalComic {
@@ -59,12 +53,29 @@
   /* border: solid purple; */
 }
 
-/* this is for the year picker */
-.customInput { 
-  margin:2.5px 0 ;
-  width: 32px;
+.modalComicCover {
+  width: 100%;
+  height: auto;
+  position: relative;
 }
 
 .modal-active{
   overflow:hidden ;
+}
+
+.modalList{
+  position: absolute;
+  border: solid red;
+  transform: translateX(-110%);
+  background-color: #3371e6;
+  list-style-type: none;
+}
+
+.modalFolder{
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-color: rgb(116, 163, 235);
+  margin: 24px 24px;
+  border-radius: 8%;
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from './Images/cc-high-resolution-logo-color-on-transparent-background.png'
 import dots from './Images/279-removebg-preview.png'
-import { useModal } from './ModalContext'
+import { useModal } from './Modal/ModalContext'
 
 export default function Header() {
 
