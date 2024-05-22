@@ -41,6 +41,7 @@
   height: 100%;
   display: flex;
   flex-wrap: wrap;
+  align-content: start;
 }
 
 .modalComic {
@@ -73,8 +74,8 @@
 
 .modalFolder{
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   background-color: rgb(116, 163, 235);
   margin: 24px 24px;
   border-radius: 8%;
