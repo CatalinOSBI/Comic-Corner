@@ -12,17 +12,31 @@ const YourComics = () => {
 
   }, [comicFolders]);
 
-  //Mapping for modalFolders
-  const modalFolders = comicFolders.ComicFolders.map((item, index) => (
-    <div key={index} className='modalFolder'>
-      <p>{index}</p>
-    </div>
-  ));
+  //Mapping for Folders and Comics inside the Folders
+  const modalFolders = comicFolders.ComicFolders.map((folder, folderIndex) => {
+    //Folder Name
+    const folderName = Object.keys(folder)[0]
+    //Comic Mapping
+    const modalComics = folder[folderName].map((comic, comicIndex) => (
+      <div key={comicIndex}>
+        <p>{comic.title} - Title</p>
+      </div>
+    ))
+    //Rendering
+    return (
+      <div key={folderIndex} className='modalFolder'>
+        <p>{folderName}</p>
+        <p>{folderIndex}</p>
 
+        {modalComics}
+
+      </div>
+    );
+  });
   //Update
   const handleUpdate = () => {
     let folderName = folderNameRef.current.value;
-  
+
     setComicFolders((prev) => ({
       ...prev,
       ComicFolders: [
@@ -45,10 +59,17 @@ const YourComics = () => {
   const handleStorageUpdate = () => {
 
     const update = {
-      ComicFolders:[]
+      ComicFolders: []
     }
 
     localStorage.setItem('Comic Folders', JSON.stringify(update))
+  }
+
+  const handleLog = () => {
+
+    console.log(comicFolders.ComicFolders[0].test[0].author)
+
+
   }
 
   return (
@@ -58,10 +79,9 @@ const YourComics = () => {
       <div className='modalFolder' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
         <button onClick={handleUpdate}>Add Folder</button>
         <button onClick={handleStorageUpdate}>Storage</button>
-        <button onClick={() => { console.log(comicFolders) }}>Log</button>
+        <button onClick={handleLog}>Log</button>
         <input id='folderName' name='folderName' placeholder='Folder Name' type='text' ref={folderNameRef} />
       </div>
-
 
     </>
   )

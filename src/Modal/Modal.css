@@ -41,7 +41,7 @@
   height: 100%;
   display: flex;
   flex-wrap: wrap;
-  align-content: start;
+  align-content: flex-start;
 }
 
 .modalComic {
