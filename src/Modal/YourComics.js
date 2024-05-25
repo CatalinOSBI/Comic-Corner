@@ -1,75 +1,30 @@
 import React, { useEffect, useState, useRef } from 'react'
 import './Modal.css'
+import { useModal } from './ModalContext';
 
 const YourComics = () => {
-  const [comicFolders, setComicFolders] = useState(JSON.parse(localStorage.getItem('Comic Folders')));
-  const folderNameRef = useRef()
 
-  //Update LocalStorage whenever the state changes
-  useEffect(() => {
+  const {
+    comicFolders,
+    folderNameRef,
+    handleUpdate,
+    modalFolders,
+    menuContent,
+    setActiveContent,
+  } = useModal()
 
-    localStorage.setItem('Comic Folders', JSON.stringify(comicFolders))
 
-  }, [comicFolders]);
-
-  //Mapping for Folders and Comics inside the Folders
-  const modalFolders = comicFolders.ComicFolders.map((folder, folderIndex) => {
-    //Folder Name
-    const folderName = Object.keys(folder)[0]
-    //Comic Mapping
-    const modalComics = folder[folderName].map((comic, comicIndex) => (
-      <div key={comicIndex}>
-        <p>{comic.title} - Title</p>
-      </div>
-    ))
-    //Rendering
-    return (
-      <div key={folderIndex} className='modalFolder'>
-        <p>{folderName}</p>
-        <p>{folderIndex}</p>
-
-        {modalComics}
-
-      </div>
-    );
-  });
-  //Update
-  const handleUpdate = () => {
-    let folderName = folderNameRef.current.value;
-
-    setComicFolders((prev) => ({
-      ...prev,
-      ComicFolders: [
-        ...prev.ComicFolders,
-        {
-          [folderName]: [
-            {
-              image: 'A',
-              title: 'A',
-              author: 'A',              //GUTS AND GLORY
-              description: 'A',
-            },
-          ],
-        },
-      ],
-    }));
-  };
-
-  //Update
+  //StorageUpdate
   const handleStorageUpdate = () => {
-
     const update = {
       ComicFolders: []
     }
-
     localStorage.setItem('Comic Folders', JSON.stringify(update))
   }
 
+  //Log
   const handleLog = () => {
-
     console.log(comicFolders.ComicFolders[0].test[0].author)
-
-
   }
 
   return (
