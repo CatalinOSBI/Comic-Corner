@@ -94,7 +94,6 @@ useEffect(() => {
   return () => {
     if (slider) {
       slider.removeEventListener('mousedown');
-      slider.removeEventListener('active');
       slider.removeEventListener('mouseleave');
       slider.removeEventListener('mouseup');
       slider.removeEventListener('mousemove');
@@ -172,7 +171,6 @@ function ComicsB(){
     return () => {
       if (slider) {
         slider.removeEventListener('mousedown');
-        slider.removeEventListener('active');
         slider.removeEventListener('mouseleave');
         slider.removeEventListener('mouseup');
         slider.removeEventListener('mousemove');
@@ -185,7 +183,7 @@ function ComicsB(){
 
 //API Call  
 useEffect(()=>{
-  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=spider-boy&startYear=2023&limit=99&ts=1&apikey="+process.env.REACT_APP_1)
+  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=G.O.D.S.&startYear=2023&limit=99&ts=1&apikey="+process.env.REACT_APP_1)
   
       .then(res => {
           setComics(res.data.data.results)
