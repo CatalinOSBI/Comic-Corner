@@ -12,6 +12,7 @@ export const ModalProvider = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState(0);
   const [activeContent, setActiveContent] = useState([0]);
   const [activeFolderContent, setActiveFolderContent] = useState([]);
+  const [reloader, setReloader] = useState(1);
   const folderNameRef = useRef()
 
   /////////////////////////////////////////
@@ -66,7 +67,14 @@ export const ModalProvider = ({ children }) => {
               writer: 'Benjamin Percy',              //GUTS AND GLORY
               description: `THE HOOD BRINGS THE HELLFIRE! The new Ghost Rider plans his bloody takeover of Chicago's criminal underworld! Will Johnny Blaze be able to claw his way back from the brink of death to reclaim the Spirit of Vengeance?`,
             },
+            {
+              image: 'http://i.annihil.us/u/prod/marvel/i/mg/9/40/664b9dcb42c24.jpg',
+              title: 'Spider-Punk: Arms Race (2024) #4',
+              writer: 'Benjamin Percy',             
+              description: `THE HOOD BRINGS THE HELLFIRE! The new Ghost Rider plans his bloody takeover of Chicago's criminal underworld! Will Johnny Blaze be able to claw his way back from the brink of death to reclaim the Spirit of Vengeance?`,
+            },
           ],
+          id:prev.ComicFolders.length, //id of the folder
         },
       ],
     }));
@@ -76,14 +84,39 @@ export const ModalProvider = ({ children }) => {
   const handleOpenComic = (comic) => {
     console.log(comic.image)
   }
-  
+
   //GoTo Active Folder Content
-  const handleGoToActiveFolder = (folderContent) => { 
-    setActiveFolderContent(folderContent)
+  const handleGoToActiveFolder = (folderContent) => {
     //Go to the last item in the array(this is done so ActiveFolder is always the last item in the array)
-    setActiveContent(menuContent[menuContent.length-1]) 
-    console.log(activeFolderContent)
-   }
+    setActiveContent(menuContent[menuContent.length - 1])
+    setActiveFolderContent(folderContent)
+    console.log(folderContent)
+  }
+
+  //Delete Folder
+  const handleDeleteFolder = (folderToBeDeleted) => {
+    setComicFolders((prev) => ({
+      ComicFolders: prev.ComicFolders.filter((folder)=> folder.id !== folderToBeDeleted.id)
+    }))
+
+  }
+
+  //Delete Comic
+  const handleDeleteComic = (folderName, comicToBeDeleted, test) => {
+    setComicFolders((prev) => ({
+      ComicFolders: prev.ComicFolders.map((folder) => {
+        if (folder[folderName]) {
+          return {
+            ...folder,
+            [folderName]: folder[folderName].filter((comic) => comic.title !== comicToBeDeleted.title)
+          };
+        }
+        return folder;
+      })
+    }));
+    console.log(test)
+    console.log(comicFolders)
+  };
 
   //Folder Mapping
   const modalFolders = comicFolders.ComicFolders.map((folder, folderIndex) => {
@@ -91,10 +124,11 @@ export const ModalProvider = ({ children }) => {
     const folderName = Object.keys(folder)[0]
     //Comic Mapping (study this later)
     const folderComics = folder[folderName].map((comic, comicIndex) => (
-      <div key={comicIndex}>
+      <div key={comicIndex} >
         {/* <p>{comic.title} - Title</p> */}
         <button onClick={() => handleOpenComic(comic)}>Open Comic</button>
-        <img src={comic.image}/>
+        <button onClick={()=> handleDeleteComic(folderName, comic, folderComics)}>Delete Comic</button>
+        <img src={comic.image} style={{ width: '40%' }} />
       </div>
     ))
     //Rendering
@@ -102,7 +136,8 @@ export const ModalProvider = ({ children }) => {
       <div key={folderIndex} className='modalFolder'>
         <p>{folderName}</p>
         <p>{folderIndex}</p>
-        <button onClick={()=>handleGoToActiveFolder(folderComics)} >Open Folder</button>
+        <button onClick={() => handleGoToActiveFolder(folderComics)} >Open Folder</button>
+        <button onClick={()=> handleDeleteFolder(folder)}>Delete Folder</button>
 
         {/* {folderComics} */}
 
