@@ -121,7 +121,7 @@ function ComicsA() {
         comics.map(comic =>
         (
           <div key={comic.id} className='comic'>
-            <img src={comic.thumbnail.path + '.jpg'} className='comicCover' alt='Comic Cover' />
+            <img draggable='false' src={comic.thumbnail.path + '.jpg'} className='comicCover' alt='Comic Cover' />
             <p>{comic.title}</p>
             <a href={comic.urls[0].url} target='_blank' rel="noreferrer">
               <button>View</button></a>
@@ -204,7 +204,7 @@ function ComicsB() {
         comics.map(comic =>
         (
           <div key={comic.id} className='comic'>
-            <img src={comic.thumbnail.path + '.jpg'} className='comicCover' alt='Comic Cover' />
+            <img draggable='false' src={comic.thumbnail.path + '.jpg'} className='comicCover' alt='Comic Cover' />
             <p>{comic.title}</p>
             <a href={comic.urls[0].url} target='_blank' rel="noreferrer">
               <button>View</button>

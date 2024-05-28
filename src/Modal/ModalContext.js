@@ -12,7 +12,9 @@ export const ModalProvider = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState(0);
   const [activeContent, setActiveContent] = useState([0]);
   const [activeFolderContent, setActiveFolderContent] = useState([]);
-  const [reloader, setReloader] = useState(1);
+  const [exportedFolders, setExportedFolders] = useState(1);
+  const [test, settest] = useState([]);
+  const [reloader, setReloader] = useState(0);
   const folderNameRef = useRef()
 
   /////////////////////////////////////////
@@ -23,6 +25,10 @@ export const ModalProvider = ({ children }) => {
   useEffect(() => {
     setActiveContent(menuContent[0])
   }, []);
+
+  useEffect(() => {
+    console.log(activeFolderContent)
+  }, );
 
   //Selecting Menu Function
   const handleSetActive = (index) => {
@@ -78,6 +84,7 @@ export const ModalProvider = ({ children }) => {
         },
       ],
     }));
+    setReloader((prev)=> prev+1)
   };
 
   //this is where the Functions for comics are gonna go (delete, open etc..)
@@ -98,25 +105,27 @@ export const ModalProvider = ({ children }) => {
     setComicFolders((prev) => ({
       ComicFolders: prev.ComicFolders.filter((folder)=> folder.id !== folderToBeDeleted.id)
     }))
-
+    setReloader((prev)=> prev+1)
   }
 
   //Delete Comic
-  const handleDeleteComic = (folderName, comicToBeDeleted, test) => {
-    setComicFolders((prev) => ({
-      ComicFolders: prev.ComicFolders.map((folder) => {
-        if (folder[folderName]) {
-          return {
-            ...folder,
-            [folderName]: folder[folderName].filter((comic) => comic.title !== comicToBeDeleted.title)
-          };
-        }
-        return folder;
-      })
-    }));
-    console.log(test)
-    console.log(comicFolders)
+  const handleDeleteComic = (folderName, folderIndex, comicToBeDeleted) => {
+    //deleting the comic from comicFolders
+    setComicFolders((prev) => {
+      prev.ComicFolders[folderIndex][folderName] = prev.ComicFolders[folderIndex][folderName].filter((comic) => comic.title !== comicToBeDeleted.title);
+      return { ComicFolders: prev.ComicFolders };
+    });
+    
+    //deleting the comic from the active folder content (so the content updates in real time... yay (2days it took me))
+    setActiveFolderContent((prev) => {
+      return prev.filter((comic) => comic.props.title !== comicToBeDeleted.title);
+    });
+  
+    setReloader((prev) => prev + 1);
   };
+
+
+    
 
   //Folder Mapping
   const modalFolders = comicFolders.ComicFolders.map((folder, folderIndex) => {
@@ -124,14 +133,17 @@ export const ModalProvider = ({ children }) => {
     const folderName = Object.keys(folder)[0]
     //Comic Mapping (study this later)
     const folderComics = folder[folderName].map((comic, comicIndex) => (
-      <div key={comicIndex} >
-        {/* <p>{comic.title} - Title</p> */}
+      <div key={comicIndex} title={comic.title} >
+        <p>{comic.title}</p>
         <button onClick={() => handleOpenComic(comic)}>Open Comic</button>
-        <button onClick={()=> handleDeleteComic(folderName, comic, folderComics)}>Delete Comic</button>
+        <button onClick={()=> handleDeleteComic(folderName, folderIndex, comic)}>Delete Comic</button>
         <img src={comic.image} style={{ width: '40%' }} />
       </div>
     ))
     //Rendering
+   console.log('useffect')
+    
+    console.log('activeFolderContent', activeFolderContent)
     return (
       <div key={folderIndex} className='modalFolder'>
         <p>{folderName}</p>
@@ -144,6 +156,8 @@ export const ModalProvider = ({ children }) => {
       </div>
     );
   });
+
+
 
 
   /////////////////////////////////////////
