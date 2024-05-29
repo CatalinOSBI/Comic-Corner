@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { useModal } from './ModalContext';
 import axios from 'axios';
 import './Modal.css'
 
 const BrowseComics = () => {
+
+  const {
+    handleGoToActiveComic,
+  } = useModal()
 
   const [comics, setComics] = useState([]);
   const [apiURL, setApiURL] = useState("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateDescriptor=thisWeek&limit=48&ts=1&apikey=" + process.env.REACT_APP_1);
@@ -49,14 +54,15 @@ const BrowseComics = () => {
 
   //Comics inside the modal
   const modalComics =
-    comics.map(comic =>
-    (
-      <div key={comic.id} className='modalComic'>
-        <img src={comic.thumbnail.path + '.jpg'} className='modalComicCover' alt='Comic Cover' />
-        <p>{comic.title}</p>
-        <h1 style={{ opacity: "0", fontSize: "1rem" }} >Easter Egg</h1>
-      </div>
-    ))
+    comics.map((comic) => {
+      return (
+        <div key={comic.id} className='modalComic'>
+          <img src={comic.thumbnail.path + '.jpg'} className='modalComicCover' alt='Comic Cover' />
+          <button onClick={() => handleGoToActiveComic(comic.thumbnail.path + '.jpg', comic.title, comic.description)}>Open Comic</button>
+          <p>{comic.title}</p>
+          <h1 style={{ opacity: "0", fontSize: "1rem" }} >Easter Egg</h1>
+        </div>)
+    })
 
   return (
     <>

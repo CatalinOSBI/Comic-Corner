@@ -66,42 +66,42 @@ function ComicsA() {
     const slider = sliderRef.current;
 
 
-      const mousedown = (e) => {
-        isDown = true;
-        slider.classList.add('active');
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-      }
+    const mousedown = (e) => {
+      isDown = true;
+      slider.classList.add('active');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    }
 
-      const mouseleave = () => {
-        isDown = false;
-        slider.classList.remove('active');
-      }
+    const mouseleave = () => {
+      isDown = false;
+      slider.classList.remove('active');
+    }
 
-      const mouseup = () => {
-        isDown = false;
-        slider.classList.remove('active');
-      }
+    const mouseup = () => {
+      isDown = false;
+      slider.classList.remove('active');
+    }
 
-      const mousemove = (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 0.8; //scroll-fast
-        slider.scrollLeft = scrollLeft - walk;
-      }
+    const mousemove = (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 0.8; //scroll-fast
+      slider.scrollLeft = scrollLeft - walk;
+    }
 
-      slider.addEventListener('mousedown', mousedown);
-      slider.addEventListener('mouseleave', mouseleave);
-      slider.addEventListener('mouseup', mouseup);
-      slider.addEventListener('mousemove', mousemove);
-    
+    slider.addEventListener('mousedown', mousedown);
+    slider.addEventListener('mouseleave', mouseleave);
+    slider.addEventListener('mouseup', mouseup);
+    slider.addEventListener('mousemove', mousemove);
+
     return () => {
 
       slider.removeEventListener('mousedown', mousedown);
       slider.removeEventListener('mouseleave', mouseleave);
-      slider.removeEventListener('mouseup',mouseup);
-      slider.removeEventListener('mousemove',mouseleave);
+      slider.removeEventListener('mouseup', mouseup);
+      slider.removeEventListener('mousemove', mouseleave);
     };
   }, []);
 
@@ -114,6 +114,16 @@ function ComicsA() {
       })
   }, []);
 
+  //Comic Creators Map comic.creators.items[0].name
+  const comicCreators = comics.map((comic) => {
+    const creators = comic.creators.items.map((creator) => (
+      creator.name
+    ))
+    return (
+      creators
+    )
+  })
+
   return (
     <div className='middle' ref={sliderRef}>
       {/* Creating a div for each comic in the array */}
@@ -122,10 +132,11 @@ function ComicsA() {
         (
           <div key={comic.id} className='comic'>
             <img draggable='false' src={comic.thumbnail.path + '.jpg'} className='comicCover' alt='Comic Cover' />
-            <p>{comic.title}</p>
+            <p style={{userSelect:'none'}}>{comic.title}</p>
             <a href={comic.urls[0].url} target='_blank' rel="noreferrer">
               <button>View</button></a>
             <h1 style={{ opacity: "0", fontSize: "1rem" }} >Easter Egg</h1>
+            <button onClick={() => console.log(comicCreators)}>log</button>
           </div>
         ))
       ) : (
@@ -149,42 +160,42 @@ function ComicsB() {
     const slider = sliderRef.current;
 
 
-      const mousedown = (e) => {
-        isDown = true;
-        slider.classList.add('active');
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-      }
+    const mousedown = (e) => {
+      isDown = true;
+      slider.classList.add('active');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    }
 
-      const mouseleave = () => {
-        isDown = false;
-        slider.classList.remove('active');
-      }
+    const mouseleave = () => {
+      isDown = false;
+      slider.classList.remove('active');
+    }
 
-      const mouseup = () => {
-        isDown = false;
-        slider.classList.remove('active');
-      }
+    const mouseup = () => {
+      isDown = false;
+      slider.classList.remove('active');
+    }
 
-      const mousemove = (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 0.8; //scroll-fast
-        slider.scrollLeft = scrollLeft - walk;
-      }
+    const mousemove = (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 0.8; //scroll-fast
+      slider.scrollLeft = scrollLeft - walk;
+    }
 
-      slider.addEventListener('mousedown', mousedown);
-      slider.addEventListener('mouseleave', mouseleave);
-      slider.addEventListener('mouseup', mouseup);
-      slider.addEventListener('mousemove', mousemove);
-    
+    slider.addEventListener('mousedown', mousedown);
+    slider.addEventListener('mouseleave', mouseleave);
+    slider.addEventListener('mouseup', mouseup);
+    slider.addEventListener('mousemove', mousemove);
+
     return () => {
 
       slider.removeEventListener('mousedown', mousedown);
       slider.removeEventListener('mouseleave', mouseleave);
-      slider.removeEventListener('mouseup',mouseup);
-      slider.removeEventListener('mousemove',mouseleave);
+      slider.removeEventListener('mouseup', mouseup);
+      slider.removeEventListener('mousemove', mouseleave);
     };
   }, []);
 
@@ -205,7 +216,7 @@ function ComicsB() {
         (
           <div key={comic.id} className='comic'>
             <img draggable='false' src={comic.thumbnail.path + '.jpg'} className='comicCover' alt='Comic Cover' />
-            <p>{comic.title}</p>
+            <p style={{userSelect:'none'}}>{comic.title}</p>
             <a href={comic.urls[0].url} target='_blank' rel="noreferrer">
               <button>View</button>
             </a>
