@@ -15,6 +15,7 @@ export const ModalProvider = ({ children }) => {
   const [activeFolderContent, setActiveFolderContent] = useState([]);
   const [activeComicContent, setActiveComicContent] = useState([]);
   const folderNameRef = useRef()
+  const selectorFolderNameRef = useRef()
 
   /////////////////////////////////////////
   //              Side Menu              //
@@ -43,7 +44,7 @@ export const ModalProvider = ({ children }) => {
   ))
 
   /////////////////////////////////////////
-  //               Folders               //
+  //           Folders/Comics            //
   /////////////////////////////////////////
 
   //Update LocalStorage whenever the state changes
@@ -82,16 +83,16 @@ export const ModalProvider = ({ children }) => {
   };
 
   //Add Comic To Folder
-  const handleAddToFolder = (comicImage, comicTitle, comicDesc) => {
+  const handleAddToFolder = (comicImage, comicTitle, comicDesc, folderName) => {
 
     setComicFolders((prev) => {
       // Find the folder to update
       const updatedFolders = prev.ComicFolders.map((folder) => {
-        if (folder['Elmo']) {
+        if (folder[folderName]) {
           return {
             ...folder,
-            ['Elmo']: [
-              ...folder['Elmo'],
+            [folderName]: [
+              ...folder[folderName],
               {
                 image: comicImage,
                 title: comicTitle,
@@ -101,14 +102,14 @@ export const ModalProvider = ({ children }) => {
             ],
           };
         }
-        return folder;
-      });
-  
+        return folder
+      })
+
       return {
         ...prev,
         ComicFolders: updatedFolders,
-      };
-    });
+      }
+    })
 
   }
 
@@ -129,12 +130,17 @@ export const ModalProvider = ({ children }) => {
 
     //Active Comic element
     setActiveComicContent(
+
       <div>
         <img src={comicImage} />
         <h1>{comicTitle}</h1>
         <p>{comicDesc}</p>
 
-        <button onClick={()=> handleAddToFolder(comicImage, comicTitle, comicDesc)}>Add To Folder</button>
+        <button onClick={() => handleAddToFolder(comicImage, comicTitle, comicDesc, selectorFolderNameRef.current.value)}>Add To Folder</button>
+        <select ref={selectorFolderNameRef} name='folderOptions' id='folderOptions'>
+          {folderOptions}
+        </select>
+        <button onClick={()=> console.log(selectorFolderNameRef.current.value)}>log</button>
       </div>
     )
   }
@@ -166,25 +172,34 @@ export const ModalProvider = ({ children }) => {
     const folderName = Object.keys(folder)[0]
     //Comic Mapping (study this later)
     const folderComics = folder[folderName].map((comic, comicIndex) => (
+      //Comic Render
       <div key={comicIndex} title={comic.title} >
         <p>{comic.title}</p>
+        <button onClick={() => handleGoToActiveComic(comic.image, comic.title, comic.description)}>View Comic</button>
         <button onClick={() => handleDeleteComic(folderName, folderIndex, comic)}>Delete Comic</button>
         <img src={comic.image} style={{ width: '40%' }} />
       </div>
     ))
-    //Rendering
+    //Folder Render
     return (
       <div key={folderIndex} className='modalFolder'>
         <p>{folderName}</p>
         <p>{folderIndex}</p>
         <button onClick={() => handleGoToActiveFolder(folderComics)} >Open Folder</button>
         <button onClick={() => handleDeleteFolder(folder)}>Delete Folder</button>
-
-        {/* {folderComics} */}
-
       </div>
     );
   });
+
+  //Folder Selector 
+  const folderOptions = comicFolders.ComicFolders.map((folder, folderIndex) => {
+   const folderOptionName = Object.keys(folder)[0]
+
+   //Render
+    return(
+      <option key={folderIndex} value={folderOptionName}>{folderOptionName}</option>
+    )
+  })
 
   /////////////////////////////////////////
   //                Modal                //

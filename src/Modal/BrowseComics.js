@@ -10,6 +10,7 @@ const BrowseComics = () => {
   } = useModal()
 
   const [comics, setComics] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
   const [apiURL, setApiURL] = useState("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateDescriptor=thisWeek&limit=48&ts=1&apikey=" + process.env.REACT_APP_1);
 
   const [info, setInfo] = useState({
@@ -45,10 +46,18 @@ const BrowseComics = () => {
 
   //API Call
   useEffect(() => {
+    setisLoading(true) //show loading
+
     axios.get(apiURL)
 
       .then(res => {
         setComics(res.data.data.results)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+      .finally(() => {
+        setisLoading(false)
       })
   }, [apiURL]);
 
@@ -66,15 +75,21 @@ const BrowseComics = () => {
 
   return (
     <>
-
-      <header>
-        <input name='comicName' id='comicName' type='text' placeholder='Search Comics' onChange={getData} />
-        <input name='comicYear' id='comicYear' type='number' min='1930' max='2050' placeholder='Year' onChange={getData} />
-        <button onClick={handleSearch}>Search</button>
-        <button onClick={() => { console.log('comicYear') }}>test</button>
-      </header>
-
-      {modalComics}
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <header>
+            <input name='comicName' id='comicName' type='text' placeholder='Search Comics' onChange={getData} />
+            <input name='comicYear' id='comicYear' type='number' min='1930' max='2050' placeholder='Year' onChange={getData} />
+            <button onClick={handleSearch}>Search</button>
+            <button onClick={() => { console.log('comicYear') }}>test</button>
+          </header>
+          
+          {modalComics}
+          
+        </>
+      )}
     </>
   )
 }
