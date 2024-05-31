@@ -17,6 +17,8 @@ export const ModalProvider = ({ children }) => {
   const folderNameRef = useRef()
   const selectorFolderNameRef = useRef()
 
+  const folderIcon = <svg className='folderIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#74a3eb" d="M64 480H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H288c-10.1 0-19.6-4.7-25.6-12.8L243.2 57.6C231.1 41.5 212.1 32 192 32H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64z" /></svg>
+  const dotsIcon = <svg className='dotsIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512"><path fill="#74a3eb" d="M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z" /></svg>
   /////////////////////////////////////////
   //              Side Menu              //
   /////////////////////////////////////////
@@ -140,13 +142,14 @@ export const ModalProvider = ({ children }) => {
         <select ref={selectorFolderNameRef} name='folderOptions' id='folderOptions'>
           {folderOptions}
         </select>
-        <button onClick={()=> console.log(selectorFolderNameRef.current.value)}>log</button>
+        <button onClick={() => console.log(selectorFolderNameRef.current.value)}>log</button>
       </div>
     )
   }
 
   //Delete Folder
-  const handleDeleteFolder = (folderToBeDeleted) => {
+  const handleDeleteFolder = (folderToBeDeleted, e) => {
+    e.stopPropagation()
     setComicFolders((prev) => ({
       ComicFolders: prev.ComicFolders.filter((folder) => folder.id !== folderToBeDeleted.id)
     }))
@@ -182,21 +185,29 @@ export const ModalProvider = ({ children }) => {
     ))
     //Folder Render
     return (
-      <div key={folderIndex} className='modalFolder'>
-        <p>{folderName}</p>
-        <p>{folderIndex}</p>
-        <button onClick={() => handleGoToActiveFolder(folderComics)} >Open Folder</button>
-        <button onClick={() => handleDeleteFolder(folder)}>Delete Folder</button>
+      <div key={folderIndex} className='modalFolderWrapper' onClick={() => handleGoToActiveFolder(folderComics)}>
+        <div className='modalFolder' >
+          <div style={{ position: 'absolute', width: '180px', height: 'auto', textWrap: 'wrap', textAlign: 'center' }}>
+            <p className='folderName'>{folderName}</p>
+          </div>
+
+          {folderIcon}
+          <div className='dotsWrapper'>
+            {dotsIcon}
+          </div>
+
+          <button onClick={(e) => handleDeleteFolder(folder, e)}>Delete Folder</button>
+        </div>
       </div>
     );
   });
 
   //Folder Selector 
   const folderOptions = comicFolders.ComicFolders.map((folder, folderIndex) => {
-   const folderOptionName = Object.keys(folder)[0]
+    const folderOptionName = Object.keys(folder)[0]
 
-   //Render
-    return(
+    //Render
+    return (
       <option key={folderIndex} value={folderOptionName}>{folderOptionName}</option>
     )
   })
