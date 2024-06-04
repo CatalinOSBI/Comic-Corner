@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useModal } from './ModalContext';
 import axios from 'axios';
 import './Modal.css'
+import dots from '../Images/279-removebg-preview.png'
 
 const BrowseComics = () => {
 
@@ -30,6 +31,11 @@ const BrowseComics = () => {
     console.log('year', info.comicYear)
     console.log('name', info.comicName)
 
+    //Clear Search
+    setInfo({
+      comicName: '',
+      comicYear: '',
+    })
   }
 
   //getData Function
@@ -69,7 +75,7 @@ const BrowseComics = () => {
           <img src={comic.thumbnail.path + '.jpg'} className='modalComicCover' alt='Comic Cover' />
           <button onClick={() => handleGoToActiveComic(comic.thumbnail.path + '.jpg', comic.title, comic.description)}>Open Comic</button>
           <p>{comic.title}</p>
-          <h1 style={{ opacity: "0", fontSize: "1rem" }} >Easter Egg</h1>
+          <h1 style={{ opacity: "0", fontSize: "0rem" }} >Easter Egg</h1>
         </div>)
     })
 
@@ -79,15 +85,16 @@ const BrowseComics = () => {
         <p>Loading...</p>
       ) : (
         <>
-          <header>
-            <input name='comicName' id='comicName' type='text' placeholder='Search Comics' onChange={getData} />
-            <input name='comicYear' id='comicYear' type='number' min='1930' max='2050' placeholder='Year' onChange={getData} />
+          <header style={{overflow:'hidden'}}>
+            <img style={{ zIndex:'-1'}} className='dots Top' src={dots} alt='dots' />
+            <input className='modalTextInput' name='comicName' id='comicName' type='text' placeholder='Search Comics' onChange={getData} />
             <button onClick={handleSearch}>Search</button>
+            <input style={{ width: '55px' }} className='modalTextInput' name='comicYear' id='comicYear' type='number' min='1930' max='2050' placeholder='Year' onChange={getData} />
             <button onClick={() => { console.log('comicYear') }}>test</button>
           </header>
-          
+
           {modalComics}
-          
+
         </>
       )}
     </>

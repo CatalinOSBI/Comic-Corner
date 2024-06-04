@@ -394,6 +394,7 @@ header a:hover{
   height: auto;
   position: absolute;
   opacity: 10%;
+  user-drag: none;
 }
 
 .Top{
