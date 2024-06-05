@@ -117,7 +117,7 @@ function ComicsA() {
   //Comic Creators Map comic.creators.items[0].name
   const comicCreators = comics.map((comic) => {
     const creators = comic.creators.items.map((creator) => (
-      creator.name
+      creator
     ))
     return (
       creators

@@ -139,6 +139,7 @@ export const ModalProvider = ({ children }) => {
         },
       ],
     }));
+
   };
 
   //Add Comic To Folder
@@ -149,17 +150,17 @@ export const ModalProvider = ({ children }) => {
       ComicFolders: prev.ComicFolders.map(folder =>
         folder.folderName === folderName
           ? {
-              ...folder,
-              folderContents: [
-                ...folder.folderContents,
-                {
-                  image: comicImage,
-                  title: comicTitle,
-                  writer: 'writer',
-                  description: comicDesc
-                }
-              ]
-            }
+            ...folder,
+            folderContents: [
+              ...folder.folderContents,
+              {
+                image: comicImage,
+                title: comicTitle,
+                writer: 'writer',
+                description: comicDesc
+              }
+            ]
+          }
           : folder
       )
     }));
@@ -185,16 +186,32 @@ export const ModalProvider = ({ children }) => {
     //Active Comic element
     setActiveComicContent(
 
-      <div>
-        <img src={comicImage} />
-        <h1>{comicTitle}</h1>
-        <p>{comicDesc}</p>
+      <div className='activeComicContent'>
 
-        <button onClick={() => handleAddToFolder(comicImage, comicTitle, comicDesc, selectorFolderNameRef.current.value, selectorFolderNameRef.current.id)}>Add To Folder</button>
+        <div className='modalActiveComic'>
+          <img className='modalComicCover' src={comicImage} />
+        </div>
+
+        <div className='modalActiveComicBg'>
+          <img className='modalComicCover' src={comicImage} />
+        </div>
+
+        <div className='activeComicInfo'>
+          <h1 className='title'>{comicTitle}</h1>
+
+          <div>
+            <p style={{fontSize:'1rem', border:'none'}} className='title'>Creators:</p>
+            <p>Name (Role) Name (Role) Name (Role) Name (Role) </p>
+          </div>
+
+          <p className='modalComicTitle'>{comicDesc}</p>
+        </div>
+
+        {/* <button onClick={() => handleAddToFolder(comicImage, comicTitle, comicDesc, selectorFolderNameRef.current.value, selectorFolderNameRef.current.id)}>Add To Folder</button>
         <select ref={selectorFolderNameRef} name='folderOptions' id='folderOptions'>
           {folderOptions}
         </select>
-        <button onClick={() => console.log(selectorFolderNameRef.current.id)}>log</button>
+        <button onClick={() => console.log(selectorFolderNameRef.current.id)}>log</button> */}
       </div>
     )
   }
@@ -306,7 +323,7 @@ export const ModalProvider = ({ children }) => {
 
   //Folder Selector 
   const folderOptions = comicFolders.ComicFolders.map((folder, folderIndex) => {
-    const folderOptionName = folder.folderName 
+    const folderOptionName = folder.folderName
 
     //Render
     return (
