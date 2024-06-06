@@ -268,7 +268,7 @@ header a:hover{
   width: 250px;
   height: auto;
   z-index: 1;
-  transition: all 150ms ease-in-out;
+  transition: all .218s ;
   margin-bottom: 0.3rem;
   box-shadow: 10px 10px 21px 0px rgba(0,0,0,0.33);
   -webkit-user-drag: none;
@@ -276,6 +276,7 @@ header a:hover{
 
 .middle p{
   font-family: 'roboto', sans-serif;
+  font-weight: 500;
   font-size: 1rem;
   position: absolute;
   color: rgb(100, 100, 100);
@@ -356,7 +357,7 @@ header a:hover{
 }
 
 .heroContainer:hover .heroImageB{
-  transform: translateY(-8%) scale(1.2);
+  transform: translateY(-8%) scale(1.2); 
   opacity: 1;
 }
 

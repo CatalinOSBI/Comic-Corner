@@ -7,9 +7,9 @@ const ActiveFolder = () => {
   } = useModal()
 
   return (
-    <div>
-      {activeFolderContent}
-    </div>
+
+      activeFolderContent
+
   )
 }
 

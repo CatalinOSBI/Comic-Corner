@@ -8,9 +8,9 @@ const ActiveComic = () => {
   } = useModal()
 
   return (
-    <div>
-      {activeComicContent}
-    </div>
+
+      activeComicContent
+
   )
 }
 

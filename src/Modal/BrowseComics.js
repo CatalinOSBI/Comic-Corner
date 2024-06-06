@@ -82,9 +82,14 @@ const BrowseComics = () => {
   const modalComics =
     comics.map((comic) => {
       return (
-        <div onClick={() => handleGoToActiveComic(comic.thumbnail.path + '.jpg', comic.title, comic.description)} key={comic.id} className='modalComic'>
+        <div onClick={() => handleGoToActiveComic(comic.thumbnail.path + '.jpg', comic.title, comic.description, comic.pageCount)} key={comic.id} className='modalComic'>
           <img src={comic.thumbnail.path + '.jpg'} className='modalComicCover' alt='Comic Cover' />
-          <p className='modalComicTitle'>{comic.title}</p>
+
+          <div className='infoWrapper'>
+            <p className='modalComicTitle'>{comic.title}</p>
+            <div className='infoSpacer'>s</div>
+          </div>
+
           <h1 style={{ opacity: "0", fontSize: "0rem" }} >Easter Egg</h1>
         </div>)
     })

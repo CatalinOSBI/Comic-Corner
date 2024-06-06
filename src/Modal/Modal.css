@@ -85,8 +85,10 @@
   outline: none;
   transition: all .218s;
   font-family: 'roboto', sans-serif;
+  font-weight: 500;
   font-size: 1rem;
   color: rgb(0, 0, 0);
+  background-color: #E8F0FE;
 }
 
 .modalInputWrapper {
@@ -105,7 +107,7 @@
   transition: all .218s;
   font-family: 'roboto', sans-serif;
   cursor: pointer;
-  background-color: white;
+  background-color: #E8F0FE;
 }
 
 .modalSearchButton:hover .searchIcon {
@@ -140,12 +142,15 @@
 }
 
 .modalComicTitle {
+  width: fit-content;
   font-family: 'roboto', sans-serif;
+  font-weight:500;
   font-size: 1rem;
   position: relative;
   color: rgba(0, 0, 0, 0.849);
   transition: all .218s;
   margin-top: 4px;
+  border: 1px solid red;
 }
 
 /******************************/
@@ -250,6 +255,7 @@ svg {
   border-radius: 15px;
   font-family: 'roboto', sans-serif;
   font-size: 0.8rem;
+  font-weight: 500;
   cursor: pointer;
   transition: all .218s;
 }
@@ -274,6 +280,7 @@ svg {
 
 .dotsMenuList li {
   font-family: 'roboto', sans-serif;
+  font-weight: 500;
   color: #393c3f;
   padding: 6px;
   transition: all .218s;
@@ -288,12 +295,24 @@ svg {
 /*        Active Comic        */
 /******************************/
 
+@keyframes ComicIntro {
+  0%   {transform: rotate(0deg) scale(2) translateY(48%); opacity: 0;}
+  100% {transform: rotate(-22.5deg) scale(2) translateY(0%);opacity: 36%;}
+}
+
+.dotsIconComic{
+  width: 25px;
+  height: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .modalActiveComic {
   border-top: 8px solid #e6c300;
   position: relative;
-  width: 64%;
+  width: 62%;
   height: fit-content;
-  margin-bottom: -3.5px;
   /* box-shadow: 0px 5px 20px -10px rgba(0, 0, 0, 0.80); */
 }
 
@@ -304,9 +323,10 @@ svg {
   z-index: -1;
   filter: grayscale(100%);
   opacity: 36%;
-   transform: rotate(-22.5deg) scale(2); /*add anim for rotation on entering page */
-  right: 0; 
+  transform: rotate(-22.5deg) scale(2);  /*add anim for rotation on entering page */
+  right: 0;
   bottom: 0;
+  animation: ComicIntro 1s ease 0s 1;
 }
 
 .activeComicInfo {
@@ -328,6 +348,37 @@ svg {
   position: relative;
   display: flex;
   justify-content: center;
-  height: 100%;
+  height: 96.64%;
   overflow: hidden;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.spacer{
+  width: 1%;
+  height: 100%;
+  position: relative;
+  border-top: 8px solid #e6c300;
+}
+
+.infoWrapper{
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  border: 1px solid green;
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoSpacer{
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 1px solid violet;
+  margin-top: 4px;
+}
+
+.activeComicFloatingText{
+  position: absolute;
+  border: 1px solid purple ;
 }

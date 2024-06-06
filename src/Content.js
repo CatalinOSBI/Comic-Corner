@@ -136,7 +136,7 @@ function ComicsA() {
             <a href={comic.urls[0].url} target='_blank' rel="noreferrer">
               <button>View</button></a>
             <h1 style={{ opacity: "0", fontSize: "1rem" }} >Easter Egg</h1>
-            <button onClick={() => console.log(comicCreators)}>log</button>
+            <button onClick={() => console.log(comic)}>log</button>
           </div>
         ))
       ) : (
