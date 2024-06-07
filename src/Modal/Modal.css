@@ -150,7 +150,6 @@
   color: rgba(0, 0, 0, 0.849);
   transition: all .218s;
   margin-top: 4px;
-  border: 1px solid red;
 }
 
 /******************************/
@@ -184,7 +183,7 @@ svg {
   transition: all .218s;
 }
 
-.dotsIcon {
+.dotsIconFolder {
   width: 8px;
   height: auto;
   position: relative;
@@ -196,6 +195,8 @@ svg {
 .penIcon {
   width: 16px;
   height: auto;
+  fill:#393c3f;
+  transition: all .218s;
 }
 
 .dotsWrapper {
@@ -222,7 +223,7 @@ svg {
   background-color: rgb(183, 205, 247);
 }
 
-.modalFolderWrapper:hover .dotsIcon {
+.modalFolderWrapper:hover .dotsIconFolder {
   opacity: 1;
 }
 
@@ -265,17 +266,16 @@ svg {
 }
 
 .dotsMenu {
-  right: 0;
-  top: 0;
   position: absolute;
   height: fit-content;
   width: 120px;
   background-color: rgb(234, 237, 255);
-  transform: translateY(32px);
   border-radius: 10px;
   border: solid 1px #3372e6b2;
   padding: 5px;
   transition: all .118s;
+  max-height: 200px;
+  overflow: auto;
 }
 
 .dotsMenuList li {
@@ -285,10 +285,46 @@ svg {
   padding: 6px;
   transition: all .218s;
   border-radius: 5px;
+  position: relative;
 }
 
 .dotsMenuList li:hover {
   background-color: rgba(106, 121, 138, 0.192);
+}
+
+/******************************/
+/*       Active Folder        */
+/******************************/
+
+.dotsIconComic{
+  width: 5.5px;
+  height: auto;
+  position: absolute;
+  fill: #393c3f;
+}
+
+.infoSpacer{
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1px;
+  background-color: transparent;
+  border-radius: 4px;
+  transition: all .218s;
+  border: none;
+}
+
+.infoSpacer:hover{
+  background-color: rgba(0, 0, 0, 0.212);
+}
+
+.infoSpacer:hover .trashIcon{
+  fill: black;
+  transform: scale(1.1);
 }
 
 /******************************/
@@ -298,14 +334,6 @@ svg {
 @keyframes ComicIntro {
   0%   {transform: rotate(0deg) scale(2) translateY(48%); opacity: 0;}
   100% {transform: rotate(-22.5deg) scale(2) translateY(0%);opacity: 36%;}
-}
-
-.dotsIconComic{
-  width: 25px;
-  height: auto;
-  position: absolute;
-  top: 0;
-  right: 0;
 }
 
 .modalActiveComic {
@@ -365,20 +393,10 @@ svg {
   width: 100%;
   height: fit-content;
   position: relative;
-  border: 1px solid green;
   display: flex;
   justify-content: space-between;
 }
 
-.infoSpacer{
-  position: relative;
-  width: 20px;
-  height: 20px;
-  border: 1px solid violet;
-  margin-top: 4px;
-}
-
 .activeComicFloatingText{
   position: absolute;
-  border: 1px solid purple ;
 }

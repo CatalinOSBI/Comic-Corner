@@ -1,5 +1,6 @@
 import React from 'react'
 import { useModal } from './ModalContext'
+import dots from '../Images/279-removebg-preview.png'
 
 const ActiveFolder = () => {
   const {
@@ -7,9 +8,15 @@ const ActiveFolder = () => {
   } = useModal()
 
   return (
+    <>
+      {activeFolderContent}
 
-      activeFolderContent
-
+      {/* Render Images */}
+      <div>
+        <img style={{ zIndex: '-1', opacity: '4%' }} className='dots Bottom' src={dots} alt='dots' />
+        <img style={{ zIndex: '-1', opacity: '4%' }} className='dots Top' src={dots} alt='dots' />
+      </div>
+    </>
   )
 }
 
