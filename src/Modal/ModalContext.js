@@ -9,8 +9,12 @@ const ModalContext = createContext();
 export const ModalProvider = ({ children }) => {
 
   const [showModal, setShowModal] = useState(false);
-  const [comicFolders, setComicFolders] = useState(JSON.parse(localStorage.getItem('Comic Folders')));
+  const [comicFolders, setComicFolders] = useState((() => {
+       const localStorageFolders = localStorage.getItem('Comic Folders');
+      return localStorageFolders ? JSON.parse(localStorageFolders) : { ComicFolders: [] };
+    }));
   const [activeMenu, setActiveMenu] = useState(0);
+  const [history, setHistory] = useState();
   const [activeContent, setActiveContent] = useState([0]);
   const [activeFolderContent, setActiveFolderContent] = useState([]);
   const [activeComicContent, setActiveComicContent] = useState([]);
@@ -22,19 +26,24 @@ export const ModalProvider = ({ children }) => {
   const folderNameRef = useRef()
   const folderRenameRef = useRef()
   const hideTimeoutRef = useRef();
-  const selectorFolderNameRef = useRef()
 
   const folderIcon = <svg className='folderIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#74a3eb" d="M64 480H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H288c-10.1 0-19.6-4.7-25.6-12.8L243.2 57.6C231.1 41.5 212.1 32 192 32H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64z" /></svg>
   const dotsIconFolder = <svg className='dotsIconFolder' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512"><path fill="#74a3eb" d="M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z" /></svg>
   const trashIcon = <svg className='trashIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" /></svg>
   const penIcon = <svg className='penIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#393c3f" d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z" /></svg>
+  const arrowIcon = <svg className='arrowIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
   /////////////////////////////////////////
   //              Side Menu              //
   /////////////////////////////////////////
 
-  //default to the first item in menuContent
+  const logMenu = () => {
+    console.log('activeMenu', activeMenu)
+    console.log('history', history);
+  }
+
+  //default to the menu/content
   useEffect(() => {
-    setActiveContent(menuContent[0])
+    handleSetActive(0)
   }, []);
 
   //Selecting Menu Function
@@ -174,11 +183,13 @@ export const ModalProvider = ({ children }) => {
 
   //GoTo Active Folder Content
   const handleGoToActiveFolder = (folderContent) => {
-    //Go to the last item in the array(because ActiveFolder is always the last item in the array)
+
+    //Go to activeFolder menu/content if renameMenu is not open
     if (showRenameFolderWindow === false) {
       setActiveContent(menuContent[menuContent.length - 1])
       setActiveFolderContent(folderContent)
       console.log(folderContent)
+      setHistory(3)
     }
   }
 
@@ -189,10 +200,9 @@ export const ModalProvider = ({ children }) => {
     setActiveContent(menuContent[menuContent.length - 2])
 
     //Active Comic element
-    const goback = '< Go Back' // delete this later
     setActiveComicContent(
       <>
-        <div className='activeComicFloatingText'>{goback}</div>
+        <div onClick={() => setActiveContent(menuContent[activeMenu === 0 ? 3 : 1])} className='activeComicFloatingText'>{arrowIcon} <p style={{fontSize:'1rem'}} className='title'>Go Back</p></div>
 
         <div className='activeComicContent'>
 
@@ -321,7 +331,7 @@ export const ModalProvider = ({ children }) => {
 
                   {showFolderMenu && activeFolderId === folder.id &&
                     //DotsMenu
-                    <div style={{ opacity: dynamicOpacity, right:'0', top:'0', transform:'translateY(32px)' }} className='dotsMenu' onMouseLeave={(e) => handleHideDotsMenu(e, folder)} onMouseEnter={(e) => handleKeepMenuVisible(e, folder.id)}>
+                    <div style={{ opacity: dynamicOpacity, right: '0', top: '0', transform: 'translateY(32px)' }} className='dotsMenu' onMouseLeave={(e) => handleHideDotsMenu(e, folder)} onMouseEnter={(e) => handleKeepMenuVisible(e, folder.id)}>
                       <ul className='dotsMenuList' style={{ listStyleType: 'none' }}>
                         <li onClick={(e) => handleShowRenameWindow(e)}> {penIcon} Rename </li>
                         <li onClick={(e) => handleDeleteFolder(folder, e)}> {trashIcon} Delete </li>
@@ -373,6 +383,7 @@ export const ModalProvider = ({ children }) => {
       handleGoToActiveComic,
       handleAddToFolder,
       penIcon,
+      logMenu
     }}>
       {children}
     </ModalContext.Provider>

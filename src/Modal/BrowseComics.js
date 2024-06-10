@@ -19,7 +19,10 @@ const BrowseComics = () => {
   const [showSecondaryMenu, setShowSecondaryMenu] = useState(false);
   const [activeComicTitle, setActiveComicTitle] = useState();
   const [isLoading, setisLoading] = useState(false);
-  const [apiURL, setApiURL] = useState("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateDescriptor=thisWeek&limit=48&ts=1&apikey=" + process.env.REACT_APP_1);
+  const [apiURL, setApiURL] = useState((() => {
+    const localStorageUrl = localStorage.getItem('Last Search');
+   return localStorageUrl ? localStorageUrl : 'https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateDescriptor=thisWeek&limit=99&ts=1&apikey=';
+ }));
   const [info, setInfo] = useState({
     comicName: '',
     comicYear: '',
@@ -32,6 +35,11 @@ const BrowseComics = () => {
   const numberInputRef = useRef()
   const hideTimeoutRef = useRef();
 
+  useEffect(() => {
+    localStorage.setItem('Last Search', apiURL)
+
+  }, [apiURL]);
+
   //Search Function
   const handleSearch = () => {
 
@@ -39,7 +47,7 @@ const BrowseComics = () => {
       info.comicYear = 'startYear=' + info.comicYear
     }
 
-    setApiURL(`https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=${info.comicName}&limit=100&${info.comicYear}&ts=1&apikey=` + process.env.REACT_APP_1)
+    setApiURL(`https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=${info.comicName}&limit=100&${info.comicYear}&ts=1&apikey=`)
     console.log('url', apiURL)
     console.log('year', info.comicYear)
     console.log('name', info.comicName)
@@ -120,7 +128,7 @@ const BrowseComics = () => {
   useEffect(() => {
     setisLoading(true) //show loading
 
-    axios.get(apiURL)
+    axios.get(apiURL + process.env.REACT_APP_1)
 
       .then(res => {
         setComics(res.data.data.results)
@@ -181,6 +189,7 @@ const BrowseComics = () => {
   return (
     <>
       <header style={{ overflow: 'hidden' }}>
+
         <img style={{ zIndex: '-1' }} className='dots Top' src={dots} alt='dots' />
 
         <div className='modalInputWrapper'>

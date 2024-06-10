@@ -192,11 +192,16 @@ svg {
 }
 
 .trashIcon,
-.penIcon {
+.penIcon,
+.arrowIcon {
   width: 16px;
   height: auto;
   fill:#393c3f;
   transition: all .218s;
+}
+
+.arrowIcon{
+  width: 14px;
 }
 
 .dotsWrapper {
@@ -399,4 +404,14 @@ svg {
 
 .activeComicFloatingText{
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-wrap: nowrap;
+  cursor: pointer;
+  transition: all .218s;
+}
+
+.activeComicFloatingText:hover{
+  text-decoration: underline;
 }

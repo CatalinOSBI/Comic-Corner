@@ -1,4 +1,4 @@
-import React, {} from 'react'
+import React, { } from 'react'
 import { useModal } from './ModalContext'
 import './Modal.css'
 
@@ -9,6 +9,7 @@ const Modal = () => {
     showModal,
     menuItemsMap,
     activeContent,
+    logMenu,
   } = useModal()
 
   //remove overflow when modal is open
@@ -24,11 +25,12 @@ const Modal = () => {
         <div className='modalOverlay'>
           <div className='modalContainer'>
 
-            <button style={{ position: 'absolute', top: '-22px', zIndex:'2000' }} onClick={handleCloseModal}>X</button>
+            <button style={{ position: 'absolute', top: '-22px', zIndex: '2000' }} onClick={handleCloseModal}>X</button>
 
-              <ul className='modalList'>
-                {menuItemsMap}
-              </ul>
+            <ul className='modalList'>
+              {menuItemsMap}
+              <button onClick={logMenu}>log</button>
+            </ul>
 
             <div className='modalContent'>
 
