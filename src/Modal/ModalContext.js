@@ -3,17 +3,19 @@ import YourComics from './YourComics';
 import BrowseComics from './BrowseComics';
 import ActiveFolder from './ActiveFolder';
 import ActiveComic from './ActiveComic';
+import IronMan1 from '../Images/IronMan1TEST.png';
+import IronMan2 from '../Images/IronMan1TEST2.png'
+import Hulk1 from '../Images/Hulk1TEST.png'
+import Hulk2 from '../Images/Hulk1TEST2.png'
+import dots from '../Images/279-removebg-preview.png'
 
 const ModalContext = createContext();
 
 export const ModalProvider = ({ children }) => {
 
   const [showModal, setShowModal] = useState(false);
-  const [comicFolders, setComicFolders] = useState((() => {
-       const localStorageFolders = localStorage.getItem('Comic Folders');
-      return localStorageFolders ? JSON.parse(localStorageFolders) : { ComicFolders: [] };
-    }));
   const [activeMenu, setActiveMenu] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [history, setHistory] = useState();
   const [activeContent, setActiveContent] = useState([0]);
   const [activeFolderContent, setActiveFolderContent] = useState([]);
@@ -21,7 +23,12 @@ export const ModalProvider = ({ children }) => {
   const [activeFolderId, setActiveFolderId] = useState();
   const [showFolderMenu, setShowFolderMenu] = useState(false);
   const [showRenameFolderWindow, setShowRenameFolderWindow] = useState(false);
+  const [imageDynamicOpacity, setImageDynamicOpacity] = useState(1);
   const [dynamicOpacity, setDynamicOpacity] = useState(0);
+  const [comicFolders, setComicFolders] = useState((() => {
+    const localStorageFolders = localStorage.getItem('Comic Folders');
+    return localStorageFolders ? JSON.parse(localStorageFolders) : { ComicFolders: [] };
+  }));
 
   const folderNameRef = useRef()
   const folderRenameRef = useRef()
@@ -31,17 +38,12 @@ export const ModalProvider = ({ children }) => {
   const dotsIconFolder = <svg className='dotsIconFolder' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512"><path fill="#74a3eb" d="M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z" /></svg>
   const trashIcon = <svg className='trashIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" /></svg>
   const penIcon = <svg className='penIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#393c3f" d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z" /></svg>
-  const arrowIcon = <svg className='arrowIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>
+  const arrowIcon = <svg className='arrowIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg>
   /////////////////////////////////////////
   //              Side Menu              //
   /////////////////////////////////////////
 
-  const logMenu = () => {
-    console.log('activeMenu', activeMenu)
-    console.log('history', history);
-  }
-
-  //default to the menu/content
+  //default to the 1st menu/content
   useEffect(() => {
     handleSetActive(0)
   }, []);
@@ -56,11 +58,52 @@ export const ModalProvider = ({ children }) => {
   const menuContent = [<YourComics />, <BrowseComics />, <ActiveComic />, <ActiveFolder />]
 
   //mapping
-  const menuItems = ['Your Comics', 'Browse Comics', 'ActiveComic', 'ActiveFolder'];
+  const menuItems = [{
+    name: 'Your Comics',
+    image: IronMan1,
+    imageNoBg: IronMan2,
+    visible:1,
+  },
+  {
+    name: 'Browse Comics',
+    image: Hulk1,
+    imageNoBg: Hulk2,
+    visible:1,
+  },
+  {
+    name: 'ActiveComic',
+    image: '',
+    imageNoBg: '',
+    visible:'none',
+  },
+  {
+    name: 'ActiveFolder',
+    image: '',
+    imageNoBg: '',
+    visible:'none',
+  }]
+
+  const liDynamicStyling = (itemIndex, visibility) => ({
+    backgroundColor: activeMenu === itemIndex || activeIndex === itemIndex ? '#3371e6' : '#2654aa',
+    scale: activeMenu === itemIndex || activeIndex === itemIndex ? '1.1' : '1',
+    display: visibility
+  })
+
+  const liImageDynamicStyling = (itemIndex) => ({
+    width: activeMenu === itemIndex ? '60%' : '50%',
+  })
+
   const menuItemsMap = menuItems.map((item, index) => (
-    <li key={index} onClick={() => handleSetActive(index)}>
-      {item}
-    </li>
+    <>
+      <li style={liDynamicStyling(index, item.visible)} key={index} onClick={() => handleSetActive(index)} onMouseEnter={() => setActiveIndex(index)} onMouseLeave={() => setActiveIndex(null)}>
+        <p>{item.name}</p>
+        <img style={{ zIndex: '-1', opacity: '10%', width: '50%' }} className='dots Bottom' src={dots} alt='dots' />
+
+        <div className='modalLiImageWrapper'>
+          <img className='modalLiImage' src={activeMenu === index || activeIndex === index ? item.imageNoBg : item.image} style={liImageDynamicStyling(index)} />
+        </div>
+      </li>
+    </>
   ))
 
   /////////////////////////////////////////
@@ -202,7 +245,7 @@ export const ModalProvider = ({ children }) => {
     //Active Comic element
     setActiveComicContent(
       <>
-        <div onClick={() => setActiveContent(menuContent[activeMenu === 0 ? 3 : 1])} className='activeComicFloatingText'>{arrowIcon} <p style={{fontSize:'1rem'}} className='title'>Go Back</p></div>
+        <div onClick={() => setActiveContent(menuContent[activeMenu === 0 ? 3 : 1])} className='activeComicFloatingText'>{arrowIcon} <p style={{ fontSize: '1rem' }} className='title'>Go Back</p></div>
 
         <div className='activeComicContent'>
 
@@ -382,8 +425,6 @@ export const ModalProvider = ({ children }) => {
       activeComicContent,
       handleGoToActiveComic,
       handleAddToFolder,
-      penIcon,
-      logMenu
     }}>
       {children}
     </ModalContext.Provider>

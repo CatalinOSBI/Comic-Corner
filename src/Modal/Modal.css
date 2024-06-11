@@ -8,10 +8,54 @@
 
 .modalList {
   position: absolute;
-  border: solid red;
   transform: translateX(-110%);
-  background-color: #3371e6;
   list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modalList li{
+  height: 100px;
+  width: 240px;
+  border-radius: 5px;
+  color: white; 
+  font-family: 'Oswald', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.02rem;
+  background-color: #2654aa;
+  transition: all ease-out .218s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalList li:hover{
+  background-color: #3371e6;
+}
+
+.modalList p{
+  z-index: 1;
+  text-shadow: 3px -1px 9px rgba(0,0,0,0.44);
+}
+
+.modalLiImageWrapper{
+  width: 100%;
+  /* border: solid green; */
+  height: auto;
+  position: absolute;
+  right: 0;
+  display: flex;
+  justify-content: end;
+  align-items: start;
+}
+
+.modalLiImage{
+  position: relative;
+  width: 50%;
+  /* border: solid red; */
+  height: auto;
+  transition: opacity ease-in-out .218s;
 }
 
 .modalContent::-webkit-scrollbar-thumb {
@@ -75,6 +119,17 @@
   height: auto;
   fill: rgba(0, 0, 0, 0.685);
   transition: all .218s;
+}
+
+.arrowIconSmall{
+  width: 8px;
+  height: auto;
+  fill: #393c3f;
+  transition: all .218s;
+}
+
+.dotsMenuList:hover .arrowIconSmall{
+  transform: rotate(90deg);
 }
 
 .modalTextInput {
@@ -193,11 +248,17 @@ svg {
 
 .trashIcon,
 .penIcon,
-.arrowIcon {
+.arrowIcon,
+.warningIcon {
   width: 16px;
   height: auto;
   fill:#393c3f;
   transition: all .218s;
+}
+
+.warningIcon{
+  position:absolute;
+  right: 0;
 }
 
 .arrowIcon{
@@ -274,6 +335,7 @@ svg {
   position: absolute;
   height: fit-content;
   width: 120px;
+  max-width: 120px;
   background-color: rgb(234, 237, 255);
   border-radius: 10px;
   border: solid 1px #3372e6b2;

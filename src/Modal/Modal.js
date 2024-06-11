@@ -29,7 +29,6 @@ const Modal = () => {
 
             <ul className='modalList'>
               {menuItemsMap}
-              <button onClick={logMenu}>log</button>
             </ul>
 
             <div className='modalContent'>
