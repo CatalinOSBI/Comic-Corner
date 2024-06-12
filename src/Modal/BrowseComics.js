@@ -204,7 +204,7 @@ const BrowseComics = () => {
           <button className='modalSearchButton' onClick={handleSearch}>{searchIcon}</button>
         </div>
 
-        <input style={{ width: '55px' }} className='modalTextInput' name='comicYear' id='comicYear' type='number' min='1930' max='2050' placeholder='Year' ref={numberInputRef} onChange={getData} />
+        <input onKeyDown={(e) => handleEnterKeyPress(e)} style={{ width: '55px' }} className='modalTextInput' name='comicYear' id='comicYear' type='number' min='1930' max='2050' placeholder='Year' ref={numberInputRef} onChange={getData} />
       </header>
 
       {isLoading ? (

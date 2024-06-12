@@ -5,10 +5,14 @@ import dots from '../Images/279-removebg-preview.png'
 const ActiveFolder = () => {
   const {
     activeFolderContent,
+    setActiveContent,
+    menuContent,
+    arrowIcon,
   } = useModal()
 
   return (
     <>
+      <div style={{ position: 'relative', marginBottom: '-14px' }} className='activeComicFloatingText'>{arrowIcon} <p onClick={() => setActiveContent(menuContent[0])} className='title'>Go Back</p></div>
       {activeFolderContent}
 
       {/* Render Images */}

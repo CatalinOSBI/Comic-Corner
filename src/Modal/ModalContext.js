@@ -14,16 +14,19 @@ const ModalContext = createContext();
 export const ModalProvider = ({ children }) => {
 
   const [showModal, setShowModal] = useState(false);
+  const [idCounter, setIdCounter] = useState((() => {
+    const localStorageIdCounter = localStorage.getItem('Folder Id Counter');
+    return localStorageIdCounter ? localStorageIdCounter : 0;
+  }));
   const [activeMenu, setActiveMenu] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [history, setHistory] = useState();
+  const [, setHistory] = useState();
   const [activeContent, setActiveContent] = useState([0]);
   const [activeFolderContent, setActiveFolderContent] = useState([]);
   const [activeComicContent, setActiveComicContent] = useState([]);
   const [activeFolderId, setActiveFolderId] = useState();
   const [showFolderMenu, setShowFolderMenu] = useState(false);
   const [showRenameFolderWindow, setShowRenameFolderWindow] = useState(false);
-  const [imageDynamicOpacity, setImageDynamicOpacity] = useState(1);
   const [dynamicOpacity, setDynamicOpacity] = useState(0);
   const [comicFolders, setComicFolders] = useState((() => {
     const localStorageFolders = localStorage.getItem('Comic Folders');
@@ -42,6 +45,11 @@ export const ModalProvider = ({ children }) => {
   /////////////////////////////////////////
   //              Side Menu              //
   /////////////////////////////////////////
+
+  useEffect(() => {
+    localStorage.setItem('Folder Id Counter', idCounter)
+
+  }, [idCounter]);
 
   //default to the 1st menu/content
   useEffect(() => {
@@ -100,7 +108,7 @@ export const ModalProvider = ({ children }) => {
         <img style={{ zIndex: '-1', opacity: '10%', width: '50%' }} className='dots Bottom' src={dots} alt='dots' />
 
         <div className='modalLiImageWrapper'>
-          <img className='modalLiImage' src={activeMenu === index || activeIndex === index ? item.imageNoBg : item.image} style={liImageDynamicStyling(index)} />
+          <img className='modalLiImage' src={activeMenu === index || activeIndex === index ? item.imageNoBg : item.image} style={liImageDynamicStyling(index)} alt={item.image} />
         </div>
       </li>
     </>
@@ -120,14 +128,14 @@ export const ModalProvider = ({ children }) => {
   const handleshowFolderMenu = (e, folderId) => {
     e.stopPropagation()
 
+    
     clearTimeout(hideTimeoutRef.current);
     setTimeout(() => {
       setDynamicOpacity(1)
-    }, 30);
-    setActiveFolderId(folderId)
-    setShowFolderMenu(!showFolderMenu)
-    setShowRenameFolderWindow(false)
-
+      }, 30);
+      setActiveFolderId(folderId)
+      setShowFolderMenu(!showFolderMenu) //show
+      setShowRenameFolderWindow(false)
 
     hideTimeoutRef.current = setTimeout(() => {
       setDynamicOpacity(0)
@@ -167,26 +175,16 @@ export const ModalProvider = ({ children }) => {
   const handleUpdate = () => {
     let folderName = folderNameRef.current.value;
 
+    //Increase Counter
+    setIdCounter((prev) => prev + 1)
+
     setComicFolders((prev) => ({
       ...prev,
       ComicFolders: [
         ...prev.ComicFolders,
         {
-          folderContents: [
-            {
-              image: 'http://i.annihil.us/u/prod/marvel/i/mg/6/20/663e5c3e3070c.jpg',
-              title: 'Ghost Rider: Final Vengeance (2024) #3',
-              writer: 'Benjamin Percy',              //GUTS AND GLORY
-              description: `THE HOOD BRINGS THE HELLFIRE! The new Ghost Rider plans his bloody takeover of Chicago's criminal underworld! Will Johnny Blaze be able to claw his way back from the brink of death to reclaim the Spirit of Vengeance?`,
-            },
-            {
-              image: 'http://i.annihil.us/u/prod/marvel/i/mg/9/40/664b9dcb42c24.jpg',
-              title: 'Spider-Punk: Arms Race (2024) #4',
-              writer: 'Benjamin Percy',
-              description: `THE HOOD BRINGS THE HELLFIRE! The new Ghost Rider plans his bloody takeover of Chicago's criminal underworld! Will Johnny Blaze be able to claw his way back from the brink of death to reclaim the Spirit of Vengeance?`,
-            },
-          ],
-          id: prev.ComicFolders.length, //id of the folder
+          folderContents: [],
+          id: idCounter, //id of the folder
           folderName: folderName //folder name
         },
       ],
@@ -245,19 +243,19 @@ export const ModalProvider = ({ children }) => {
     //Active Comic element
     setActiveComicContent(
       <>
-        <div onClick={() => setActiveContent(menuContent[activeMenu === 0 ? 3 : 1])} className='activeComicFloatingText'>{arrowIcon} <p style={{ fontSize: '1rem' }} className='title'>Go Back</p></div>
+        <div className='activeComicFloatingText'>{arrowIcon} <p onClick={() => setActiveContent(menuContent[activeMenu === 0 ? 3 : 1])} style={{ fontSize: '1rem' }} className='title'>Go Back</p></div>
 
         <div className='activeComicContent'>
 
           <div className='modalActiveComic'>
-            <img className='modalComicCover' src={comicImage} />
+            <img className='modalComicCover' src={comicImage} alt='Comic Cover' />
           </div>
 
           {/* Spacer */}
           <div className='spacer'></div>
 
           <div className='modalActiveComicBg'>
-            <img className='modalComicCover' src={comicImage} />
+            <img className='modalComicCover' src={comicImage} alt='Comic Background' />
           </div>
 
           <div className='activeComicInfo'>
@@ -333,7 +331,7 @@ export const ModalProvider = ({ children }) => {
     const folderComics = folder[folderName].map((comic, comicIndex) => (
       //Comic Render
       <div onClick={() => handleGoToActiveComic(comic.image, comic.title, comic.description, comic.pageCount)} key={comicIndex} title={comic.title} className='modalComic' >
-        <img className='modalComicCover' src={comic.image} />
+        <img className='modalComicCover' src={comic.image} alt='Comic Cover' />
 
         <div className='infoWrapper'>
           <p className='modalComicTitle'>{comic.title}</p>
@@ -354,7 +352,6 @@ export const ModalProvider = ({ children }) => {
               <>
                 <div style={{ paddingTop: '16px', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', opacity: '1', transition: 'all .218s' }}>
                   <input style={{ width: '98.2%' }} autoComplete='off' className='modalTextInput' id='folderRename' name='folderRename' placeholder='Folder Name' type='text' ref={folderRenameRef} />
-                  {/* <button onClick={handleStorageUpdate}>Storage</button> */}
 
                   <div className='folderButtonsContainer' >
                     <button className='folderButton' onClick={(e) => handleShowRenameWindow(e)}>Cancel</button>
@@ -425,6 +422,7 @@ export const ModalProvider = ({ children }) => {
       activeComicContent,
       handleGoToActiveComic,
       handleAddToFolder,
+      arrowIcon,
     }}>
       {children}
     </ModalContext.Provider>
