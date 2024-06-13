@@ -29,8 +29,8 @@ const BrowseComics = () => {
 
   const searchIcon = <svg className='searchIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" /></svg>
   const dotsIconComic = <svg className='dotsIconComic' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512"><path d="M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z" /></svg>
-  const warningIcon = <svg className='warningIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><title>Comic Already Added</title><path  d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" /></svg>
-  const arrowIcon = <svg className='arrowIconSmall' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z"/></svg>
+  const warningIcon = <svg className='warningIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><title>Comic Already Added</title><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" /></svg>
+  const arrowIcon = <svg className='arrowIconSmall' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><path d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z" /></svg>
 
   const textInputRef = useRef()
   const numberInputRef = useRef()
@@ -152,7 +152,7 @@ const BrowseComics = () => {
       const comicsInsideFolder = folder.folderContents.map((comic, comicIndex) => {
         return (comic.title)
       })
- 
+
       //Render
       return (
         <li onClick={(e) => handleAddToFolder(e, comic.thumbnail.path + '.jpg', comic.title, comic.description, comic.pageCount, e.target.innerText, setShowComicMenu)} key={folderIndex} id={folderOptionName}>
@@ -207,17 +207,28 @@ const BrowseComics = () => {
         <input onKeyDown={(e) => handleEnterKeyPress(e)} style={{ width: '55px' }} className='modalTextInput' name='comicYear' id='comicYear' type='number' min='1930' max='2050' placeholder='Year' ref={numberInputRef} onChange={getData} />
       </header>
 
+      {/* Show Loading */}
       {isLoading ? (
-        <p>Loading...</p>
+        <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <p>Loading...</p>
+        </div>
       ) : (
         <>
+          {/* Show No Results */}
+          {comics.length === 0 ? (
+            <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <p>No Results Found</p>
+            </div>
+          ) : (
+            modalComics
+          )}
+
           <img style={{ zIndex: '-1', opacity: '4%' }} className='dots Top' src={dots} alt='dots' />
-          {modalComics}
           <img style={{ zIndex: '-1', opacity: '4%' }} className='dots Bottom' src={dots} alt='dots' />
         </>
       )}
     </>
-  )
-}
+  );
+};
 
 export default BrowseComics

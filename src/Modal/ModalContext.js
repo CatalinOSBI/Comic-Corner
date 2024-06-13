@@ -16,7 +16,7 @@ export const ModalProvider = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
   const [idCounter, setIdCounter] = useState((() => {
     const localStorageIdCounter = localStorage.getItem('Folder Id Counter');
-    return localStorageIdCounter ? localStorageIdCounter : 0;
+    return localStorageIdCounter ? parseInt(localStorageIdCounter, 10) : -1;;
   }));
   const [activeMenu, setActiveMenu] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);

@@ -208,6 +208,7 @@ header a:hover{
   overflow: scroll;
   cursor:grab;
   overflow-y: hidden;
+  gap: 56px;
 }
 
 .middle.active {
@@ -220,7 +221,6 @@ header a:hover{
   width: 250px;
   height: auto;
   border-color: transparent;
-  margin-left: 56px;
   position: relative;
   transition: all 250ms;
   scroll-snap-align: end;
@@ -539,6 +539,7 @@ header a{
   .middle{
     height: 300px;
     scroll-snap-type: x mandatory;
+    gap: 8%;
   }
 
   /*---------------- CONTENT  ---------------*/
