@@ -39,7 +39,8 @@
 
 .modalList li{
   height: 100px;
-  width: 240px;
+  width: 11.5vw;
+  max-width: 240px;
   border-radius: 5px;
   color: white; 
   font-family: 'Oswald', sans-serif;
@@ -512,7 +513,7 @@
 
 
 
-/*------------------ MEDIA QUERY ------------------*/
+/*------------------ MEDIA QUERY PHONES ------------------*/
 
 @media screen and (max-width: 600px) {
 
@@ -533,12 +534,14 @@
   transform: translateY(110%);
   flex-direction: row;
   bottom: 0;
+  z-index: 1;
 }
 
 .modalList li{
   height: 8vh;
   width: 46vw;
 }
+
 
 /******************************/
 /*         Your Comics        */
@@ -574,7 +577,6 @@
 .modalComic {
   width: 45.16%;
   margin: 0 0;
-  z-index: -1;
 }
 
 .modalContainer header {
@@ -585,5 +587,63 @@
 .modalInputWrapper {
   width: 70%;
 }
+
+}
+
+/*------------------ MEDIA QUERY TABLETS ------------------*/
+@media only screen and (min-device-width: 600px) and (max-device-width: 1280px) {
+  
+/**********************/
+/*       Modal        */
+/**********************/
+.modalContainer {
+  width: 95%;
+}
+
+.modalContent{
+  justify-content: center;
+  height: 68vh;    
+}
+
+.modalList {
+  transform: translateY(110%);
+  flex-direction: row;
+  bottom: 0;
+  width: 100%;
+  justify-content: center;
+  z-index: 1;
+}
+
+.modalList li{
+  height: 8vh;
+  width: 30vw;
+}
+
+.modalList .dots{
+  display: none;
+}
+
+/******************************/
+/*       Browse Comics        */
+/******************************/
+
+.modalComic {
+  width: 30.96%;
+  margin: 0 0;
+}
+
+.modalContainer header {
+  transform: translate(0.4%, -100%);
+}
+
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1280px) and (orientation:landscape) { 
+  /* LANDSCAPE */
+
+  .modalComic {
+    width: 22.99%;
+    margin: 0 0;
+  }
 
 }
