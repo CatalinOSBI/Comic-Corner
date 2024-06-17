@@ -183,7 +183,7 @@ function ComicsB(){
 
 //API Call  
 useEffect(()=>{
-  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=SENSATIONAL&startYear=2023&limit=99&ts=1&apikey="+process.env.REACT_APP_1)
+  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=vengeance+of+the+moon+knight&startYear=2024&limit=99&ts=1&apikey="+process.env.REACT_APP_1)
   
       .then(res => {
           setComics(res.data.data.results)
