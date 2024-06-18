@@ -70,25 +70,25 @@ export const ModalProvider = ({ children }) => {
     name: 'Your Comics',
     image: IronMan1,
     imageNoBg: IronMan2,
-    visible:1,
+    visible: 1,
   },
   {
     name: 'Browse Comics',
     image: Hulk1,
     imageNoBg: Hulk2,
-    visible:1,
+    visible: 1,
   },
   {
     name: 'ActiveComic',
     image: '',
     imageNoBg: '',
-    visible:'none',
+    visible: 'none',
   },
   {
     name: 'ActiveFolder',
     image: '',
     imageNoBg: '',
-    visible:'none',
+    visible: 'none',
   }]
 
   const liDynamicStyling = (itemIndex, visibility) => ({
@@ -128,14 +128,14 @@ export const ModalProvider = ({ children }) => {
   const handleshowFolderMenu = (e, folderId) => {
     e.stopPropagation()
 
-    
+
     clearTimeout(hideTimeoutRef.current);
     setTimeout(() => {
       setDynamicOpacity(1)
-      }, 30);
-      setActiveFolderId(folderId)
-      setShowFolderMenu(!showFolderMenu) //show
-      setShowRenameFolderWindow(false)
+    }, 30);
+    setActiveFolderId(folderId)
+    setShowFolderMenu(!showFolderMenu) //show
+    setShowRenameFolderWindow(false)
 
     hideTimeoutRef.current = setTimeout(() => {
       setDynamicOpacity(0)
@@ -243,7 +243,9 @@ export const ModalProvider = ({ children }) => {
     //Active Comic element
     setActiveComicContent(
       <>
-        <div className='activeComicFloatingText'>{arrowIcon} <p onClick={() => setActiveContent(menuContent[activeMenu === 0 ? 3 : 1])} style={{ fontSize: '1rem' }} className='title'>Go Back</p></div>
+        <div style={{ width: '100%' }}>
+          <div style={{position:'relative', marginBottom:'-24px'}} className='activeComicFloatingText'>{arrowIcon} <p onClick={() => setActiveContent(menuContent[activeMenu === 0 ? 3 : 1])} style={{ fontSize: '1rem' }} className='title'>Go Back</p></div>
+        </div>
 
         <div className='activeComicContent'>
 
@@ -254,11 +256,12 @@ export const ModalProvider = ({ children }) => {
           {/* Spacer */}
           <div className='spacer'></div>
 
-          <div className='modalActiveComicBg'>
-            <img className='modalComicCover' src={comicImage} alt='Comic Background' />
-          </div>
 
           <div className='activeComicInfo'>
+            <div className='modalActiveComicBg'>
+              <img className='modalComicCover' src={comicImage} alt='Comic Background' />
+            </div>
+
             <h1 className='title'>{comicTitle}</h1>
 
             <div>

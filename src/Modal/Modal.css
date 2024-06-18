@@ -429,6 +429,11 @@
   100% {transform: rotate(-22.5deg) scale(2) translateY(0%);opacity: 36%;}
 }
 
+@keyframes ComicIntroPortrait {
+  0%   {transform: rotate(0deg) translateY(38%); opacity: 0}
+  100% {transform: rotate(-12deg) translateY(0%); opacity: 36%;}
+}
+
 .modalActiveComic {
   border-top: 8px solid #e6c300;
   position: relative;
@@ -453,10 +458,11 @@
 .activeComicInfo {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: fit-content;
   justify-content: space-between;
   height: 100%;
   gap: 16px;
+  padding-right: 0.7%;
 }
 
 .activeComicInfo .title {
@@ -638,7 +644,7 @@
 
 }
 
-@media only screen and (min-device-width: 481px) and (max-device-width: 1280px) and (orientation:landscape) { 
+@media only screen and (min-device-width: 481px) and (max-device-width: 1400px) and (orientation:landscape) { 
   /* LANDSCAPE */
 
   .modalComic {
@@ -646,4 +652,63 @@
     margin: 0 0;
   }
 
+  .modalList li{
+    height: 8vh;
+    width: 30vw;
+  }
+
+  .modalList {
+    transform: translateY(110%);
+    flex-direction: row;
+    bottom: 0;
+    width: 100%;
+    justify-content: center;
+    z-index: 1;
+  }
+
 }
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 1280px) and (orientation:portrait) { 
+  /* PORTRAIT */
+
+  .activeComicContent{
+    flex-direction: column;
+    height: fit-content;
+    align-items: center;
+    margin-top: 24px;
+    width: 100%;
+  }
+
+  .modalActiveComic{
+    border-top: none;
+    width: 76%;
+  }
+
+  .spacer{
+    display: none;
+  }
+
+  .modalActiveComicBg {
+    position: absolute;
+    width: 100%;
+    filter: grayscale(0%);
+    opacity: 100%;
+    transform: rotate(-12deg);
+    display: flex;
+    justify-content: center;
+    animation: ComicIntroPortrait 1s ease 0s 1;;
+  }
+
+  .modalActiveComicBg .modalComicCover{
+    width: 100%;
+    filter: grayscale(100%);
+    opacity: 36%;
+    transform: scale(1.5); 
+  }
+
+  .activeComicInfo {
+    padding: 0 1%;
+    width: 76%;
+  }
+  
+  }
