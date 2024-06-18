@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { useModal } from './ModalContext'
 import './Modal.css'
 import { useMediaQuery } from 'react-responsive';
@@ -11,6 +11,7 @@ const Modal = () => {
     menuItemsMap,
     activeContent,
     activeMenu,
+    menuContent,
   } = useModal()
 
   const isPhone = useMediaQuery({query:'(max-width: 600px)'})
@@ -38,7 +39,7 @@ const Modal = () => {
               {menuItemsMap}
             </ul>
 
-            <div className='modalContent'>
+            <div className='modalContent' style={{gap: activeContent.type.name === 'ActiveComic' ? '0px' : ''}}>
 
               {activeContent}
 

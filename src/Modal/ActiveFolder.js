@@ -17,8 +17,8 @@ const ActiveFolder = () => {
 
       {/* Render Images */}
       <div>
-        <img style={{ zIndex: '-1', opacity: '4%' }} className='dots Bottom' src={dots} alt='dots' />
-        <img style={{ zIndex: '-1', opacity: '4%' }} className='dots Top' src={dots} alt='dots' />
+        <img style={{ opacity: '4%' }} className='dots Bottom' src={dots} alt='dots' />
+        <img style={{ opacity: '4%' }} className='dots Top' src={dots} alt='dots' />
       </div>
     </>
   )

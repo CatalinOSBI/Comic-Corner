@@ -105,7 +105,7 @@ export const ModalProvider = ({ children }) => {
     <>
       <li style={liDynamicStyling(index, item.visible)} key={index} onClick={() => handleSetActive(index)} onMouseEnter={() => setActiveIndex(index)} onMouseLeave={() => setActiveIndex(null)}>
         <p>{item.name}</p>
-        <img style={{ zIndex: '-1', opacity: '10%', width: '50%' }} className='dots Bottom' src={dots} alt='dots' />
+        <img style={{ opacity: '10%', width: '50%' }} className='dots Bottom' src={dots} alt='dots' />
 
         <div className='modalLiImageWrapper'>
           <img className='modalLiImage' src={activeMenu === index || activeIndex === index ? item.imageNoBg : item.image} style={liImageDynamicStyling(index)} alt={item.image} />

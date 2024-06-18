@@ -197,7 +197,7 @@ const BrowseComics = () => {
     <>
       <header style={{ overflow: 'hidden' }}>
 
-        <img style={{ zIndex: '-1' }} className='dots Top' src={dots} alt='dots' />
+        <img className='dots Top' src={dots} alt='dots' />
 
         <div className='modalInputWrapper'>
           <input onKeyDown={(e) => handleEnterKeyPress(e)} style={{ width: '280px' }} className='modalTextInput' name='comicName' id='comicName' type='text' placeholder='Search Comics' ref={textInputRef} onChange={getData} />
@@ -223,8 +223,8 @@ const BrowseComics = () => {
             modalComics
           )}
 
-          <img style={{ zIndex: '-1', opacity: '4%' }} className='dots Top' src={dots} alt='dots' />
-          <img style={{ zIndex: '-1', opacity: '4%' }} className='dots Bottom' src={dots} alt='dots' />
+          <img style={{ opacity: '4%' }} className='dots Top' src={dots} alt='dots' />
+          <img style={{ opacity: '4%' }} className='dots Bottom' src={dots} alt='dots' />
         </>
       )}
     </>
