@@ -210,14 +210,20 @@ const BrowseComics = () => {
       {/* Show Loading */}
       {isLoading ? (
         <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <p>Loading...</p>
+          <p id='loading'>Loading
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: 'fit-content', marginLeft:'8px' }}>
+              <p className='dot'>.</p>
+              <p className='dot'>.</p>
+              <p className='dot'>.</p>
+            </div>
+          </p>
         </div>
       ) : (
         <>
           {/* Show No Results */}
           {comics.length === 0 ? (
             <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <p>No Results Found</p>
+              <p id='loading'>No Results Found</p>
             </div>
           ) : (
             modalComics

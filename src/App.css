@@ -97,7 +97,7 @@ header {
 
 .linkContainer {
   display: flex;
-  border: solid green;
+  /* border: solid green; */
   position: relative;
   width: fit-content;
   align-items: center;
@@ -296,6 +296,7 @@ header {
   text-transform: uppercase;
   font-family: "Oswald", sans-serif;
   font-style: italic;
+  display: flex;
 }
 
 /*---------------- CONTENT ONE ---------------*/
@@ -491,9 +492,14 @@ footer {
 @media screen and (max-width: 600px) {
   /*------------------ HEADER ------------------*/
 
-  @keyframes ComicIntro {
-    0%   {transform: rotate(0deg) scale(2) translateY(48%); opacity: 0;}
-    100% {transform: rotate(-22.5deg) scale(2) translateY(0%);opacity: 36%;}
+  @keyframes MenuActive {
+    0%   {transform: translateX(50%) ; opacity: 0;}
+    100% {transform: translateX(0%) ;opacity: 1;}
+  }
+
+  @keyframes MenuUnactive {
+    0%   {transform: translateX(0%) ; opacity: 1;}
+    100% {transform: translateX(50%) ;opacity: 0;}
   }
 
   ::-webkit-scrollbar-track {
