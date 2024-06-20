@@ -172,7 +172,7 @@ export const ModalProvider = ({ children }) => {
   };
 
   //Update (Add new Folder)
-  const handleUpdate = () => {
+  const handleUpdate = (menu) => {
     let folderName = folderNameRef.current.value;
 
     //Increase Counter
@@ -189,11 +189,11 @@ export const ModalProvider = ({ children }) => {
         },
       ],
     }));
-
+    menu(false)
   };
 
   //Add Comic To Folder
-  const handleAddToFolder = (e, comicImage, comicTitle, comicDesc, pageCount, folderName, menu) => {
+  const handleAddToFolder = (e, comicImage, comicTitle, comicDesc, pageCount, folderName, creators, menu) => {
     e.stopPropagation()
 
     setComicFolders((prev) => ({
@@ -207,7 +207,7 @@ export const ModalProvider = ({ children }) => {
               {
                 image: comicImage,
                 title: comicTitle,
-                writer: 'writer',
+                creators: creators,
                 description: comicDesc,
                 pageCount: pageCount
               }
@@ -235,7 +235,15 @@ export const ModalProvider = ({ children }) => {
   }
 
   //GoTo Active Comic Content
-  const handleGoToActiveComic = (comicImage, comicTitle, comicDesc, pageCount) => {
+  const handleGoToActiveComic = (comicImage, comicTitle, comicDesc, pageCount, comicCreators) => {
+    //Creators Map
+    const creatorsMap = comicCreators.map((creator, creatorIndex) => {
+      return (<p style={{ textTransform: 'capitalize' }}>
+        <span className='modalComicTitle'>
+          {creator.name}
+        </span> - {creator.role}
+      </p>)
+    })
 
     //Switching Menus
     setActiveContent(menuContent[menuContent.length - 2])
@@ -244,7 +252,7 @@ export const ModalProvider = ({ children }) => {
     setActiveComicContent(
       <>
         <div style={{ width: '100%' }}>
-          <div style={{position:'relative', marginBottom:'-24px'}} className='activeComicFloatingText'>{arrowIcon} <p onClick={() => setActiveContent(menuContent[activeMenu === 0 ? 3 : 1])} style={{ fontSize: '1rem' }} className='title'>Go Back</p></div>
+          <div style={{ position: 'relative', marginBottom: '-24px' }} className='activeComicFloatingText'>{arrowIcon} <p onClick={() => setActiveContent(menuContent[activeMenu === 0 ? 3 : 1])} style={{ fontSize: '1rem' }} className='title'>Go Back</p></div>
         </div>
 
         <div className='activeComicContent'>
@@ -266,7 +274,7 @@ export const ModalProvider = ({ children }) => {
 
             <div>
               <p style={{ fontSize: '1rem', border: 'none' }} className='title'>Creators:</p>
-              <p style={{ fontWeight: '400' }} className='modalComicTitle'>Name (Role) Name (Role) Name (Role) Name (Role) </p>
+              <div style={{ fontWeight: '400' }} className='modalComicTitle'>{creatorsMap} </div>
             </div>
 
             <div>
@@ -283,11 +291,16 @@ export const ModalProvider = ({ children }) => {
   }
 
   //Show Rename Folder Window
-  const handleShowRenameWindow = (e) => {
+  const handleShowRenameWindow = (e, folderName) => {
     e.stopPropagation()
     setShowRenameFolderWindow(!showRenameFolderWindow)
     setShowFolderMenu(false)
-  };
+
+    setTimeout(() => {
+      folderRenameRef.current.value = folderName;
+    }, 1);
+
+  }
 
   //Rename Folder
   const handleRenameFolder = (e, folderId, newName) => {
@@ -333,7 +346,7 @@ export const ModalProvider = ({ children }) => {
     //Comic Mapping (study this later)
     const folderComics = folder[folderName].map((comic, comicIndex) => (
       //Comic Render
-      <div onClick={() => handleGoToActiveComic(comic.image, comic.title, comic.description, comic.pageCount)} key={comicIndex} title={comic.title} className='modalComic' >
+      <div onClick={() => handleGoToActiveComic(comic.image, comic.title, comic.description, comic.pageCount, comic.creators)} key={comicIndex} title={comic.title} className='modalComic' >
         <img className='modalComicCover' src={comic.image} alt='Comic Cover' />
 
         <div className='infoWrapper'>
@@ -357,7 +370,7 @@ export const ModalProvider = ({ children }) => {
                   <input style={{ width: '98.2%' }} autoComplete='off' className='modalTextInput' id='folderRename' name='folderRename' placeholder='Folder Name' type='text' ref={folderRenameRef} />
 
                   <div className='folderButtonsContainer' >
-                    <button className='folderButton' onClick={(e) => handleShowRenameWindow(e)}>Cancel</button>
+                    <button className='folderButton' onClick={() => setShowRenameFolderWindow(false)}>Cancel</button>
                     <button className='folderButton' onClick={(e) => handleRenameFolder(e, folder.id, folderRenameRef.current.value)}>Confirm</button>
                   </div>
                 </div>
@@ -376,8 +389,8 @@ export const ModalProvider = ({ children }) => {
                     //DotsMenu
                     <div style={{ opacity: dynamicOpacity, right: '0', top: '0', transform: 'translateY(32px)' }} className='dotsMenu' onMouseLeave={(e) => handleHideDotsMenu(e, folder)} onMouseEnter={(e) => handleKeepMenuVisible(e, folder.id)}>
                       <ul className='dotsMenuList' style={{ listStyleType: 'none' }}>
-                        <li onClick={(e) => handleShowRenameWindow(e)}> {penIcon} Rename </li>
-                        <li onClick={(e) => handleDeleteFolder(folder, e)}> {trashIcon} Delete </li>
+                        <li style={{ gap: '8px' }} onClick={(e) => handleShowRenameWindow(e, folder.folderName)}> {penIcon} Rename </li>
+                        <li style={{ gap: '8px' }} onClick={(e) => handleDeleteFolder(folder, e)}> {trashIcon} Delete </li>
                       </ul>
                     </div>
                   }

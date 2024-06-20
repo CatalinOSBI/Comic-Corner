@@ -58,7 +58,7 @@ const YourComics = () => {
 
                 <div className='folderButtonsContainer' >
                   <button  className='folderButton' onClick={()=>handleHideAddName()}>Cancel</button>
-                  <button className='folderButton' onClick={handleUpdate}>Confirm</button>
+                  <button className='folderButton' onClick={()=>handleUpdate(setShowNameFolder)}>Confirm</button>
                 </div>
               </div>
             </>

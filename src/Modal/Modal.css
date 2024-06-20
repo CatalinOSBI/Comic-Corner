@@ -285,8 +285,7 @@
 
 .trashIcon,
 .penIcon,
-.arrowIcon,
-.warningIcon {
+.arrowIcon {
   width: 16px;
   height: auto;
   fill:#393c3f;
@@ -294,8 +293,10 @@
 }
 
 .warningIcon{
-  position:absolute;
+  position: relative;
   right: 0;
+  width: 16px;
+  fill:#393c3f;
 }
 
 .arrowIcon{
@@ -391,6 +392,11 @@
   transition: all .218s;
   border-radius: 5px;
   position: relative;
+  display: flex;
+}
+
+.liSpacer{
+  justify-content: space-between;
 }
 
 .dotsMenuList li:hover {
@@ -458,6 +464,10 @@
   /* box-shadow: 0px 5px 20px -10px rgba(0, 0, 0, 0.80); */
 }
 
+.creators p:not(:first-child)::before{
+  content: ', ';
+}
+
 .modalActiveComicBg {
   position: absolute;
   width: 50%;
@@ -490,8 +500,7 @@
 .activeComicContent {
   position: relative;
   display: flex;
-  justify-content: center;
-  height: 96.64%;
+  height: auto;
   overflow: hidden;
   margin-top: 24px;
   width: 100%;
@@ -697,7 +706,7 @@
 
   .modalActiveComic{
     border-top: none;
-    width: 76%;
+    width: 88%;
   }
 
   .spacer{
@@ -724,7 +733,7 @@
 
   .activeComicInfo {
     padding: 0 1%;
-    width: 76%;
+    width: 88%;
   }
   
   }

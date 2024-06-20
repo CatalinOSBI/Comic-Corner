@@ -24,7 +24,7 @@ const Modal = () => {
   }
 
   const buttonDynamicStyling = () => ({
-    transform:  isPhone && activeMenu === 1  ? 'translateY( -9.5vh)' : activeMenu === 1 ? 'translateY( -375%)' : 'translateY( -95%)'
+    transform:  isPhone && activeContent.type.name === 'BrowseComics'  ? 'translateY( -9.5vh)' : activeContent.type.name === 'BrowseComics' ? 'translateY( -375%)' : 'translateY( -95%)'
   })
 
   return (
