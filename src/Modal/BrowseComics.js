@@ -153,7 +153,7 @@ const BrowseComics = () => {
       const folderOptionName = folder.folderName
       //Comics Inside Folder Map
       const comicsInsideFolder = folder.folderContents.map((comic, comicIndex) => {
-        return (comic)
+        return (comic.title)
       })
       //Creators Map
       const creators = comic.creators.items.map((creator, creatorIndex) => {
@@ -162,7 +162,7 @@ const BrowseComics = () => {
 
       //Render
       return (
-        <li onClick={(e) => handleAddToFolder(e, comic.thumbnail.path + '.jpg', comic.title, comic.description, comic.pageCount, e.target.innerText, creators, setShowComicMenu)} key={folderIndex} id={folderOptionName} className='liSpacer'>
+        <li onClick={(e) => handleAddToFolder(e, comic.thumbnail.path + '.jpg', comic.title, comic.description, comic.pageCount, e.target.innerText, creators, comic.urls[0].url, setShowComicMenu)} key={folderIndex} id={folderOptionName} className='liSpacer'>
           {folderOptionName}
           {comicsInsideFolder.includes(comic.title) && warningIcon}
         </li>
@@ -170,7 +170,7 @@ const BrowseComics = () => {
     })
     //----------------------------------------------------------------------------------
     return (
-      <div onClick={() => handleGoToActiveComic(comic.thumbnail.path + '.jpg', comic.title, comic.description, comic.pageCount, comic.creators.items)} key={comic.id} className='modalComic'>
+      <div onClick={() => handleGoToActiveComic(comic.thumbnail.path + '.jpg', comic.title, comic.description, comic.pageCount, comic.creators.items, comic.urls[0].url)} key={comic.id} className='modalComic'>
         <img src={comic.thumbnail.path + '.jpg'} className='modalComicCover' alt='Comic Cover' />
 
         <div className='infoWrapper'>

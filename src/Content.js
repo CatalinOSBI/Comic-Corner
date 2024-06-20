@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import { useState, useRef, useEffect } from 'react';
+import { useModal } from './Modal/ModalContext';
 import Batman1 from './Images/batman1.png';
 import Batman2 from './Images/batman2NoBG.png';
 import Spiderman1 from './Images/spiderman1.png';
@@ -57,6 +58,10 @@ export default function Content() {
 function ComicsA() {
   const [comics, setComics] = useState([])
   const sliderRef = useRef()
+
+  const {
+    handleGoToActiveComic,
+  } = useModal()
 
   // Drag Effect w/ event listeners
   useEffect(() => {
@@ -133,10 +138,8 @@ function ComicsA() {
           <div key={comic.id} className='comic'>
             <img draggable='false' src={comic.thumbnail.path + '.jpg'} className='comicCover' alt='Comic Cover' />
             <p style={{userSelect:'none'}}>{comic.title}</p>
-            <a href={comic.urls[0].url} target='_blank' rel="noreferrer">
-              <button>View</button></a>
+            <button onClick={()=> handleGoToActiveComic(comic.thumbnail.path + '.jpg', comic.title, comic.description, comic.pageCount, comic.creators.items)}>View</button>
             <h1 style={{ opacity: "0", fontSize: "1rem" }} >Easter Egg</h1>
-            <button onClick={() => console.log(comic)}>log</button>
           </div>
         ))
       ) : (
@@ -151,6 +154,10 @@ function ComicsA() {
 function ComicsB() {
   const [comics, setComics] = useState([])
   const sliderRef = useRef()
+
+  const {
+    handleGoToActiveComic,
+  } = useModal()
 
   // Drag Effect w/ event listeners
   useEffect(() => {
@@ -217,9 +224,7 @@ function ComicsB() {
           <div key={comic.id} className='comic'>
             <img draggable='false' src={comic.thumbnail.path + '.jpg'} className='comicCover' alt='Comic Cover' />
             <p style={{userSelect:'none'}}>{comic.title}</p>
-            <a href={comic.urls[0].url} target='_blank' rel="noreferrer">
-              <button>View</button>
-            </a>
+            <button onClick={()=> handleGoToActiveComic(comic.thumbnail.path + '.jpg', comic.title, comic.description, comic.pageCount, comic.creators.items)}>View</button>
             <h1 style={{ opacity: "0", fontSize: "1rem" }} >Easter Egg</h1>
           </div>
         ))

@@ -41,7 +41,8 @@ export const ModalProvider = ({ children }) => {
   const dotsIconFolder = <svg className='dotsIconFolder' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 512"><path fill="#74a3eb" d="M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z" /></svg>
   const trashIcon = <svg className='trashIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" /></svg>
   const penIcon = <svg className='penIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#393c3f" d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z" /></svg>
-  const arrowIcon = <svg className='arrowIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg>
+  const arrowIcon = <svg style={{fill:'black'}} className='arrowIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg>
+  const arrowIcon2 = <svg style={{ transform: 'rotate(180deg)', fill:'black' }} className='arrowIcon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></svg>
   /////////////////////////////////////////
   //              Side Menu              //
   /////////////////////////////////////////
@@ -150,13 +151,10 @@ export const ModalProvider = ({ children }) => {
   //Hide DotsMenu
   const handleHideDotsMenu = (e) => {
     e.stopPropagation()
-    setTimeout(() => {
-      setDynamicOpacity(0)
-
-    }, 910);
+    
     clearTimeout(hideTimeoutRef.current)
-
     hideTimeoutRef.current = setTimeout(() => {
+      
       setActiveFolderId(null)
       setShowFolderMenu(false)
     }, 1000);
@@ -193,7 +191,7 @@ export const ModalProvider = ({ children }) => {
   };
 
   //Add Comic To Folder
-  const handleAddToFolder = (e, comicImage, comicTitle, comicDesc, pageCount, folderName, creators, menu) => {
+  const handleAddToFolder = (e, comicImage, comicTitle, comicDesc, pageCount, folderName, creators, marvelLink, menu) => {
     e.stopPropagation()
 
     setComicFolders((prev) => ({
@@ -209,7 +207,8 @@ export const ModalProvider = ({ children }) => {
                 title: comicTitle,
                 creators: creators,
                 description: comicDesc,
-                pageCount: pageCount
+                pageCount: pageCount,
+                marvelLink: marvelLink
               }
             ]
           }
@@ -235,7 +234,10 @@ export const ModalProvider = ({ children }) => {
   }
 
   //GoTo Active Comic Content
-  const handleGoToActiveComic = (comicImage, comicTitle, comicDesc, pageCount, comicCreators) => {
+  const handleGoToActiveComic = (comicImage, comicTitle, comicDesc, pageCount, comicCreators, marvelLink) => {
+    //Open Modal
+    setShowModal(true)
+
     //Creators Map
     const creatorsMap = comicCreators.map((creator, creatorIndex) => {
       return (<p style={{ textTransform: 'capitalize' }}>
@@ -251,9 +253,7 @@ export const ModalProvider = ({ children }) => {
     //Active Comic element
     setActiveComicContent(
       <>
-        <div style={{ width: '100%' }}>
-          <div style={{ position: 'relative', marginBottom: '-24px' }} className='activeComicFloatingText'>{arrowIcon} <p onClick={() => setActiveContent(menuContent[activeMenu === 0 ? 3 : 1])} style={{ fontSize: '1rem' }} className='title'>Go Back</p></div>
-        </div>
+        <div style={{ position: 'relative', marginBottom: '-24px', width: '100%', display:'flex', justifyContent:'space-between' }} className='activeComicFloatingText'> <p onClick={() => setActiveContent(menuContent[activeMenu === 0 ? 3 : 1])} style={{ fontSize: '1rem' }} className='title'>{arrowIcon} Go Back</p> <a rel="noreferrer" href={marvelLink} target="_blank" style={{color:'inherit'}} className='title'>Marvel site {arrowIcon2}</a></div>
 
         <div className='activeComicContent'>
 
@@ -346,7 +346,7 @@ export const ModalProvider = ({ children }) => {
     //Comic Mapping (study this later)
     const folderComics = folder[folderName].map((comic, comicIndex) => (
       //Comic Render
-      <div onClick={() => handleGoToActiveComic(comic.image, comic.title, comic.description, comic.pageCount, comic.creators)} key={comicIndex} title={comic.title} className='modalComic' >
+      <div onClick={() => handleGoToActiveComic(comic.image, comic.title, comic.description, comic.pageCount, comic.creators, comic.marvelLink)} key={comicIndex} title={comic.title} className='modalComic' >
         <img className='modalComicCover' src={comic.image} alt='Comic Cover' />
 
         <div className='infoWrapper'>
