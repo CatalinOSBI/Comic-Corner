@@ -1,14 +1,14 @@
 @font-face {
-  font-family: 'GretaSansStdReg';
-  src: url(./Fonts/GretaSansStdReg.ttf) format('truetype');
+  font-family: "GretaSansStdReg";
+  src: url(./Fonts/GretaSansStdReg.ttf) format("truetype");
 }
 
-*{
+* {
   padding: 0;
   margin: 0;
 }
 
-html{
+html {
   scroll-behavior: smooth;
 }
 
@@ -18,35 +18,35 @@ html{
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2267e7; 
-  border-radius:15px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #2a5bb4; 
-}
-
-::-webkit-scrollbar-thumb:active { 
-  background-color: #2854a5;
-}  
-
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  background: #2267e7;
   border-radius: 15px;
 }
 
-a{
-text-decoration: none;
+::-webkit-scrollbar-thumb:hover {
+  background: #2a5bb4;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #2854a5;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 15px;
+}
+
+a {
+  text-decoration: none;
 }
 
 /*------------------ HEADER ------------------*/
 
-.headerContainer{
+.headerContainer {
   z-index: 2;
   overflow: hidden;
 }
 
-.logoContainer{
+.logoContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,16 +54,16 @@ text-decoration: none;
   height: fit-content;
 }
 
-.logoContainer p{
-  font-family:'Poppins', sans-serif;
+.logoContainer p {
+  font-family: "Poppins", sans-serif;
   color: white;
   font-weight: 600;
 }
 
-header{
+header {
   display: flex;
   align-items: center;
-  justify-content:space-around ;
+  justify-content: space-around;
   height: 70px;
   display: flex;
   background-color: #3371e6;
@@ -71,62 +71,69 @@ header{
   z-index: 1;
 }
 
-.imgLogo{
+.imgLogo {
   width: 100%;
   max-width: 80px;
   height: auto;
   margin-left: -10px;
 }
 
-header a{
-  margin-right: 56px;
+.linkContainer a {
   color: white;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   font-size: 1.2rem;
   letter-spacing: 0.02rem;
   transition: all 1s;
   /* border: solid green; */
 }
 
-header a:hover{
+.linkContainer a:not(:last-child) {
+  margin-right: 56px;
+}
+
+.linkContainer a:hover {
   cursor: pointer;
 }
 
-.linkContainer{
+.linkContainer {
   display: flex;
-  /* border: solid red; */
+  /* border: solid green; */
+  position: relative;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
 }
 
 .linkContainer a:after {
-  display:block;
-  content: '';
+  display: block;
+  content: "";
   border-bottom: 2px solid rgb(211, 211, 211);
-  transform: scaleX(0);  
+  transform: scaleX(0);
   transition: transform 250ms ease-in-out;
 }
-.linkContainer a.line:after{
-   transform-origin: 100% 50%; 
+.linkContainer a.line:after {
+  transform-origin: 100% 50%;
 }
 
-.linkContainer a.line:hover:after{
+.linkContainer a.line:hover:after {
   transform: scaleX(1);
-  transform-origin:   0% 50%; 
+  transform-origin: 0% 50%;
 }
 
 /*------------------ HEADER ------------------*/
 
 /*------------------- MAIN -------------------*/
 
-.mainContainer{
+.mainContainer {
   /* border: solid blue; */
   align-items: center;
-  display:flex;
+  display: flex;
   flex-direction: column;
   position: relative;
   /* overflow: hidden; */
 }
 
-.effectContainer{
+.effectContainer {
   /* border: solid red; */
   display: flex;
   align-items: center;
@@ -134,13 +141,12 @@ header a:hover{
   background-color: black;
   overflow: hidden;
   rotate: 2deg;
-  box-shadow: -1px 9px 25px 8px rgba(0,0,0,0.45), inset 0px 70px 88px -32px rgba(255,3,3,0.34);
+  box-shadow: -1px 9px 25px 8px rgba(0, 0, 0, 0.45),
+    inset 0px 70px 88px -32px rgba(255, 3, 3, 0.34);
   width: 79.5vw;
 }
 
-
-
-.bannerContainer{
+.bannerContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -152,15 +158,14 @@ header a:hover{
   overflow: hidden;
 }
 
-.banner{
+.banner {
   width: 70%;
   height: auto;
   z-index: 5;
   position: relative;
-  
 }
 
-.header{
+.header {
   z-index: 33;
   position: absolute;
 }
@@ -169,7 +174,7 @@ header a:hover{
 
 /*---------------- CONTENT ONE ---------------*/
 
-.content{
+.content {
   /* border: solid red; */
   display: flex;
   align-items: center;
@@ -181,25 +186,25 @@ header a:hover{
   z-index: 1;
 }
 
-.content h1{
+.content h1 {
   border-top: solid #e6c300;
 }
 
-.title{
+.title {
   /* border: solid green; */
   display: flex;
   align-items: center;
   justify-content: flex-start;
   width: 80%;
-  font-weight:900;
-  font-family: GretaSansStdReg ;
+  font-weight: 900;
+  font-family: GretaSansStdReg;
   text-transform: uppercase;
   letter-spacing: 0.03rem;
   font-size: 1.5rem;
   opacity: 0.8;
 }
 
-.middle{
+.middle {
   /* border: solid purple; */
   display: flex;
   width: 100%;
@@ -208,95 +213,97 @@ header a:hover{
   align-items: center;
   rotate: -2deg;
   overflow: scroll;
-  cursor:grab;
+  cursor: grab;
   overflow-y: hidden;
+  gap: 56px;
 }
 
 .middle.active {
   cursor: grabbing;
-
 }
 
-.comic{
-  border:10px solid black;
+.comic {
+  border: 10px solid black;
   width: 250px;
   height: auto;
   border-color: transparent;
-  margin-left: 56px;
   position: relative;
   transition: all 250ms;
   scroll-snap-align: end;
 }
 
-.comic button{
+.comic button {
   position: absolute;
   top: 0;
   right: 5px;
-  font-family: 'roboto', sans-serif;
+  font-family: "roboto", sans-serif;
   font-size: 1rem;
   color: white;
-  background-color: rgb(196, 0, 0);
+  background-color: #3371e6;
   border: 1px solid white;
   border-radius: 100%;
   padding: 5px;
   opacity: 0;
   transition: opacity 150ms ease-in-out;
   cursor: pointer;
-  box-shadow: inset 10px 10px 28px -14px rgba(0,0,0,0.35);
+  box-shadow: inset 10px 10px 28px -14px rgba(0, 0, 0, 0.35);
 }
 
-.comic:hover button{
+.comic:hover button {
   opacity: 1;
 }
 
-.comic button:hover{
-  color: rgb(196, 0, 0);
+.comic button:hover {
+  color: #3371e6;
   background-color: white;
 }
 
-.comic p{
+.comic p {
   text-align: start;
 }
 
-.comic:hover .comicCover{
+.comic:hover .comicCover {
   transform: translateY(-5%);
 }
 
-.comic:hover p{
-  color:rgb(196, 0, 0);
+.comic:hover p {
+  color: rgb(196, 0, 0);
 }
 
-.comicCover{
+.comicCover {
   width: 250px;
   height: auto;
   z-index: 1;
-  transition: all 150ms ease-in-out;
+  transition: all 0.218s;
   margin-bottom: 0.3rem;
-  box-shadow: 10px 10px 21px 0px rgba(0,0,0,0.33);
+  box-shadow: 10px 10px 21px 0px rgba(0, 0, 0, 0.33);
+  -webkit-user-drag: none;
 }
 
-.middle p{
-  font-family: 'roboto', sans-serif;
+.middle p {
+  font-family: "roboto", sans-serif;
+  font-weight: 500;
   font-size: 1rem;
   position: absolute;
   color: rgb(100, 100, 100);
   transition: all 150ms ease-in-out;
 }
 
-#loading{
+#loading {
   color: black;
   text-align: end;
   font-size: 3rem;
   text-transform: uppercase;
-  font-family:'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   font-style: italic;
+  display: flex;
 }
 
 /*---------------- CONTENT ONE ---------------*/
 
 /*---------------- CONTENT TWO ---------------*/
 
-.middle2{
+.middle2 {
   /* border: solid purple; */
   display: flex;
   width: 100%;
@@ -305,17 +312,16 @@ header a:hover{
   align-items: center;
   rotate: -2deg;
   overflow: scroll;
-  cursor:grab;
+  cursor: grab;
   overflow-y: hidden;
 }
 
 .middle2.active {
   cursor: grabbing;
-
 }
 
-.middle2 p{
-  font-family: 'roboto', sans-serif;
+.middle2 p {
+  font-family: "roboto", sans-serif;
   font-size: 1rem;
   position: absolute;
   color: rgb(100, 100, 100);
@@ -327,11 +333,11 @@ header a:hover{
 
 /*------------------- NEWS -------------------*/
 
-.newsContainer{
+.newsContainer {
   rotate: -2deg;
   background-color: #3371e6;
   width: 100%;
-  height: auto; 
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -339,7 +345,7 @@ header a:hover{
   margin-bottom: 16vh;
 }
 
-.heroContainer{
+.heroContainer {
   border: 2px solid white;
   border-radius: 110px;
   width: 220px;
@@ -348,24 +354,24 @@ header a:hover{
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  box-shadow: 10px 10px 33px -6px rgba(0,0,0,0.36);
+  box-shadow: 10px 10px 33px -6px rgba(0, 0, 0, 0.36);
   transition: all 250ms ease-in-out;
 }
 
-.heroContainer:hover{
-  box-shadow: inset 10px 10px 33px -6px rgba(0,0,0,0.36);
+.heroContainer:hover {
+  box-shadow: inset 10px 10px 33px -6px rgba(0, 0, 0, 0.36);
 }
 
-.heroContainer:hover .heroImageB{
+.heroContainer:hover .heroImageB {
   transform: translateY(-8%) scale(1.2);
   opacity: 1;
 }
 
-.heroContainer:hover .heroImageA{
+.heroContainer:hover .heroImageA {
   opacity: 0;
 }
 
-.heroImageA{
+.heroImageA {
   transform: translateY(5%);
   width: 260%;
   height: auto;
@@ -374,7 +380,7 @@ header a:hover{
   transition: all 250ms ease-in-out;
 }
 
-.heroImageB{
+.heroImageB {
   width: 100%;
   max-width: 431.25px;
   height: auto;
@@ -383,56 +389,63 @@ header a:hover{
   transition: all 250ms ease-in-out;
 }
 
-.sideA{
+.sideA {
   /* border: solid red; */
   display: flex;
   margin-bottom: -160px;
   rotate: 2deg;
 }
 
-.dots{
+.dots {
   width: 40%;
   height: auto;
   position: absolute;
   opacity: 10%;
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  z-index: -1;
 }
 
-.Top{
+.Top {
   left: 0;
   top: 0;
 }
 
-.Bottom{
+.Bottom {
   rotate: 180deg;
   right: 0;
   bottom: 0;
 }
 
-.heroTitle{
+.heroTitle {
   position: absolute;
   top: 0;
-  font-family: 'oswald', sans-serif;
+  font-family: "oswald", sans-serif;
   font-size: 1.3rem;
   color: white;
   margin-top: 16px;
   rotate: 2px;
   letter-spacing: 0.02rem;
-  box-shadow: 10px 10px 33px -6px rgba(0,0,0,0.36);
+  box-shadow: 10px 10px 33px -6px rgba(0, 0, 0, 0.36);
   text-transform: uppercase;
 }
 
-.heroContext{
+.heroContext {
   display: flex;
   flex-direction: column;
   text-transform: uppercase;
   position: absolute;
   text-align: center;
   rotate: 2deg;
-  font-family: 'oswald', sans-serif;
+  font-family: "oswald", sans-serif;
   font-size: 3rem;
   letter-spacing: 0.02rem;
   color: #ffc14d;
-  font-weight:900;
+  font-weight: 900;
   text-shadow: -20px 15px 25px rgba(0, 0, 0, 0.45);
 }
 
@@ -440,7 +453,7 @@ header a:hover{
 
 /*------------------ BATMAN ------------------*/
 
-.heroImageBatman{
+.heroImageBatman {
   width: 100%;
   max-width: 575px;
   height: auto;
@@ -450,7 +463,7 @@ header a:hover{
   /* transform: translateY(-10%); */
 }
 
-.heroContainer:hover .heroImageBatman{
+.heroContainer:hover .heroImageBatman {
   transform: translateY(-8%) scale(1.1);
   opacity: 1;
 }
@@ -459,7 +472,7 @@ header a:hover{
 
 /*------------------ FOOTER ------------------*/
 
-footer{
+footer {
   width: 100%;
   height: 72px;
   background-color: black;
@@ -474,38 +487,53 @@ footer{
 
 
 
-
-
 /*------------------ MEDIA QUERY ------------------*/
 
 @media screen and (max-width: 600px) {
+  /*------------------ HEADER ------------------*/
 
-/*------------------ HEADER ------------------*/
+  @keyframes MenuActive {
+    0%   {transform: translateX(50%) ; opacity: 0;}
+    100% {transform: translateX(0%) ;opacity: 1;}
+  }
 
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 0px grey; 
+  @keyframes MenuUnactive {
+    0%   {transform: translateX(0%) ; opacity: 1;}
+    100% {transform: translateX(50%) ;opacity: 0;}
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px grey;
+  }
+  
+  header{
+    justify-content: space-between;
+    padding: 0 2%;
+  }
+
+  header a {
+    font-size: 1rem;
+    letter-spacing: 0.02rem;
+    position: relative;
+  }
+
+  .linkContainer a:not(:last-child) {
+    margin-right: 0px;
 }
 
-header a{
-  margin-right: 16px;
-  font-size: 1rem;
-  letter-spacing: 0.02rem;
-  position: relative;
-}
-
-.logoContainer{
-  width: 60%;
-}
+  .linkContainer a{
+    font-size: 1.5rem;
+  }
 
   /*------------------ HEADER ------------------*/
 
   /*------------------ BANNER ------------------*/
 
-  .effectContainer{
+  .effectContainer {
     width: 159.5vw;
   }
 
-  .mainContainer{
+  .mainContainer {
     overflow: hidden;
   }
 
@@ -513,97 +541,89 @@ header a{
 
   /*---------------- CONTENT ---------------*/
 
-  .title{
+  .title {
     font-size: 1.5rem;
   }
 
-  .content{
+  .content {
     align-items: flex-start;
   }
 
-  .comicCover{
+  .comicCover {
     width: 140px;
   }
 
-  .comic{
-    border:5px solid black;
+  .comic {
+    border: 5px solid black;
     border-color: transparent;
   }
 
-  .comic p{
+  .comic p {
     position: absolute;
     font-size: 0.8rem;
   }
 
-  .middle{
+  .middle {
     height: 300px;
     scroll-snap-type: x mandatory;
-  }
-
-  .middle2{
-    height: 300px;
-    scroll-snap-type: x mandatory;
+    gap: 8%;
   }
 
   /*---------------- CONTENT  ---------------*/
 
   /*------------------ NEWS ------------------*/
 
-  .heroContainer{
+  .heroContainer {
     width: 82.5px;
     height: 187.5px;
     z-index: 1;
   }
 
-  .newsContainer{
-    height: 90vh; 
+  .newsContainer {
+    height: 90vh;
   }
 
-  .heroContext{
+  .heroContext {
     z-index: 2;
   }
 
-
-  .heroImageBatman{
+  .heroImageBatman {
     max-width: 287.5px;
   }
 
-  .heroImageB{
+  .heroImageB {
     max-width: 215.62px;
   }
 
-  .dots{
+  .dots {
     width: 100vw;
   }
-
 
   /*------------------ NEWS ------------------*/
 }
 
 @media only screen and (max-width: 1050px) {
-
-  .comicCover{
+  .comicCover {
     width: 140px;
   }
 
-  .comic{
-    border:1px solid black;
+  .comic {
+    border: 1px solid black;
     border-color: transparent;
   }
 
-  .comic p{
+  .comic p {
     position: absolute;
     font-size: 0.8rem;
   }
 
-  .middle{
+  .middle {
     height: 300px;
     scroll-snap-type: x mandatory;
   }
 
-  .middle2{
+  .middle2 {
     height: 300px;
     scroll-snap-type: x mandatory;
   }
-
 }

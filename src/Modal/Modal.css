@@ -1,0 +1,739 @@
+/**********************/
+/*       Modal        */
+/**********************/
+.modalContent::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0px;
+  border-radius: 15px;
+}
+
+.closeModalButton{
+  color: white;
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70px;
+  height: 25px;
+  border: none;
+  border-radius: 4px;
+  background-color: #cc0000;
+  font-size: 1.4rem;
+  font-family: GretaSansStdReg;
+  clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+  transform: translateY( -95%);
+  cursor: pointer;
+}
+
+.closeModalButton:hover{
+  background-color: #a10101;
+}
+
+.modalList {
+  position: absolute;
+  transform: translateX(-110%);
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modalList li{
+  height: 100px;
+  width: 11.5vw;
+  max-width: 240px;
+  border-radius: 5px;
+  color: white; 
+  font-family: 'Oswald', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.02rem;
+  background-color: #2654aa;
+  transition: all ease-out .218s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.modalList li:hover{
+  background-color: #3371e6;
+}
+
+.modalList p{
+  z-index: 1;
+  text-shadow: 3px -1px 9px rgba(0,0,0,0.44);
+}
+
+.modalLiImageWrapper{
+  width: 100%;
+  /* border: solid green; */
+  height: auto;
+  position: absolute;
+  right: 0;
+  display: flex;
+  justify-content: end;
+  align-items: start;
+}
+
+.modalLiImage{
+  position: relative;
+  width: 50%;
+  /* border: solid red; */
+  height: auto;
+  transition: opacity ease-in-out .218s;
+}
+
+.modalContent::-webkit-scrollbar-thumb {
+  border-radius: 1px;
+}
+
+.modal-active {
+  overflow: hidden;
+}
+
+.modalOverlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.377);
+  z-index: 998;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer {
+  position: fixed;
+  width: 1200px;
+  /* min-width: 1200px; */
+  height: fit-content;
+  background-color: rgb(234, 237, 255);
+  border: solid 1px #3372e6b2;
+  border-radius: 10px;
+}
+
+.modalContent {
+  /* border: solid green; */
+  overflow-y: scroll;
+  height: 700px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 24px;
+  padding: 24px 24px;
+}
+
+/******************************/
+/*       Browse Comics        */
+/******************************/
+@keyframes bounce {
+  0%   {transform: translateY(0);}
+  100% {transform: translateY(-6px);}
+}
+
+.dot {
+  animation: bounce 1000ms infinite alternate;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+.modalContainer header {
+  transform: translate(-2%, -100%);
+  position: absolute;
+  background-color: #3371e6;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  top: 0;
+  border-radius: 10px;
+  gap: 16px;
+}
+
+.searchIcon {
+  width: 16px;
+  height: auto;
+  fill: rgba(0, 0, 0, 0.685);
+  transition: all .218s;
+}
+
+.arrowIconSmall{
+  width: 8px;
+  height: auto;
+  fill: #393c3f;
+  transition: all .218s;
+}
+
+.dotsMenuList:hover .arrowIconSmall{
+  transform: rotate(90deg);
+}
+
+.modalTextInput {
+  height: 32px;
+  border-radius: 10px;
+  padding: 2px;
+  border: 1px solid transparent;
+  outline: none;
+  transition: all .218s;
+  font-family: 'roboto', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  color: rgb(0, 0, 0);
+  background-color: #E8F0FE;
+}
+
+.modalInputWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+
+.modalSearchButton {
+  position: absolute;
+  right: 1%;
+  border-radius: 10px;
+  padding: 4px;
+  border: 1px solid transparent;
+  transition: all .218s;
+  font-family: 'roboto', sans-serif;
+  cursor: pointer;
+  background-color: #E8F0FE;
+}
+
+.modalSearchButton:hover .searchIcon {
+  fill: #3371e6;
+}
+
+.modalComic {
+  position: relative;
+  width: 17.64%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin: 0 3.9px;
+  cursor: pointer;
+}
+
+.modalComic:hover .modalComicTitle {
+  color: rgb(196, 0, 0);
+}
+
+.modalComic:hover .modalComicCover {
+  transform: translateY(-4%);
+  box-shadow: 0px 5px 20px -10px rgba(0, 0, 0, 0.80);
+
+}
+
+.modalComicCover {
+  width: 100%;
+  height: auto;
+  position: relative;
+  transition: all .218s;
+}
+
+.modalComicTitle {
+  width: fit-content;
+  font-family: 'roboto', sans-serif;
+  font-weight:500;
+  font-size: 1rem;
+  position: relative;
+  color: rgba(0, 0, 0, 0.849);
+  transition: all .218s;
+  margin-top: 4px;
+}
+
+/******************************/
+/*         Your Comics        */
+/******************************/
+
+/* 266px */
+.modalFolder {
+  position: relative;
+  width: 266px;
+  height: 266px;
+  background-color: rgb(191, 213, 255);
+  border: solid 1px rgb(234, 237, 255);
+  border-radius: 8%;
+  transition: all .218s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.folderIcon,
+.folderIconAdd {
+  width: 184px;
+  height: auto;
+  transition: all .218s;
+}
+
+.dotsIconFolder {
+  width: 8px;
+  height: auto;
+  position: relative;
+  opacity: 0;
+  transition: all .218s;
+}
+
+.trashIcon,
+.penIcon,
+.arrowIcon {
+  width: 16px;
+  height: auto;
+  fill:#393c3f;
+  transition: all .218s;
+}
+
+.warningIcon{
+  position: relative;
+  right: 0;
+  width: 16px;
+  fill:#393c3f;
+}
+
+.arrowIcon{
+  width: 14px;
+}
+
+.dotsWrapper {
+  position: absolute;
+  transform: translate(-10%, 30%);
+  top: 0;
+  right: 0;
+  width: 32px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .218s;
+  opacity: 1;
+}
+
+.dotsWrapper:hover {
+  background-color: rgba(255, 255, 255, 0.356);
+}
+
+.modalFolderWrapper:hover .modalFolder {
+  border: solid 1px rgb(116, 163, 235);
+  transform: translateY(-1.358%);
+  box-shadow: 0px 5px 20px -10px rgba(0, 0, 0, 0.55);
+  background-color: rgb(183, 205, 247);
+}
+
+.modalFolderWrapper:hover .dotsIconFolder {
+  opacity: 1;
+}
+
+/* Input */
+
+.folderName {
+  position: relative;
+  font-family: GretaSansStdReg;
+  font-size: 2rem;
+  color: rgb(255, 255, 255);
+  word-wrap: break-word;
+}
+
+.modalTextInput:focus {
+  border: 1px solid rgb(116, 163, 235);
+}
+
+.folderButtonsContainer {
+  width: 100%;
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.folderButton {
+  background-color: #3371e6;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 15px;
+  font-family: 'roboto', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .218s;
+}
+
+.folderButton:hover {
+  transform: scale(1.09);
+}
+
+.dotsMenu {
+  position: absolute;
+  height: fit-content;
+  width: 120px;
+  max-width: 120px;
+  background-color: rgb(234, 237, 255);
+  border-radius: 10px;
+  border: solid 1px #3372e6b2;
+  padding: 5px;
+  transition: all .118s;
+  max-height: 200px;
+  overflow: auto;
+}
+
+.dotsMenuList li {
+  font-family: 'roboto', sans-serif;
+  font-weight: 500;
+  color: #393c3f;
+  padding: 6px;
+  transition: all .218s;
+  border-radius: 5px;
+  position: relative;
+  display: flex;
+}
+
+.liSpacer{
+  justify-content: space-between;
+}
+
+.dotsMenuList li:hover {
+  background-color: rgba(106, 121, 138, 0.192);
+}
+
+/******************************/
+/*       Active Folder        */
+/******************************/
+
+.dotsIconComic{
+  width: 5.5px;
+  height: auto;
+  position: absolute;
+  fill: #393c3f;
+}
+
+.infoSpacer{
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1px;
+  background-color: transparent;
+  border-radius: 4px;
+  transition: all .218s;
+  border: none;
+}
+
+.infoSpacer:hover{
+  background-color: rgba(0, 0, 0, 0.212);
+}
+
+.infoSpacer:hover .trashIcon{
+  fill: black;
+  transform: scale(1.1);
+}
+
+.flao p:hover{
+  text-decoration: underline;
+}
+
+/******************************/
+/*        Active Comic        */
+/******************************/
+
+@keyframes ComicIntro {
+  0%   {transform: rotate(0deg) scale(2) translateY(48%); opacity: 0;}
+  100% {transform: rotate(-22.5deg) scale(2) translateY(0%);opacity: 36%;}
+}
+
+@keyframes ComicIntroPortrait {
+  0%   {transform: rotate(0deg) translateY(38%); opacity: 0}
+  100% {transform: rotate(-12deg) translateY(0%); opacity: 100%;}
+}
+
+.modalActiveComic {
+  border-top: 8px solid #e6c300;
+  position: relative;
+  width: 62%;
+  height: fit-content;
+  /* box-shadow: 0px 5px 20px -10px rgba(0, 0, 0, 0.80); */
+}
+
+.creators p:not(:first-child)::before{
+  content: ', ';
+}
+
+.modalActiveComicBg {
+  position: absolute;
+  width: 50%;
+  height: fit-content;
+  z-index: -1;
+  filter: grayscale(100%);
+  opacity: 36%;
+  transform: rotate(-22.5deg) scale(2);  /*add anim for rotation on entering page */
+  right: 0;
+  bottom: 0;
+  animation: ComicIntro 1s ease 0s 1;
+}
+
+.activeComicInfo {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  justify-content: space-between;
+  height: 100%;
+  gap: 16px;
+  padding-right: 0.7%;
+}
+
+.activeComicInfo .title {
+  border-top: 8px solid #e6c300;
+  width: fit-content;
+  font-size: 2.5rem;
+}
+
+.activeComicContent {
+  position: relative;
+  display: flex;
+  height: auto;
+  overflow: hidden;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.spacer{
+  width: 1%;
+  height: 100%;
+  position: relative;
+  border-top: 8px solid #e6c300;
+}
+
+.infoWrapper{
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.activeComicFloatingText{
+  position: absolute;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  text-wrap: nowrap;
+  transition: all .218s;
+  width: 100%;
+}
+
+.activeComicFloatingText .title{
+  width: fit-content;
+  font-size: 1rem;
+}
+
+.activeComicFloatingText .title:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+
+
+/*------------------ MEDIA QUERY PHONES ------------------*/
+
+@media screen and (max-width: 600px) {
+
+/**********************/
+/*       Modal        */
+/**********************/
+.modalContainer {
+  width: 95%;
+  transform: translateY(-5%);
+}
+
+.modalContent{
+  justify-content: center;
+  height: 60vh;
+}
+
+.modalList {
+  transform: translateY(110%);
+  flex-direction: row;
+  bottom: 0;
+  z-index: 1;
+}
+
+.modalList li{
+  height: 8vh;
+  width: 46vw;
+}
+
+
+/******************************/
+/*         Your Comics        */
+/******************************/
+.modalFolder {
+  width: 100%;
+  height: 100%;
+}
+
+.modalFolderWrapper{
+  height: 22%;
+  width: 45%;
+}
+
+.folderIcon,
+.folderIconAdd {
+  width: 65%;
+}
+
+.dotsIconFolder {
+  opacity: 1;
+  width: 20%;
+}
+
+.folderName {
+  font-size: 1.2rem;
+}
+
+/******************************/
+/*       Browse Comics        */
+/******************************/
+
+.modalComic {
+  width: 45.16%;
+  margin: 0 0;
+}
+
+.modalContainer header {
+  transform: translate(1%, -100%);
+  height: 7vh;
+}
+
+.modalInputWrapper {
+  width: 70%;
+}
+
+}
+
+/*------------------ MEDIA QUERY TABLETS ------------------*/
+@media only screen and (min-device-width: 600px) and (max-device-width: 1280px) {
+  
+/**********************/
+/*       Modal        */
+/**********************/
+.modalContainer {
+  width: 95%;
+}
+
+.modalContent{
+  justify-content: center;
+  height: 68vh;    
+}
+
+.modalList {
+  transform: translateY(110%);
+  flex-direction: row;
+  bottom: 0;
+  width: 100%;
+  justify-content: center;
+  z-index: 1;
+}
+
+.modalList li{
+  height: 8vh;
+  width: 30vw;
+}
+
+.modalList .dots{
+  display: none;
+}
+
+/******************************/
+/*       Browse Comics        */
+/******************************/
+
+.modalComic {
+  width: 30.96%;
+  margin: 0 0;
+}
+
+.modalContainer header {
+  transform: translate(0.4%, -100%);
+}
+
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1400px) and (orientation:landscape) { 
+  /* LANDSCAPE */
+
+  .modalComic {
+    width: 22.99%;
+    margin: 0 0;
+  }
+
+  .modalList li{
+    height: 8vh;
+    width: 30vw;
+  }
+
+  .modalList {
+    transform: translateY(110%);
+    flex-direction: row;
+    bottom: 0;
+    width: 100%;
+    justify-content: center;
+    z-index: 1;
+  }
+
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 1280px) and (orientation:portrait) { 
+  /* PORTRAIT */
+
+  .activeComicContent{
+    flex-direction: column;
+    height: fit-content;
+    align-items: center;
+    margin-top: 24px;
+    width: 100%;
+  }
+
+  .modalActiveComic{
+    border-top: none;
+    width: 88%;
+  }
+
+  .spacer{
+    display: none;
+  }
+
+  .modalActiveComicBg {
+    position: absolute;
+    width: 100%;
+    filter: grayscale(0%);
+    opacity: 100%;
+    transform: rotate(-12deg);
+    display: flex;
+    justify-content: center;
+    animation: ComicIntroPortrait 1s ease 0s 1;;
+  }
+
+  .modalActiveComicBg .modalComicCover{
+    width: 100%;
+    filter: grayscale(100%);
+    opacity: 36%;
+    transform: scale(1.5); 
+  }
+
+  .activeComicInfo {
+    padding: 0 1%;
+    width: 88%;
+  }
+  
+  }
