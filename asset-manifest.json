@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Comic-Corner/static/css/main.568bacaf.css",
-    "main.js": "/Comic-Corner/static/js/main.ff770e8a.js",
+    "main.css": "/Comic-Corner/static/css/main.50ed6b5c.css",
+    "main.js": "/Comic-Corner/static/js/main.ddeeecc6.js",
     "static/media/spiderman1.png": "/Comic-Corner/static/media/spiderman1.dbe16757e0657fec4cec.png",
     "static/media/john1.png": "/Comic-Corner/static/media/john1.8e0ee39742f88fe648df.png",
     "static/media/joker1.png": "/Comic-Corner/static/media/joker1.8b1e58300a872bf30628.png",
@@ -10,20 +10,24 @@
     "static/media/punisher 1.png": "/Comic-Corner/static/media/punisher 1.dfeb6681aa79187fbb8b.png",
     "static/media/venom2NoBG.png": "/Comic-Corner/static/media/venom2NoBG.891054d4ae6c481f9505.png",
     "static/media/john2NoBG.png": "/Comic-Corner/static/media/john2NoBG.88890e5a9816cd0fce60.png",
+    "static/media/Hulk1TEST.png": "/Comic-Corner/static/media/Hulk1TEST.329641143d8ddd367a19.png",
     "static/media/batman2NoBG.png": "/Comic-Corner/static/media/batman2NoBG.2f8750117cf1c3321ccc.png",
+    "static/media/IronMan1TEST.png": "/Comic-Corner/static/media/IronMan1TEST.29704f514b69106c91b8.png",
     "static/media/spiderman2NoBG.png": "/Comic-Corner/static/media/spiderman2NoBG.e34fcc2453c415698772.png",
     "static/media/punisher 2NoBG.png": "/Comic-Corner/static/media/punisher 2NoBG.df277877b88ed9267cda.png",
+    "static/media/Hulk1TEST2.png": "/Comic-Corner/static/media/Hulk1TEST2.b7e058751f6680da5703.png",
+    "static/media/IronMan1TEST2.png": "/Comic-Corner/static/media/IronMan1TEST2.57ffd62355cea842f73f.png",
     "static/media/joker2NoBG.png": "/Comic-Corner/static/media/joker2NoBG.74059c5b7cba1e836a00.png",
     "static/media/705204.jpg": "/Comic-Corner/static/media/705204.84fc8059d29c478af39a.jpg",
     "static/media/279-removebg-preview.png": "/Comic-Corner/static/media/279-removebg-preview.4346ed0699c2ed544ad5.png",
     "static/media/GretaSansStdReg.ttf": "/Comic-Corner/static/media/GretaSansStdReg.550e9cd36bec24ba08ca.ttf",
     "static/media/cc-high-resolution-logo-color-on-transparent-background.png": "/Comic-Corner/static/media/cc-high-resolution-logo-color-on-transparent-background.a0f2a1e4003b66892dbc.png",
     "index.html": "/Comic-Corner/index.html",
-    "main.568bacaf.css.map": "/Comic-Corner/static/css/main.568bacaf.css.map",
-    "main.ff770e8a.js.map": "/Comic-Corner/static/js/main.ff770e8a.js.map"
+    "main.50ed6b5c.css.map": "/Comic-Corner/static/css/main.50ed6b5c.css.map",
+    "main.ddeeecc6.js.map": "/Comic-Corner/static/js/main.ddeeecc6.js.map"
   },
   "entrypoints": [
-    "static/css/main.568bacaf.css",
-    "static/js/main.ff770e8a.js"
+    "static/css/main.50ed6b5c.css",
+    "static/js/main.ddeeecc6.js"
   ]
 }
