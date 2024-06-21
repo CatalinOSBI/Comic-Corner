@@ -16,6 +16,7 @@ const Modal = () => {
 
   const isPhone = useMediaQuery({query:'(max-width: 600px)'})
 
+
   //remove overflow when modal is open
   if (showModal) {
     document.body.classList.add('modal-active')
@@ -34,6 +35,7 @@ const Modal = () => {
           <div className='modalContainer'>
 
             <button style={buttonDynamicStyling()} className='closeModalButton' onClick={handleCloseModal}><p>X</p></button>
+            <button onClick={()=>   console.log('activeContent', activeContent, 'activeMenu', activeMenu , 'menuContent', menuContent)}>TEST</button>
 
             <ul className='modalList'>
               {menuItemsMap}

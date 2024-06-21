@@ -240,7 +240,7 @@ export const ModalProvider = ({ children }) => {
 
     //Creators Map
     const creatorsMap = comicCreators.map((creator, creatorIndex) => {
-      return (<p style={{ textTransform: 'capitalize' }}>
+      return (<p key={creatorIndex} style={{ textTransform: 'capitalize' }}>
         <span className='modalComicTitle'>
           {creator.name}
         </span> - {creator.role}
