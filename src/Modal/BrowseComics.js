@@ -3,8 +3,12 @@ import { useModal } from './ModalContext';
 import axios from 'axios';
 import './Modal.css'
 import dots from '../Images/279-removebg-preview.png'
+import { useMediaQuery } from 'react-responsive';
 
 const BrowseComics = () => {
+
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1366px)' })
+  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
 
   const {
     handleGoToActiveComic,
@@ -66,7 +70,12 @@ const BrowseComics = () => {
   //Show DotsMenu
   const handleShowComicMenu = (e, comicTitle) => {
     e.stopPropagation()
-    setShowSecondaryMenu(false)
+
+    if (isTabletOrMobile || isPortrait) {
+      setShowSecondaryMenu(true)
+    } else {
+      setShowSecondaryMenu(false)
+    }
 
     clearTimeout(hideTimeoutRef.current);
     setTimeout(() => {

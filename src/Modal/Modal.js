@@ -25,7 +25,7 @@ const Modal = () => {
   }
 
   const buttonDynamicStyling = () => ({
-    transform:  isPhone && activeContent.type.name === 'BrowseComics'  ? 'translateY( -9.5vh)' : activeContent.type.name === 'BrowseComics' ? 'translateY( -375%)' : 'translateY( -95%)'
+    transform:  isPhone && activeContent.key === '2'  ? 'translateY( -9.5vh)' : activeContent.key === '2' ? 'translateY( -375%)' : 'translateY( -95%)'
   })
 
   return (
@@ -41,7 +41,7 @@ const Modal = () => {
               {menuItemsMap}
             </ul>
 
-            <div className='modalContent' style={{gap: activeContent.type.name === 'ActiveComic' ? '0px' : ''}}>
+            <div className='modalContent' style={{gap: activeContent.key === '3' ? '0px' : ''}}>
 
               {activeContent}
 

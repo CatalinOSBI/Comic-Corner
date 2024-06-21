@@ -64,7 +64,7 @@ export const ModalProvider = ({ children }) => {
   };
 
   //the array of contents REMEMBER:(the order of the contents must match with the 'menuItems' ) tldr: the arrays must match each other
-  const menuContent = [<YourComics />, <BrowseComics />, <ActiveComic />, <ActiveFolder />]
+  const menuContent = [<YourComics key="1" />, <BrowseComics key="2"/>, <ActiveComic key="3"/>, <ActiveFolder key="4"/>]
 
   //mapping
   const menuItems = [{

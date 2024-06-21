@@ -654,6 +654,11 @@
   display: none;
 }
 
+.dotsIconFolder {
+  opacity: 1;
+  width: 20%;
+}
+
 /******************************/
 /*       Browse Comics        */
 /******************************/
@@ -689,6 +694,11 @@
     width: 100%;
     justify-content: center;
     z-index: 1;
+  }
+
+  .dotsIconFolder {
+    opacity: 1;
+    width: 20%;
   }
 
 }
