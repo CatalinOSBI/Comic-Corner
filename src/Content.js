@@ -103,11 +103,10 @@ function ComicsA() {
 
   return () => {
 
-      slider.removeEventListener('mousedown');
-      slider.removeEventListener('active');
-      slider.removeEventListener('mouseleave');
-      slider.removeEventListener('mouseup');
-      slider.removeEventListener('mousemove');
+    slider.removeEventListener('mousedown', mousedown);
+    slider.removeEventListener('mouseleave', mouseleave);
+    slider.removeEventListener('mouseup', mouseup);
+    slider.removeEventListener('mousemove', mouseleave);
   };
 }, []);  
 
@@ -139,7 +138,7 @@ function ComicsA() {
           <div key={comic.id} className='comic'>
             <img draggable='false' src={comic.thumbnail.path + '.jpg'} className='comicCover' alt='Comic Cover' />
             <p style={{userSelect:'none'}}>{comic.title}</p>
-            <button onClick={()=> handleGoToActiveComic(comic.thumbnail.path + '.jpg', comic.title, comic.description, comic.pageCount, comic.creators.items)}>View</button>
+            <button onClick={()=> handleGoToActiveComic(comic.thumbnail.path + '.jpg', comic.title, comic.description, comic.pageCount, comic.creators.items, comic.urls[0].url, 0)}>View</button>
             <h1 style={{ opacity: "0", fontSize: "1rem" }} >Easter Egg</h1>
           </div>
         ))
@@ -211,7 +210,7 @@ function ComicsB() {
 
 //API Call  
 useEffect(()=>{
-  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=vengeance+of+the+moon+knight&startYear=2024&limit=99&ts=1&apikey="+process.env.REACT_APP_1)
+  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=daredevil&startYear=2023&limit=99&ts=1&apikey="+process.env.REACT_APP_1)
   
       .then(res => {
         setComics(res.data.data.results)
@@ -227,7 +226,7 @@ useEffect(()=>{
           <div key={comic.id} className='comic'>
             <img draggable='false' src={comic.thumbnail.path + '.jpg'} className='comicCover' alt='Comic Cover' />
             <p style={{userSelect:'none'}}>{comic.title}</p>
-            <button onClick={()=> handleGoToActiveComic(comic.thumbnail.path + '.jpg', comic.title, comic.description, comic.pageCount, comic.creators.items)}>View</button>
+            <button onClick={()=> handleGoToActiveComic(comic.thumbnail.path + '.jpg', comic.title, comic.description, comic.pageCount, comic.creators.items, comic.urls[0].url, 0)}>View</button>
             <h1 style={{ opacity: "0", fontSize: "1rem" }} >Easter Egg</h1>
           </div>
         ))

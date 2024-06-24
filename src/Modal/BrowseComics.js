@@ -179,7 +179,7 @@ const BrowseComics = () => {
     })
     //----------------------------------------------------------------------------------
     return (
-      <div onClick={() => handleGoToActiveComic(comic.thumbnail.path + '.jpg', comic.title, comic.description, comic.pageCount, comic.creators.items, comic.urls[0].url)} key={comic.id} className='modalComic'>
+      <div onClick={() => handleGoToActiveComic(comic.thumbnail.path + '.jpg', comic.title, comic.description, comic.pageCount, comic.creators.items, comic.urls[0].url, 1)} key={comic.id} className='modalComic'>
         <img src={comic.thumbnail.path + '.jpg'} className='modalComicCover' alt='Comic Cover' />
 
         <div className='infoWrapper'>

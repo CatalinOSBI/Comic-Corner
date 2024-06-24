@@ -69,7 +69,7 @@ export default function Header() {
             <a className='line' href={'#A'}>Latest Releases</a>
             <a className='line' href={'#B'}>Comic Spotlight</a>
             <a className='line' href={'#C'}>News</a>
-            <a onClick={handleOpenModal} className='line' href={'#D'}>Your Comics</a>
+            <a onClick={handleOpenModal} className='line'>Your Comics</a>
           </div>
         }
 
@@ -83,7 +83,7 @@ export default function Header() {
             <a className='line' href={'#A'}>Latest Releases</a>
             <a className='line' href={'#B'}>Comic Spotlight</a>
             <a className='line' href={'#C'}>News</a>
-            <a onClick={handleOpenModal} className='line' href={'#D'}>Your Comics</a>
+            <a onClick={handleOpenModal} className='line'>Your Comics</a>
           </div>
 
         </div>

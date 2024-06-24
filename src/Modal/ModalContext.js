@@ -20,7 +20,6 @@ export const ModalProvider = ({ children }) => {
   }));
   const [activeMenu, setActiveMenu] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [, setHistory] = useState();
   const [activeContent, setActiveContent] = useState([0]);
   const [activeFolderContent, setActiveFolderContent] = useState([]);
   const [activeComicContent, setActiveComicContent] = useState([]);
@@ -103,17 +102,15 @@ export const ModalProvider = ({ children }) => {
   })
 
   const menuItemsMap = menuItems.map((item, index) => (
-    <>
-      <li style={liDynamicStyling(index, item.visible)} key={index} onClick={() => handleSetActive(index)} onMouseEnter={() => setActiveIndex(index)} onMouseLeave={() => setActiveIndex(null)}>
-        <p>{item.name}</p>
-        <img style={{ opacity: '10%', width: '50%' }} className='dots Bottom' src={dots} alt='dots' />
-
-        <div className='modalLiImageWrapper'>
-          <img className='modalLiImage' src={activeMenu === index || activeIndex === index ? item.imageNoBg : item.image} style={liImageDynamicStyling(index)} alt={item.image} />
-        </div>
-      </li>
-    </>
-  ))
+    <li key={index} style={liDynamicStyling(index, item.visible)} onClick={() => handleSetActive(index)} onMouseEnter={() => setActiveIndex(index)} onMouseLeave={() => setActiveIndex(null)}>
+      <p>{item.name}</p>
+      <img style={{ opacity: '10%', width: '50%' }} className='dots Bottom' src={dots} alt='dots' />
+  
+      <div className='modalLiImageWrapper'>
+        <img className='modalLiImage' src={activeMenu === index || activeIndex === index ? item.imageNoBg : item.image} style={liImageDynamicStyling(index)} alt={item.image} />
+      </div>
+    </li>
+  ));
 
   /////////////////////////////////////////
   //           Folders/Comics            //
@@ -229,12 +226,11 @@ export const ModalProvider = ({ children }) => {
       setActiveContent(menuContent[menuContent.length - 1])
       setActiveFolderContent(folderContent)
       console.log(folderContent)
-      setHistory(3)
     }
   }
 
   //GoTo Active Comic Content
-  const handleGoToActiveComic = (comicImage, comicTitle, comicDesc, pageCount, comicCreators, marvelLink) => {
+  const handleGoToActiveComic = (comicImage, comicTitle, comicDesc, pageCount, comicCreators, marvelLink, menuContentIndex) => {
     //Open Modal
     setShowModal(true)
 
@@ -242,7 +238,7 @@ export const ModalProvider = ({ children }) => {
     const creatorsMap = comicCreators.map((creator, creatorIndex) => {
       return (<p key={creatorIndex} style={{ textTransform: 'capitalize' }}>
         <span className='modalComicTitle'>
-          {creator.name}
+       {creator.name}
         </span> - {creator.role}
       </p>)
     })
@@ -253,7 +249,7 @@ export const ModalProvider = ({ children }) => {
     //Active Comic element
     setActiveComicContent(
       <>
-        <div style={{ position: 'relative', marginBottom: '-24px', width: '100%', display:'flex', justifyContent:'space-between' }} className='activeComicFloatingText'> <p onClick={() => setActiveContent(menuContent[activeMenu === 0 ? 3 : 1])} style={{ fontSize: '1rem' }} className='title'>{arrowIcon} Go Back</p> <a rel="noreferrer" href={marvelLink} target="_blank" style={{color:'inherit'}} className='title'>Marvel site {arrowIcon2}</a></div>
+        <div style={{ position: 'relative', marginBottom: '-24px', width: '100%', display:'flex', justifyContent:'space-between' }} className='activeComicFloatingText'> <p onClick={() => setActiveContent(menuContent[menuContentIndex])} style={{ fontSize: '1rem' }} className='title'>{arrowIcon} Go Back</p> <a rel="noreferrer" href={marvelLink} target="_blank" style={{color:'inherit'}} className='title'>Marvel site {arrowIcon2}</a></div>
 
         <div className='activeComicContent'>
 
@@ -346,7 +342,7 @@ export const ModalProvider = ({ children }) => {
     //Comic Mapping (study this later)
     const folderComics = folder[folderName].map((comic, comicIndex) => (
       //Comic Render
-      <div onClick={() => handleGoToActiveComic(comic.image, comic.title, comic.description, comic.pageCount, comic.creators, comic.marvelLink)} key={comicIndex} title={comic.title} className='modalComic' >
+      <div onClick={() => handleGoToActiveComic(comic.image, comic.title, comic.description, comic.pageCount, comic.creators, comic.marvelLink, 3)} key={comicIndex} title={comic.title} className='modalComic' >
         <img className='modalComicCover' src={comic.image} alt='Comic Cover' />
 
         <div className='infoWrapper'>

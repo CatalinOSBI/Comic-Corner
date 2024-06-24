@@ -35,7 +35,6 @@ const Modal = () => {
           <div className='modalContainer'>
 
             <button style={buttonDynamicStyling()} className='closeModalButton' onClick={handleCloseModal}><p>X</p></button>
-            <button onClick={()=>   console.log('activeContent', activeContent, 'activeMenu', activeMenu , 'menuContent', menuContent)}>TEST</button>
 
             <ul className='modalList'>
               {menuItemsMap}
