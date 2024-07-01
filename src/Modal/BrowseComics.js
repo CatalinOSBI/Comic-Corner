@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, act } from 'react'
 import { useModal } from './ModalContext';
 import axios from 'axios';
 import './Modal.css'
 import dots from '../Images/279-removebg-preview.png'
 import { useMediaQuery } from 'react-responsive';
+import ImageLoader from './ImageLoader';
 
 const BrowseComics = () => {
 
@@ -56,9 +57,9 @@ const BrowseComics = () => {
     }
 
     setApiURL(`https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=${info.comicName}&limit=100&${info.comicYear}&ts=1&apikey=`)
-    console.log('url', apiURL)
-    console.log('year', info.comicYear)
-    console.log('name', info.comicName)
+    // console.log('url', apiURL)
+    // console.log('year', info.comicYear)
+    // console.log('name', info.comicName)
 
     //Clear Search
     setInfo({
@@ -134,7 +135,7 @@ const BrowseComics = () => {
     setInfo(prev => {
       return { ...prev, [name]: value }
     })
-    console.log(info)
+    // console.log(info)
   }
 
   //API Call
@@ -180,7 +181,7 @@ const BrowseComics = () => {
     //----------------------------------------------------------------------------------
     return (
       <div onClick={() => handleGoToActiveComic(comic.thumbnail.path + '.jpg', comic.title, comic.description, comic.pageCount, comic.creators.items, comic.urls[0].url, 1)} key={comic.id} className='modalComic'>
-        <img src={comic.thumbnail.path + '.jpg'} className='modalComicCover' alt='Comic Cover' />
+        <ImageLoader imgSrc={comic.thumbnail.path + '.jpg'}/>
 
         <div className='infoWrapper'>
           <p className='modalComicTitle'>{comic.title}</p>

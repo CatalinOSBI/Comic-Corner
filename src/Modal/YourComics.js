@@ -48,7 +48,7 @@ const YourComics = () => {
       {modalFolders}
 
       <div className='modalFolderWrapper'>
-        <div className='modalFolder'>
+        <div className='modalFolder' title='Add Folder'>
 
           {showNameFolder ? (
             <>

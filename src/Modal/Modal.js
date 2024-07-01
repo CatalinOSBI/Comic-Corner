@@ -10,8 +10,6 @@ const Modal = () => {
     showModal,
     menuItemsMap,
     activeContent,
-    activeMenu,
-    menuContent,
   } = useModal()
 
   const isPhone = useMediaQuery({query:'(max-width: 600px)'})

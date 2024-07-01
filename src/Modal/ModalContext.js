@@ -8,6 +8,7 @@ import IronMan2 from '../Images/IronMan1TEST2.png'
 import Hulk1 from '../Images/Hulk1TEST.png'
 import Hulk2 from '../Images/Hulk1TEST2.png'
 import dots from '../Images/279-removebg-preview.png'
+import ImageLoader from './ImageLoader';
 
 const ModalContext = createContext();
 
@@ -225,7 +226,7 @@ export const ModalProvider = ({ children }) => {
     if (showRenameFolderWindow === false) {
       setActiveContent(menuContent[menuContent.length - 1])
       setActiveFolderContent(folderContent)
-      console.log(folderContent)
+      // console.log(folderContent)
     }
   }
 
@@ -343,7 +344,7 @@ export const ModalProvider = ({ children }) => {
     const folderComics = folder[folderName].map((comic, comicIndex) => (
       //Comic Render
       <div onClick={() => handleGoToActiveComic(comic.image, comic.title, comic.description, comic.pageCount, comic.creators, comic.marvelLink, 3)} key={comicIndex} title={comic.title} className='modalComic' >
-        <img className='modalComicCover' src={comic.image} alt='Comic Cover' />
+        <ImageLoader imgSrc={comic.image}/>
 
         <div className='infoWrapper'>
           <p className='modalComicTitle'>{comic.title}</p>

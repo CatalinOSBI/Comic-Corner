@@ -235,6 +235,7 @@
   height: auto;
   position: relative;
   transition: all .218s;
+  aspect-ratio: 175 / 269;
 }
 
 .modalComicTitle {
