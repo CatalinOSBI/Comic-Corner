@@ -47,17 +47,17 @@ const YourComics = () => {
     <>
       {modalFolders}
 
-      <div className='modalFolderWrapper'>
-        <div className='modalFolder' title='Add Folder'>
+      <div className='modalFolderWrapper' >
+        <div className='modalFolder' title='Add Folder' >
 
           {showNameFolder ? (
             <>
-              <div style={{ paddingTop: '16px', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', opacity: dynamicOpacity, transition:'all .218s'}}>
+              <div style={{ paddingTop: '16px', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', opacity: dynamicOpacity, transition:'all .218s', padding:'1rem'}}>
                 <input style={{ width: '98.2%' }} autoComplete='off' className='modalTextInput' id='folderName' name='folderName' placeholder='Folder Name' type='text' ref={folderNameRef} />
                 {/* <button onClick={handleStorageUpdate}>Storage</button> */}
 
                 <div className='folderButtonsContainer' >
-                  <button  className='folderButton' onClick={()=>handleHideAddName()}>Cancel</button>
+                  <button className='folderButton' onClick={()=>handleHideAddName()}>Cancel</button>
                   <button className='folderButton' onClick={()=>handleUpdate(setShowNameFolder)}>Confirm</button>
                 </div>
               </div>

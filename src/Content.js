@@ -200,7 +200,7 @@ function ComicsB() {
 
 //API Call  
 useEffect(()=>{
-  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=hellverine&startYear=2024&limit=99&ts=1&apikey="+process.env.REACT_APP_1)
+  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=ultimate+x-men&startYear=2024&limit=99&ts=1&apikey="+process.env.REACT_APP_1)
   
       .then(res => {
         setComics(res.data.data.results)

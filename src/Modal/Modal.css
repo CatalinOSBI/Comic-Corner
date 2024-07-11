@@ -203,7 +203,7 @@
   transition: all .218s;
   font-family: 'roboto', sans-serif;
   cursor: pointer;
-  background-color: #E8F0FE;
+  background-color: #e8f0fe83;
 }
 
 .modalSearchButton:hover .searchIcon {
@@ -256,8 +256,8 @@
 /* 266px */
 .modalFolder {
   position: relative;
-  width: 266px;
-  height: 266px;
+  width: 258px;
+  height: 258px;
   background-color: rgb(191, 213, 255);
   border: solid 1px rgb(234, 237, 255);
   border-radius: 8%;
@@ -267,6 +267,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  padding: 8px;
 }
 
 .folderIcon,
@@ -366,6 +367,7 @@
   cursor: pointer;
   transition: all .218s;
 }
+
 
 .folderButton:hover {
   transform: scale(1.09);
