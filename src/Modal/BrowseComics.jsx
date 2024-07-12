@@ -142,7 +142,7 @@ const BrowseComics = () => {
   useEffect(() => {
     setisLoading(true) //show loading
 
-    axios.get(apiURL + process.env.REACT_APP_1)
+    axios.get(apiURL + import.meta.env.VITE_APP_1)
 
       .then(res => {
         setComics(res.data.data.results)

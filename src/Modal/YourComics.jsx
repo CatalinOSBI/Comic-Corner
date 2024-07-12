@@ -57,7 +57,7 @@ const YourComics = () => {
                 {/* <button onClick={handleStorageUpdate}>Storage</button> */}
 
                 <div className='folderButtonsContainer' >
-                  <button className='folderButton' onClick={()=>handleHideAddName()}>Cancel</button>
+                  <button className='folderButton' onClick={()=>handleHideAddName()} style={{backgroundColor:'white', color:'#3371e6', border:'1px solid #3371e6'}}>Cancel</button>
                   <button className='folderButton' onClick={()=>handleUpdate(setShowNameFolder)}>Confirm</button>
                 </div>
               </div>

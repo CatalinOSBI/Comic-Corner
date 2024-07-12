@@ -367,7 +367,7 @@ export const ModalProvider = ({ children }) => {
                   <input style={{ width: '98.2%' }} autoComplete='off' className='modalTextInput' id='folderRename' name='folderRename' placeholder='Folder Name' type='text' ref={folderRenameRef} />
 
                   <div className='folderButtonsContainer' >
-                    <button className='folderButton' onClick={() => setShowRenameFolderWindow(false)}>Cancel</button>
+                    <button className='folderButton' onClick={() => setShowRenameFolderWindow(false)} style={{backgroundColor:'white', color:'#3371e6', border:'1px solid #3371e6'}}>Cancel</button>
                     <button className='folderButton' onClick={(e) => handleRenameFolder(e, folder.id, folderRenameRef.current.value)}>Confirm</button>
                   </div>
                 </div>
