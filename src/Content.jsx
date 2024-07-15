@@ -204,8 +204,8 @@ function ComicsB() {
 //API Call  
 useEffect(()=>{
   const apiKey = import.meta.env.VITE_APP_1
-  console.log('API Key: ' + apiKey);
-  
+  console.log('API Keyy: ' + apiKey);
+
   axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=ULTIMATE+SPIDER-MAN&startYear=2024&limit=99&ts=1&apikey="+ apiKey)
   
       .then(res => {
