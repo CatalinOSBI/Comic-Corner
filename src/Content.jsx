@@ -16,8 +16,6 @@ import Venom1 from './Images/venom1.png';
 import Venom2 from './Images/venom2NoBG.png';
 import dots from './Images/279-removebg-preview.png'
 
-const apiKey = import.meta.env.VITE_APP_1
-
 export default function Content() {
 
   return (
@@ -114,6 +112,8 @@ function ComicsA() {
 
   //API Call
   useEffect(() => {
+    const apiKey = import.meta.env.VITE_APP_1
+
     axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateDescriptor=thisWeek&limit=48&ts=1&apikey=" + apiKey)
 
       .then(res => {
@@ -202,6 +202,8 @@ function ComicsB() {
 
 //API Call  
 useEffect(()=>{
+  const apiKey = import.meta.env.VITE_APP_1
+  
   axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=ULTIMATE+SPIDER-MAN&startYear=2024&limit=99&ts=1&apikey="+ apiKey)
   
       .then(res => {
