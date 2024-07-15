@@ -50,8 +50,7 @@ const YourComics = () => {
       {modalFolders}
 
       <div className='modalFolderWrapper' >
-        <div className='modalFolder' title='Add Folder.' >
-          <button onClick={()=>console.log(test)}>sdsad</button>
+        <div className='modalFolder' title='Add Folder' >
 
           {showNameFolder ? (
             <>
