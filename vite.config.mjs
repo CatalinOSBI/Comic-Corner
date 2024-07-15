@@ -1,14 +1,12 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-    // depending on your application, base can also be "/"
     base: '/Comic-Corner/',
     plugins: [react()],
-    server: {    
-        // this ensures that the browser opens upon server start
+    server: {
         open: true,
-        // this sets a default port to 3000  
-        port: 3000, 
+        port: 3000,
     },
-})
+    envFile: '.env.local', 
+});
