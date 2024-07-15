@@ -48,7 +48,7 @@ const YourComics = () => {
       {modalFolders}
 
       <div className='modalFolderWrapper' >
-        <div className='modalFolder' title='Add Folder .' >
+        <div className='modalFolder' title='Add Folder' >
           <button onClick={()=>console.log(import.meta.env.VITE_APP_1)}>sdsad</button>
 
           {showNameFolder ? (

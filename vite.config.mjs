@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
@@ -8,5 +8,11 @@ export default defineConfig({
         open: true,
         port: 3000,
     },
-    envFile: '.env.local', 
 });
+
+
+const loadViteEnv = ({ mode }) => {
+  Object.assign(process.env, loadEnv(mode, process.cwd()))
+}
+
+loadViteEnv({ mode: process.env.NODE_ENV });
