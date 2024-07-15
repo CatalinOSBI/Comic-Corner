@@ -13,7 +13,7 @@ export default function Header() {
   const {
     handleOpenModal,
   } = useModal()
-
+  
   useEffect(() => {
 
     const handleShowPhoneMenu = () => {

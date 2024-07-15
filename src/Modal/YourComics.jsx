@@ -1,6 +1,7 @@
 import React, { useState} from 'react'
 import './Modal.css'
 import { useModal } from './ModalContext';
+import ExportImport from './Export-Import';
 
 const YourComics = () => {
 
@@ -67,9 +68,9 @@ const YourComics = () => {
             folderIconAdd
             
           )}
-
         </div>
       </div>
+            <ExportImport/>
 
     </>
   )
