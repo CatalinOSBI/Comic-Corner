@@ -43,13 +43,15 @@ const YourComics = () => {
     localStorage.setItem('Comic Folders', JSON.stringify(update))
   }
 
+  const test= import.meta.env.VITE_APP_1
+
   return (
     <>
       {modalFolders}
 
       <div className='modalFolderWrapper' >
-        <div className='modalFolder' title='Add Folder' >
-          <button onClick={()=>console.log(import.meta.env.VITE_APP_1)}>sdsad</button>
+        <div className='modalFolder' title='Add Folder.' >
+          <button onClick={()=>console.log(test)}>sdsad</button>
 
           {showNameFolder ? (
             <>
