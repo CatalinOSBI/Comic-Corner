@@ -44,6 +44,8 @@ const YourComics = () => {
     localStorage.setItem('Comic Folders', JSON.stringify(update))
   }
 
+  const test= import.meta.env.VITE_APP_1
+
   return (
     <>
       {modalFolders}
