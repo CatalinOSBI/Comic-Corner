@@ -77,6 +77,7 @@
 .modalLiImage{
   position: relative;
   width: 50%;
+  min-width: 120px;
   /* border: solid red; */
   height: auto;
   transition: opacity ease-in-out .218s;
@@ -103,8 +104,9 @@
 
 .modalContainer {
   position: fixed;
-  width: 1200px;
-  /* min-width: 1200px; */
+  width: 48.13%;
+  max-width: 1159px;
+  min-width: 934px;
   height: fit-content;
   background-color: rgb(234, 237, 255);
   border: solid 1px #3372e6b2;
@@ -114,10 +116,12 @@
 .modalContent {
   /* border: solid green; */
   overflow-y: scroll;
+  overflow-x: hidden;
   height: 700px;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+  justify-content: flex-start;
   gap: 24px;
   padding: 24px 24px;
 }
@@ -210,9 +214,9 @@
   fill: #3371e6;
 }
 
-.modalComic {
-  position: relative;
-  width: 17.64%;
+.modalComic { 
+  position: relative; /*17.64% or 268.2px*/ 
+  width: 193.6px;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -253,11 +257,11 @@
 /*         Your Comics        */
 /******************************/
 
-/* 266px */
+/* 266px 239.7px*/
 .modalFolder {
   position: relative;
-  width: 258px;
-  height: 258px;
+  width: 239.7px;
+  height: 239.7px;
   background-color: rgb(191, 213, 255);
   border: solid 1px rgb(234, 237, 255);
   border-radius: 8%;
@@ -268,6 +272,16 @@
   justify-content: center;
   cursor: pointer;
   padding: 8px;
+}
+
+.exportImportButton {
+  width: 48px !important;
+  height: 48px !important;
+  position: absolute !important;
+  bottom: 0;
+  right: 0;
+  margin: 24px 24px;
+  cursor: pointer;
 }
 
 .folderIcon,
@@ -557,6 +571,7 @@
 .modalContainer {
   width: 95%;
   transform: translateY(-5%);
+  min-width: 0px;
 }
 
 .modalContent{
@@ -632,10 +647,10 @@
 /**********************/
 .modalContainer {
   width: 95%;
+  min-width: 0px;
 }
 
 .modalContent{
-  justify-content: center;
   height: 68vh;    
 }
 

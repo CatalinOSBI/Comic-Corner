@@ -39,7 +39,7 @@ const Modal = () => {
             </ul>
 
             <div className='modalContent' style={{gap: activeContent.key === '3' ? '0px' : ''}}>
-
+              
               {activeContent}
 
             </div>

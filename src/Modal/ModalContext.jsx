@@ -99,7 +99,7 @@ export const ModalProvider = ({ children }) => {
   })
 
   const liImageDynamicStyling = (itemIndex) => ({
-    width: activeMenu === itemIndex ? '60%' : '50%',
+    scale: activeMenu === itemIndex ? '1.2' : '1',
   })
 
   const menuItemsMap = menuItems.map((item, index) => (
