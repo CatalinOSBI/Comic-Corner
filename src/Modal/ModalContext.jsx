@@ -15,10 +15,6 @@ const ModalContext = createContext();
 export const ModalProvider = ({ children }) => {
 
   const [showModal, setShowModal] = useState(false);
-  const [idCounter, setIdCounter] = useState((() => {
-    const localStorageIdCounter = localStorage.getItem('Folder Id Counter');
-    return localStorageIdCounter ? parseInt(localStorageIdCounter, 10) : -1;;
-  }));
   const [activeMenu, setActiveMenu] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeContent, setActiveContent] = useState([0]);
@@ -47,11 +43,6 @@ export const ModalProvider = ({ children }) => {
   //              Side Menu              //
   /////////////////////////////////////////
 
-  useEffect(() => {
-    localStorage.setItem('Folder Id Counter', idCounter)
-
-  }, [idCounter]);
-
   //default to the 1st menu/content
   useEffect(() => {
     handleSetActive(0)
@@ -71,31 +62,30 @@ export const ModalProvider = ({ children }) => {
     name: 'Your Comics',
     image: IronMan1,
     imageNoBg: IronMan2,
-    visible: 1,
+    visible: true,
   },
   {
     name: 'Browse Comics',
     image: Hulk1,
     imageNoBg: Hulk2,
-    visible: 1,
+    visible: true,
   },
   {
     name: 'ActiveComic',
     image: '',
     imageNoBg: '',
-    visible: 'none',
+    visible: false,
   },
   {
     name: 'ActiveFolder',
     image: '',
     imageNoBg: '',
-    visible: 'none',
+    visible: false,
   }]
 
-  const liDynamicStyling = (itemIndex, visibility) => ({
+  const liDynamicStyling = (itemIndex) => ({
     backgroundColor: activeMenu === itemIndex || activeIndex === itemIndex ? '#3371e6' : '#2654aa',
     scale: activeMenu === itemIndex || activeIndex === itemIndex ? '1.1' : '1',
-    display: visibility
   })
 
   const liImageDynamicStyling = (itemIndex) => ({
@@ -103,10 +93,12 @@ export const ModalProvider = ({ children }) => {
   })
 
   const menuItemsMap = menuItems.map((item, index) => (
-    <li key={index} style={liDynamicStyling(index, item.visible)} onClick={() => handleSetActive(index)} onMouseEnter={() => setActiveIndex(index)} onMouseLeave={() => setActiveIndex(null)}>
+   //if the item is visible render it / dont 
+   item.visible &&
+    <li key={index} style={liDynamicStyling(index)} onClick={() => handleSetActive(index)} onMouseEnter={() => setActiveIndex(index)} onMouseLeave={() => setActiveIndex(null)}>
       <p>{item.name}</p>
       <img style={{ opacity: '10%', width: '50%' }} className='dots Bottom' src={dots} alt='dots' />
-  
+
       <div className='modalLiImageWrapper'>
         <img className='modalLiImage' src={activeMenu === index || activeIndex === index ? item.imageNoBg : item.image} style={liImageDynamicStyling(index)} alt={item.image} />
       </div>
@@ -172,7 +164,19 @@ export const ModalProvider = ({ children }) => {
     let folderName = folderNameRef.current.value;
 
     //Increase Counter
-    setIdCounter((prev) => prev + 1)
+    const generateId = () => {
+      const idChar = [
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
+        "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
+        "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
+      ];
+
+    const ranChar = () => {
+      return idChar[Math.floor(Math.random() * idChar.length)];
+    };
+
+    return ranChar() + ranChar() + ranChar() + ranChar() + ranChar() + ranChar();
+};
 
     setComicFolders((prev) => ({
       ...prev,
@@ -180,7 +184,7 @@ export const ModalProvider = ({ children }) => {
         ...prev.ComicFolders,
         {
           folderContents: [],
-          id: idCounter, //id of the folder
+          id: generateId(), //id of the folder
           folderName: folderName //folder name
         },
       ],

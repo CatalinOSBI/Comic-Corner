@@ -274,6 +274,16 @@
   padding: 8px;
 }
 
+.modalContent form{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
 .exportImportButton {
   width: 48px !important;
   height: 48px !important;
@@ -282,6 +292,30 @@
   right: 0;
   margin: 24px 24px;
   cursor: pointer;
+}
+
+.exportImportButtonContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+}
+
+.exportImportFloaterContainer{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exportImportFloaterContainer p{
+  font-size: 0.8rem;
+  color: #393c3fcb;
+  font-family: GretaSansStdReg;
 }
 
 .folderIcon,
@@ -476,8 +510,8 @@
 .modalActiveComic {
   border-top: 8px solid #e6c300;
   position: relative;
-  width: 62%;
-  height: fit-content;
+  width: 74%;
+  height: auto;
   /* box-shadow: 0px 5px 20px -10px rgba(0, 0, 0, 0.80); */
 }
 
@@ -651,7 +685,8 @@
 }
 
 .modalContent{
-  height: 68vh;    
+  height: 68vh; 
+  justify-content: center;   
 }
 
 .modalList {
@@ -687,7 +722,7 @@
 }
 
 .modalContainer header {
-  transform: translate(0.4%, -100%);
+  transform: translate(0.5%, -100%);
 }
 
 }
