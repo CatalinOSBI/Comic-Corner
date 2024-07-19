@@ -43,7 +43,7 @@ const ExportImport = () => {
 
       //Call
       await axios.post(
-        `http://localhost:8080/api/SendData/${token}`,
+        `https://comic-corner-backend-s3gv.onrender.com/api/SendData/${token}`,
         comicFolders
       );
 
@@ -120,7 +120,7 @@ const ExportImport = () => {
       //Enable Loading
       setIsLoading(true);
       axios
-        .get(`http://localhost:8080/api/GetData/${token}`)
+        .get(`https://comic-corner-backend-s3gv.onrender.com/api/GetData/${token}`)
         .then((res) => {
           //Merging, replacing folders with matching folderName
           //GUUUUUUUUUTS AND GLOOOOOOOOOOOOOOORY!!!
