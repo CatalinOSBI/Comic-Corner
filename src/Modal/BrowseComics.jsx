@@ -25,7 +25,7 @@ const BrowseComics = () => {
   const [isLoading, setisLoading] = useState(false);
   const [apiURL, setApiURL] = useState((() => {
     const localStorageUrl = localStorage.getItem('Last Search');
-    return localStorageUrl ? localStorageUrl : 'https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateDescriptor=thisWeek&limit=99&ts=1&apikey=';
+    return localStorageUrl ? localStorageUrl : 'https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&dateDescriptor=thisWeek&limit=99&ts=1&apikey='+import.meta.env.VITE_APP_1;
   }));
   const [info, setInfo] = useState({
     comicName: '',
@@ -56,7 +56,7 @@ const BrowseComics = () => {
       info.comicYear = 'startYear=' + info.comicYear
     }
 
-    setApiURL(`https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=${info.comicName}&limit=100&${info.comicYear}&ts=1&apikey=`)
+    setApiURL(`https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=${info.comicName}&limit=100&${info.comicYear}&ts=1&apikey=`+import.meta.env.VITE_APP_1)
     // console.log('url', apiURL)
     // console.log('year', info.comicYear)
     // console.log('name', info.comicName)

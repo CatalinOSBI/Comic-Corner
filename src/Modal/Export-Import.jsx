@@ -6,42 +6,9 @@ import { useModal } from "./ModalContext";
 
 const generateToken = () => {
   const tokenChar = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-    "0",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
+    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
+    "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
+    "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
   ];
 
   const ranChar = () => {
@@ -155,19 +122,19 @@ const ExportImport = () => {
       axios
         .get(`http://localhost:8080/api/GetData/${token}`)
         .then((res) => {
-          // Merging objectA and objectB, replacing folders with matching folderName
+          //Merging, replacing folders with matching folderName
           //GUUUUUUUUUTS AND GLOOOOOOOOOOOOOOORY!!!
           setComicFolders((prev) => {
             const existingFolders = prev.ComicFolders;
             const newFolders = res.data.ComicFolders;
 
-            // Merging logic
+            //Check for folder duplicates
             const mergedFolders = existingFolders.map((folder) => {
               const matchingFolder = newFolders.find(
                 (newFolder) => newFolder.folderName === folder.folderName
               );
               
-              //Check for comic duplicates
+              //Check for comic duplicates inside the folders (duplicate themselves)
               if (matchingFolder) {
                 const combinedContents = [
                   ...folder.folderContents,
@@ -189,7 +156,7 @@ const ExportImport = () => {
               return folder;
             });
 
-            // Add any new folders from the imported data that do not exist in the current state
+            //If the folder is not a duplicate add it normally
             newFolders.forEach((newFolder) => {
               if (
                 !existingFolders.some(
