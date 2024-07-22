@@ -204,7 +204,7 @@ function ComicsB() {
 useEffect(()=>{
   const apiKey = import.meta.env.VITE_APP_1
 
-  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=ULTIMATE+SPIDER-MAN&startYear=2024&limit=99&ts=1&apikey="+ apiKey)
+  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=immortal+thor&startYear=2023&limit=100&ts=1&apikey="+ apiKey)
   
       .then(res => {
         setComics(res.data.data.results)
