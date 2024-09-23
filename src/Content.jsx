@@ -198,13 +198,13 @@ function ComicsB() {
   }, []);
 
   //link for comics - https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=miles+morales&startYear=2022&limit=99&ts=1&apikey=
-  //link for series - https://gateway.marvel.com:443/v1/public/series/32866/comics?format=comic&ts=1&apikey=
+  //link for series - https://gateway.marvel.com:443/v1/public/series/39284/comics?noVariants=true&ts=1&apikey=
 
 //API Call  
 useEffect(()=>{
   const apiKey = import.meta.env.VITE_APP_1
 
-  axios.get("https://gateway.marvel.com/v1/public/comics?format=comic&formatType=comic&noVariants=true&titleStartsWith=Spider-Gwen:+The+Ghost-Spider&startYear=2024&limit=100&ts=1&apikey="+ apiKey)
+  axios.get("https://gateway.marvel.com:443/v1/public/series/39284/comics?noVariants=true&ts=1&apikey="+ apiKey)
   
       .then(res => {
         setComics(res.data.data.results)
