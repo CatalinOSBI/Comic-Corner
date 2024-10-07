@@ -117,7 +117,8 @@
   /* border: solid green; */
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 700px;
+  height: 58vh;
+  /* min-height: 400px; */
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -216,7 +217,7 @@
 
 .modalComic { 
   position: relative; /*17.64% or 268.2px*/ 
-  width: 193.6px;
+  width: 22.06%;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -731,7 +732,7 @@
   /* LANDSCAPE */
 
   .modalComic {
-    width: 22.99%;
+    width: 22.95%;
     margin: 0 0;
   }
 
