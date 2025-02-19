@@ -204,7 +204,7 @@ function ComicsB() {
 useEffect(()=>{
   const apiKey = import.meta.env.VITE_APP_1
 
-  axios.get("https://gateway.marvel.com:443/v1/public/series/39436/comics?noVariants=true&ts=1&apikey="+ apiKey)
+  axios.get("https://gateway.marvel.com:443/v1/public/series/39693/comics?noVariants=true&ts=1&apikey="+ apiKey)
   
       .then(res => {
         setComics(res.data.data.results)
